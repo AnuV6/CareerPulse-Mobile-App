@@ -1,15 +1,7 @@
-# 📖📖 OpenLeaf (Flutter eBook App) [![Codemagic build status](https://api.codemagic.io/apps/5e230defc5faa60315b1df62/5e230defc5faa60315b1df61/status_badge.svg)](https://codemagic.io/apps/5e230defc5faa60315b1df62/5e230defc5faa60315b1df61/latest_build)
+# CareerPulse Mobile App [![Codemagic build status](https://api.codemagic.io/apps/5e230defc5faa60315b1df62/5e230defc5faa60315b1df61/status_badge.svg)](https://codemagic.io/apps/5e230defc5faa60315b1df62/5e230defc5faa60315b1df61/latest_build)
 
-[![Twitter Follow](https://img.shields.io/twitter/follow/iamjideguru.svg?style=social)](https://twitter.com/iamjideguru)
+Introducing a mobile platform offering streamlined internship support and CV analysis for undergraduates, maximizing their industry experience with smart CV analysis and tailored guidance.
 
-A simple Flutter app to Read and Download books. The Books included in the app
-are from the [Public Domain](https://en.wikipedia.org/wiki/Public_domain)
-(Expired Copyright and completely free).
-
-<a href="http://www.feedbooks.com/"><img src="ss/logo_feedbooks.png" width="200"/></a>
-<br>
-
-The [Feedbooks API](http://www.feedbooks.com/api) was used to fetch books. <br>
 <br>
 <a href="https://www.vecteezy.com/vector-art/599678-book-reading-logo-and-symbols-template-icons">App
 icon</a> <br> <br>
@@ -27,11 +19,12 @@ You can download from the appstore if you use an iPhone, iPad or a Mac with Sili
 
 ## ✨ Features
 
-- [x] Download eBooks.
-- [x] Read eBooks.
-- [x] Favorites.
-- [x] Dark Mode
-- [x] Swipe to delete downloads.
+- [x] Analyze CV.
+- [x] Show prograss.
+- [x] Suggest some courses.
+- [x] Internship suggestions.
+- [x] Creative CV tips.
+- [x] Help to improve skills.
 
 ## 📸 ScreenShots
 
@@ -47,9 +40,7 @@ You can download from the appstore if you use an iPhone, iPad or a Mac with Sili
 | <img src="ss/11.png" width="300"> | <img src="ss/12.png" width="300"> |
 | <img src="ss/13.png" width="300"> | <img src="ss/14.png" width="300"> |
 
-##### Desktop
 
-<img src="ss/desktop_1.png" width="800">
 
 ## 🔌 Plugins
 
@@ -68,8 +59,8 @@ You can download from the appstore if you use an iPhone, iPad or a Mac with Sili
 
 ## 🔖 LICENCE
 
-[Apache-2.0](https://github.com/JideGuru/FlutterEbookApp/blob/master/LICENSE)
+[Apache-2.0](https://github.com/AnuV6/CareerPulse-Mobile-App/master/LICENSE)
 
-<a href="https://github.com/JideGuru/FlutterEbookApp">
-        <img width="500" alt="Star History Chart" src="https://api.star-history.com/svg?repos=JideGuru/FlutterEbookApp&type=Date">
+<a href="https://github.com/AnuV6/CareerPulse-Mobile-App">
+        <img width="500" alt="Star History Chart" src="https://api.star-history.com/svg?repos=AnuV6/CareerPulse-Mobile-App&type=Date">
       </a>
