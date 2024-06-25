@@ -19,11 +19,14 @@ You can download from the appstore if you use an iPhone, iPad or a Mac with Sili
 
 ## ✨ Features
 
-- [x] Analyze CV.
-- [x] Show prograss.
-- [x] Suggest some courses.
-- [x] Internship suggestions.
-- [x] Creative CV tips.
+- [x] Resume Score
+- [x] Show progress
+- [x] Skills Recommendations
+- [x] Courses Recommendations
+- [x] Internship Recommendations
+- [x] You tube video recommendations
+- [x] Resume writing Tips & suggestions 
+- [x] Easy apply for interns 
 - [x] Help to improve skills.
 
 ## 📸 ScreenShots
