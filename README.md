@@ -13,8 +13,8 @@ You can download from the appstore if you use an iPhone, iPad or a Mac with Sili
 
 ## 💻 Requirements
 
-- Any Operating System (ie. MacOS X, Linux, Windows)
-- Any IDE with Flutter SDK installed (ie. IntelliJ, Android Studio, VSCode etc)
+- Any Operating System (eg. Mac, Linux, Windows)
+- Any IDE with Flutter SDK installed (eg. VSCode, Android Studio, IntelliJ etc)
 - A little knowledge of Dart and Flutter
 
 ## ✨ Features
@@ -58,7 +58,7 @@ You can download from the appstore if you use an iPhone, iPad or a Mac with Sili
 ## 🤓 Author(s)
 
 **Team_Name**
-[![Twitter Follow](https://img.shields.io/twitter/follow/iamjideguru.svg?style=social)](https://twitter.com/iamjideguru)
+[![Team Icon](https://teamIcon.svg)]
 
 ## 🔖 LICENCE
 
