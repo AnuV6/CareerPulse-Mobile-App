@@ -54,12 +54,12 @@ You can download from the appstore if you use an iPhone, iPad or a Mac with Sili
 
 ## 🤓 Author(s)
 
-**Festus Babajide Olusegun**
+**Team_Name**
 [![Twitter Follow](https://img.shields.io/twitter/follow/iamjideguru.svg?style=social)](https://twitter.com/iamjideguru)
 
 ## 🔖 LICENCE
 
-[Apache-2.0](https://github.com/AnuV6/CareerPulse-Mobile-App/master/LICENSE)
+[Apache-2.0](LICENSE)
 
 <a href="https://github.com/AnuV6/CareerPulse-Mobile-App">
         <img width="500" alt="Star History Chart" src="https://api.star-history.com/svg?repos=AnuV6/CareerPulse-Mobile-App&type=Date">
