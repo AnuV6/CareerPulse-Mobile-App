@@ -31,16 +31,9 @@ You can download from the appstore if you use an iPhone, iPad or a Mac with Sili
 
 ## 📸 ScreenShots
 
-| Screens                           |
-| --------------------------------- | 
-| <img src="ss/1.png" width="300">  | 
-| <img src="ss/3.png" width="300">  | 
-| <img src="ss/7.png" width="300">  | 
-| <img src="ss/9.png" width="300">  |
-| <img src="ss/11.png" width="300"> |
-| <img src="ss/13.png" width="300"> |
-
-
+| <img src="ss4.jpeg" width="300">  |
+ <img src="ss5.jpeg" width="300">   | <img src="ss6.jpeg" width="300">  |
+ 
 
 ## 🔌 Plugins
 
