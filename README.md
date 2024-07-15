@@ -45,10 +45,12 @@ You can download from the appstore if you use an iPhone, iPad or a Mac with Sili
 | [**DIO**](https://pub.dev/packages/dio)                                | Network calls and File Download               |
 | [**Iridium Reader**](https://github.com/Mantano/iridium_reader_widget) | Plug and play reader widget for epubs         |
 
+
 ## 🤓 Author(s)
 
-**Team_Name**
-[![Team Icon](https://teamIcon.svg)]
+<a href="https://github.com/AnuV6/CareerPulse-Mobile-App/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=AnuV6/CareerPulse-Mobile-App" />
+</a>
 
 ## 🔖 LICENCE
 
