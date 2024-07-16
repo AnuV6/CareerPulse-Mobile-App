@@ -15,7 +15,7 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Welcome Back',
                   style: TextStyle(
                     fontSize: 24,
@@ -24,8 +24,8 @@ class LoginScreen extends StatelessWidget {
                     fontFamily: 'Montserrat',
                   ),
                 ),
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Text(
                   "We're glad to have you here again.",
                   style: TextStyle(
                     fontSize: 16,
@@ -33,16 +33,16 @@ class LoginScreen extends StatelessWidget {
                     fontFamily: 'Inter',
                   ),
                 ),
-                SizedBox(height: 40),
-                TextField(
+                const SizedBox(height: 40),
+                const TextField(
                   decoration: InputDecoration(
                     labelText: 'Email',
                     labelStyle: TextStyle(fontFamily: 'Inter'),
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: 20),
-                TextField(
+                const SizedBox(height: 20),
+                const TextField(
                   obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'Password',
@@ -51,46 +51,46 @@ class LoginScreen extends StatelessWidget {
                     suffixIcon: Icon(Icons.visibility),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
                         Checkbox(value: false, onChanged: (value) {}),
-                        Text('Remember me', style: TextStyle(fontFamily: 'Inter')),
+                        const Text('Remember me', style: TextStyle(fontFamily: 'Inter')),
                       ],
                     ),
                     TextButton(
                       onPressed: () {},
-                      child: Text('Forgot Password?', style: TextStyle(fontFamily: 'Inter')),
+                      child: const Text('Forgot Password?', style: TextStyle(fontFamily: 'Inter')),
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {},
-                  child: Text('LOGIN', style: TextStyle(fontFamily: 'Inter')),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
-                    minimumSize: Size(double.infinity, 50),
+                    minimumSize: const Size(double.infinity, 50),
                   ),
+                  child: const Text('LOGIN', style: TextStyle(fontFamily: 'Inter')),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 ElevatedButton.icon(
                   onPressed: () {},
-                  icon: Icon(Icons.login, color: Colors.red),
-                  label: Text('SIGN IN WITH GOOGLE', style: TextStyle(fontFamily: 'Inter')),
+                  icon: const Icon(Icons.login, color: Colors.red),
+                  label: const Text('SIGN IN WITH GOOGLE', style: TextStyle(fontFamily: 'Inter')),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     foregroundColor: const Color.fromARGB(255, 0, 0, 0),
-                    minimumSize: Size(double.infinity, 50),
+                    minimumSize: const Size(double.infinity, 50),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {},
-                  child: Text.rich(
+                  child: const Text.rich(
                     TextSpan(
                       text: "You don't have an account yet? ",
                       style: TextStyle(fontFamily: 'Inter'),

@@ -17,7 +17,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Creer Pulse Anupa case',
+      title: 'Creer Pulse App',
       debugShowCheckedModeBanner: false,
       home: LoginScreen(), 
     );
