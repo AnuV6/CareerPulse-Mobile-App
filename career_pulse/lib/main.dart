@@ -1,4 +1,4 @@
-import 'package:career_pulse/pages/splash1.dart';
+import 'package:career_pulse/pages/login.dart';
 //import ur page here
 
 import 'package:firebase_core/firebase_core.dart';
@@ -19,7 +19,7 @@ class MainApp extends StatelessWidget {
     return const MaterialApp(
       title: 'Creer Pulse Anupa case',
       debugShowCheckedModeBanner: false,
-      home: Splash1(), 
+      home: LoginScreen(), 
     );
   }
 }
