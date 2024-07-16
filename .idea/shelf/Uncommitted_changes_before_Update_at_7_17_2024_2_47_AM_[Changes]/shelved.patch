@@ -1,0 +1,185 @@
+Index: career_pulse/lib/main.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:career_pulse/pages/login.dart';\r\n//import ur page here\r\n\r\nimport 'package:firebase_core/firebase_core.dart';\r\nimport 'package:flutter/material.dart';\r\n\r\nvoid main() async{\r\n  runApp(const MainApp());\r\n  WidgetsFlutterBinding.ensureInitialized();\r\n  await Firebase.initializeApp();\r\n}\r\n\r\nclass MainApp extends StatelessWidget {\r\n  const MainApp({super.key});\r\n\r\n  // This widget is the root of your application.\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return const MaterialApp(\r\n      title: 'Creer Pulse Anupa case',\r\n      debugShowCheckedModeBanner: false,\r\n      home: LoginScreen(), \r\n    );\r\n  }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/career_pulse/lib/main.dart b/career_pulse/lib/main.dart
+--- a/career_pulse/lib/main.dart	(revision d47fe61c24ad85781c03ad7b72ab2c1897180b9b)
++++ b/career_pulse/lib/main.dart	(date 1721161971154)
+@@ -1,10 +1,12 @@
+ import 'package:career_pulse/pages/login.dart';
++import 'package:career_pulse/pages/register.dart';
++
+ //import ur page here
+ 
+ import 'package:firebase_core/firebase_core.dart';
+ import 'package:flutter/material.dart';
+ 
+-void main() async{
++void main() async {
+   runApp(const MainApp());
+   WidgetsFlutterBinding.ensureInitialized();
+   await Firebase.initializeApp();
+@@ -17,10 +19,10 @@
+   @override
+   Widget build(BuildContext context) {
+     return const MaterialApp(
+-      title: 'Creer Pulse Anupa case',
++      title: 'Creer Pulse',
+       debugShowCheckedModeBanner: false,
+-      home: LoginScreen(), 
++      home: LoginScreen(),
++      home: RegisterScreen(),
+     );
+   }
+ }
+-
+Index: career_pulse/lib/pages/register.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/career_pulse/lib/pages/register.dart b/career_pulse/lib/pages/register.dart
+--- a/career_pulse/lib/pages/register.dart	(revision d47fe61c24ad85781c03ad7b72ab2c1897180b9b)
++++ b/career_pulse/lib/pages/register.dart	(date 1721161963778)
+@@ -1,0 +1,93 @@
++import 'package:flutter/material.dart';
++
++class RegisterScreen extends StatelessWidget {
++  const RegisterScreen({super.key});
++
++  @override
++  Widget build(BuildContext context) {
++    return Scaffold(
++      body: Padding(
++        padding: const EdgeInsets.all(20.0),
++        child: Center(
++          child: SingleChildScrollView(
++            child: Column(
++              mainAxisAlignment: MainAxisAlignment.center,
++              children: [
++                const Text(
++                  'Create an Account',
++                  style: TextStyle(
++                    fontSize: 24,
++                    fontWeight: FontWeight.bold,
++                    color: Colors.blue,
++                  ),
++                ),
++                const SizedBox(height: 20),
++                TextField(
++                  decoration: InputDecoration(
++                    labelText: 'Full name',
++                    border: OutlineInputBorder(),
++                  ),
++                ),
++                const SizedBox(height: 20),
++                TextField(
++                  decoration: InputDecoration(
++                    labelText: 'Email',
++                    border: OutlineInputBorder(),
++                  ),
++                ),
++                const SizedBox(height: 20),
++                TextField(
++                  obscureText: true,
++                  decoration: InputDecoration(
++                    labelText: 'Password',
++                    border: OutlineInputBorder(),
++                    suffixIcon: Icon(Icons.visibility_off),
++                  ),
++                ),
++                const SizedBox(height: 20),
++                Row(
++                  children: [
++                    Checkbox(value: false, onChanged: (bool? value) {}),
++                    const Text('Remember me'),
++                  ],
++                ),
++                const SizedBox(height: 20),
++                ElevatedButton(
++                  onPressed: () {},
++                  child: const Text('SIGN UP'),
++                  style: ElevatedButton.styleFrom(
++                    primary: Colors.blue,
++                    minimumSize: const Size(double.infinity, 50),
++                  ),
++                ),
++                const SizedBox(height: 10),
++                ElevatedButton.icon(
++                  onPressed: () {},
++                  icon: const Icon(Icons.login, color: Colors.red),
++                  label: const Text('SIGN UP WITH GOOGLE'),
++                  style: ElevatedButton.styleFrom(
++                    primary: Colors.white,
++                    onPrimary: Colors.black,
++                    minimumSize: const Size(double.infinity, 50),
++                  ),
++                ),
++                const SizedBox(height: 20),
++                GestureDetector(
++                  onTap: () {
++                    Navigator.pop(context);
++                  },
++                  child: const Text(
++                    "You don't have an account yet? Sign in",
++                    style: TextStyle(
++                      color: Colors.blue,
++                    ),
++                  ),
++                ),
++              ],
++            ),
++          ),
++        ),
++      ),
++    );
++  }
++}
+Index: career_pulse/lib/pages/login.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/material.dart';\r\n\r\nclass LoginScreen extends StatelessWidget {\r\n\r\n  const LoginScreen({super.key});\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Scaffold(\r\n      //debugShowCheckedModeBanner:false,\r\n      body: Padding(\r\n        padding: const EdgeInsets.all(20.0),\r\n        child: Center(\r\n          child: SingleChildScrollView(\r\n            child: Column(\r\n              mainAxisAlignment: MainAxisAlignment.center,\r\n              children: [\r\n                Text(\r\n                  'Welcome Back',\r\n                  style: TextStyle(\r\n                    fontSize: 24,\r\n                    fontWeight: FontWeight.bold,\r\n                    color: Colors.blue,\r\n                    fontFamily: 'Montserrat',\r\n                  ),\r\n                ),\r\n                SizedBox(height: 10),\r\n                Text(\r\n                  \"We're glad to have you here again.\",\r\n                  style: TextStyle(\r\n                    fontSize: 16,\r\n                    color: Colors.grey,\r\n                    fontFamily: 'Inter',\r\n                  ),\r\n                ),\r\n                SizedBox(height: 40),\r\n                TextField(\r\n                  decoration: InputDecoration(\r\n                    labelText: 'Email',\r\n                    labelStyle: TextStyle(fontFamily: 'Inter'),\r\n                    border: OutlineInputBorder(),\r\n                  ),\r\n                ),\r\n                SizedBox(height: 20),\r\n                TextField(\r\n                  obscureText: true,\r\n                  decoration: InputDecoration(\r\n                    labelText: 'Password',\r\n                    labelStyle: TextStyle(fontFamily: 'Inter'),\r\n                    border: OutlineInputBorder(),\r\n                    suffixIcon: Icon(Icons.visibility),\r\n                  ),\r\n                ),\r\n                SizedBox(height: 10),\r\n                Row(\r\n                  mainAxisAlignment: MainAxisAlignment.spaceBetween,\r\n                  children: [\r\n                    Row(\r\n                      children: [\r\n                        Checkbox(value: false, onChanged: (value) {}),\r\n                        Text('Remember me', style: TextStyle(fontFamily: 'Inter')),\r\n                      ],\r\n                    ),\r\n                    TextButton(\r\n                      onPressed: () {},\r\n                      child: Text('Forgot Password?', style: TextStyle(fontFamily: 'Inter')),\r\n                    ),\r\n                  ],\r\n                ),\r\n                SizedBox(height: 20),\r\n                ElevatedButton(\r\n                  onPressed: () {},\r\n                  child: Text('LOGIN', style: TextStyle(fontFamily: 'Inter')),\r\n                  style: ElevatedButton.styleFrom(\r\n                    backgroundColor: Colors.blue,\r\n                    minimumSize: Size(double.infinity, 50),\r\n                  ),\r\n                ),\r\n                SizedBox(height: 10),\r\n                ElevatedButton.icon(\r\n                  onPressed: () {},\r\n                  icon: Icon(Icons.login, color: Colors.red),\r\n                  label: Text('SIGN IN WITH GOOGLE', style: TextStyle(fontFamily: 'Inter')),\r\n                  style: ElevatedButton.styleFrom(\r\n                    backgroundColor: Colors.white,\r\n                    foregroundColor: const Color.fromARGB(255, 0, 0, 0),\r\n                    minimumSize: Size(double.infinity, 50),\r\n                  ),\r\n                ),\r\n                SizedBox(height: 20),\r\n                GestureDetector(\r\n                  onTap: () {},\r\n                  child: Text.rich(\r\n                    TextSpan(\r\n                      text: \"You don't have an account yet? \",\r\n                      style: TextStyle(fontFamily: 'Inter'),\r\n                      children: [\r\n                        TextSpan(\r\n                          text: 'Sign up',\r\n                          style: TextStyle(\r\n                            color: Colors.blue,\r\n                            fontFamily: 'Inter',\r\n                          ),\r\n                        ),\r\n                      ],\r\n                    ),\r\n                  ),\r\n                ),\r\n              ],\r\n            ),\r\n          ),\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/career_pulse/lib/pages/login.dart b/career_pulse/lib/pages/login.dart
+--- a/career_pulse/lib/pages/login.dart	(revision d47fe61c24ad85781c03ad7b72ab2c1897180b9b)
++++ b/career_pulse/lib/pages/login.dart	(date 1721160788675)
+@@ -1,7 +1,6 @@
+ import 'package:flutter/material.dart';
+ 
+ class LoginScreen extends StatelessWidget {
+-
+   const LoginScreen({super.key});
+ 
+   @override
+@@ -58,12 +57,14 @@
+                     Row(
+                       children: [
+                         Checkbox(value: false, onChanged: (value) {}),
+-                        Text('Remember me', style: TextStyle(fontFamily: 'Inter')),
++                        Text('Remember me',
++                            style: TextStyle(fontFamily: 'Inter')),
+                       ],
+                     ),
+                     TextButton(
+                       onPressed: () {},
+-                      child: Text('Forgot Password?', style: TextStyle(fontFamily: 'Inter')),
++                      child: Text('Forgot Password?',
++                          style: TextStyle(fontFamily: 'Inter')),
+                     ),
+                   ],
+                 ),
+@@ -80,7 +81,8 @@
+                 ElevatedButton.icon(
+                   onPressed: () {},
+                   icon: Icon(Icons.login, color: Colors.red),
+-                  label: Text('SIGN IN WITH GOOGLE', style: TextStyle(fontFamily: 'Inter')),
++                  label: Text('SIGN IN WITH GOOGLE',
++                      style: TextStyle(fontFamily: 'Inter')),
+                   style: ElevatedButton.styleFrom(
+                     backgroundColor: Colors.white,
+                     foregroundColor: const Color.fromARGB(255, 0, 0, 0),
