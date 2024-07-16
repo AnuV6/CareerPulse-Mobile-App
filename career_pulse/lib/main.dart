@@ -1,11 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:career_pulse/pages/splash1.dart'; // Import your splash1.dart page here
+import 'package:career_pulse/pages/login.dart';
+//import ur page here
 
-void main() async {
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+
+void main() async{
+  runApp(const MainApp());
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -14,13 +16,11 @@ class MainApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Career Pulse Anupa case',
+    return const MaterialApp(
+      title: 'Creer Pulse Anupa case',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.green, // Set your primary color
-      ),
-      home: const Splash1(), // Set your initial screen here
+      home: LoginScreen(), 
     );
   }
 }
+
