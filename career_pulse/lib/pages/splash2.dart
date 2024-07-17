@@ -11,10 +11,21 @@ class _Splash2State extends State<Splash2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Splash Screen 2 by DA'),
-        backgroundColor: const Color(0xFF6200EE),
+      body: const Center(
+        child: Text(
+          'Welcome to CareerPulse',
+          style: TextStyle(
+            fontSize: 30.0,
+          ),
+        ),
       ),
+      
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/login');
+        },
+        child: const Icon(Icons.arrow_forward),
+      )
     );
   }
 }

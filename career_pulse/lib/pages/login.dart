@@ -42,6 +42,12 @@ class LoginScreen extends StatelessWidget {
                 },
                 child: const Text('No account? Register here!'),
               ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/forgotPassword');
+                },
+                child: const Text('Forgot password?'),
+              ),
             ],
           ),
         ),
