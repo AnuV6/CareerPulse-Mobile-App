@@ -12,7 +12,7 @@ class _Splash2State extends State<Splash2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Splash Screen 2'),
+        title: const Text('Splash Screen 2 by DA'),
         backgroundColor: const Color(0xFF6200EE),
       ),
     );
