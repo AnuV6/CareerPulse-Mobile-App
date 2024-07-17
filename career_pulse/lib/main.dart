@@ -1,26 +1,29 @@
-import 'package:career_pulse/pages/login.dart';
-//import ur page here
-
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:career_pulse/pages/login.dart';
+import 'package:career_pulse/pages/register.dart';
 
-void main() async{
-  runApp(const MainApp());
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Creer Pulse App',
+    return MaterialApp(
+      title: 'Career Pulse App',
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(), 
+      initialRoute: '/',
+      routes: {
+        '/': (context) =>
+            const LoginScreen(), // Home route for the Login screen
+        '/register': (context) =>
+            const RegisterScreen(), // Route for the Register screen
+      },
     );
   }
 }
-
