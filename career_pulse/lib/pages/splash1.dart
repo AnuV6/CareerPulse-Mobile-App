@@ -34,7 +34,7 @@ class _Splash1State extends State<Splash1> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex, // Current index
         onTap: onTabTapped, // Function to handle tap on each tab
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home), // Icon for Home tab
             label: 'Home', // Label for Home tab
@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text('Home Screen'),
     );
   }
@@ -66,7 +66,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text('Profile Screen'),
     );
   }
