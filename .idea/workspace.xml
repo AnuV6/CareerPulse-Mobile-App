@@ -6,16 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a1aaf356-bcf2-44c8-8b09-a47071ca7f6b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/career_pulse/lib/pages/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/lib/pages/login.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/career_pulse/lib/pages/register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/lib/pages/register.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/career_pulse/lib/stuf/colors.dart" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/lib/stuf/colors.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/career_pulse/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/linux/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/career_pulse/linux/flutter/generated_plugin_registrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/linux/flutter/generated_plugin_registrant.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/career_pulse/linux/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/linux/flutter/generated_plugins.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/career_pulse/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/career_pulse/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/career_pulse/windows/flutter/generated_plugin_registrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/windows/flutter/generated_plugin_registrant.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/career_pulse/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/windows/flutter/generated_plugins.cmake" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
