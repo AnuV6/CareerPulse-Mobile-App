@@ -8,6 +8,9 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        foregroundColor: Colors.black,
       ),
       body: Center(
         child: Padding(
@@ -15,26 +18,47 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const TextField(
+              TextField(
                 decoration: InputDecoration(
                   labelText: 'Email',
-                  border: OutlineInputBorder(),
+                  hintText: 'Your email',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Colors.blue, width: 2.0),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
-              const TextField(
+              TextField(
+                obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Password',
-                  border: OutlineInputBorder(),
+                  hintText: 'Password',
+                  suffixIcon: const Icon(Icons.visibility_off),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Colors.blue, width: 2.0),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                 ),
-                obscureText: true,
               ),
               const SizedBox(height: 20),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blue, // Text Color (Foreground color)
+                ),
                 onPressed: () {
                   // Placeholder for login function
                 },
-                child: const Text('Login'),
+                child: const Text('LOGIN'),
               ),
               TextButton(
                 onPressed: () {
