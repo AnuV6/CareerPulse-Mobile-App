@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:career_pulse/pages/login.dart';
-import 'package:career_pulse/pages/register.dart';
+//import 'package:career_pulse/pages/login.dart';
+//import 'package:career_pulse/pages/register.dart';
+import 'package:career_pulse/pages/splash_screen.dart';
+import 'package:career_pulse/stuf/colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,13 +19,22 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: 'Career Pulse App',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) =>
-            const LoginScreen(), // Home route for the Login screen
-        '/register': (context) =>
-            const RegisterScreen(), // Route for the Register screen
-      },
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: AppColors.secondaryColor, 
+        appBarTheme: const AppBarTheme(
+          color: AppColors.primaryColor, 
+          titleTextStyle: TextStyle(
+            color: AppColors.titleColor, 
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.buttonColor, 
+          ),
+        ),
+      ),
+      home: SplashScreen(),
     );
   }
 }
