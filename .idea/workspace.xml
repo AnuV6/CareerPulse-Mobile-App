@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1aaf356-bcf2-44c8-8b09-a47071ca7f6b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/career_pulse/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/career_pulse/lib/pages/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/lib/pages/login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/career_pulse/lib/pages/register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/lib/pages/register.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/career_pulse/lib/pages/splash1.dart" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/lib/pages/splash1.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +47,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/src/dart-sdk",
+    "last_opened_file_path": "C:/src/development/CareerPulse-Mobile-Application",
     "settings.editor.selected.configurable": "dart.settings",
     "show.migrate.to.gradle.popup": "false"
   }
