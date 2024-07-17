@@ -8,6 +8,9 @@ class RegisterScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Create an Account'),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        foregroundColor: Colors.black,
       ),
       body: Center(
         child: Padding(
@@ -16,40 +19,80 @@ class RegisterScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const TextField(
+                TextField(
                   decoration: InputDecoration(
                     labelText: 'Full Name',
-                    border: OutlineInputBorder(),
+                    hintText: 'Joe Done',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 10),
-                const TextField(
+                TextField(
                   decoration: InputDecoration(
                     labelText: 'Email',
-                    border: OutlineInputBorder(),
+                    hintText: 'JoeD@example.com',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 10),
-                const TextField(
+                TextField(
                   obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    border: OutlineInputBorder(),
-                    suffixIcon: Icon(Icons.visibility_off),
+                    suffixIcon: const Icon(Icons.visibility_off),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor:
+                        Colors.blue, // Text Color (Foreground color)
+                  ),
                   onPressed: () {
                     // Placeholder for registration function
                   },
-                  child: const Text('Sign Up'),
+                  child: const Text('SIGN UP'),
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton.icon(
+                  icon: const Icon(Icons.g_translate, color: Colors.white),
+                  label: const Text('SIGN UP WITH GOOGLE'),
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.blue, // Icon and Text color
+                  ),
+                  onPressed: () {
+                    // Placeholder for Google sign-up function
+                  },
                 ),
                 TextButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: const Text('Already have an account? Log in!'),
+                  child: const Text('You don\'t have an account yet? Sign in'),
                 ),
               ],
             ),
