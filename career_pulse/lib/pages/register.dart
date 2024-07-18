@@ -1,8 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 
-class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key}); // Corrected constructor syntax
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _RegisterScreenState createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  bool _obscureText = true;
+  bool _rememberMe = false;
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+  void _toggleRememberMe(bool? newValue) {
+    setState(() {
+      _rememberMe = newValue ?? false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +58,7 @@ class RegisterScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
+
             // Email
             const Text(
               'Email',
@@ -56,14 +78,22 @@ class RegisterScreen extends StatelessWidget {
               'Password',
               style: TextStyle(color: AppColors.headingColor),
             ),
-            const TextField(
+            TextField(
               decoration: InputDecoration(
                 labelText: '**********',
-                labelStyle: TextStyle(color: AppColors.headingColor),
-                border: OutlineInputBorder(),
-                suffixIcon: Icon(Icons.visibility_off),
+                labelStyle: const TextStyle(color: AppColors.headingColor),
+                border: const OutlineInputBorder(),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                    color: AppColors.headingColor,
+                  ),
+                  onPressed: () {
+                    _togglePasswordVisibility();
+                  },
+                ),
               ),
-              obscureText: true,
+              obscureText: _obscureText,
             ),
 
             // Remember me button and Forget password
@@ -74,8 +104,10 @@ class RegisterScreen extends StatelessWidget {
                 Row(
                   children: [
                     Checkbox(
-                      value: false,
-                      onChanged: (bool? value) {},
+                      value: _rememberMe,
+                      onChanged: (bool? value) {
+                        _toggleRememberMe(value);
+                      },
                     ),
                     const Text(
                       'Remember me',
@@ -131,7 +163,7 @@ class RegisterScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: 8),
                     const Text(
-                      'SIGN IN WITH GOOGLE',
+                      'SIGN UP WITH GOOGLE',
                       style: TextStyle(color: AppColors.headingColor),
                     ),
                   ],
