@@ -11,21 +11,19 @@ class _Splash2State extends State<Splash2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Center(
-        child: Text(
-          'Welcome to CareerPulse',
-          style: TextStyle(
-            fontSize: 30.0,
+        body: const Center(
+          child: Text(
+            'Welcome to CareerPulse mobile application',
+            style: TextStyle(
+              fontSize: 30.0,
+            ),
           ),
         ),
-      ),
-      
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/login');
-        },
-        child: const Icon(Icons.arrow_forward),
-      )
-    );
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/login');
+          },
+          child: const Icon(Icons.arrow_forward),
+        ));
   }
 }
