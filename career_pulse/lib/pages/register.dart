@@ -1,102 +1,167 @@
 import 'package:flutter/material.dart';
+import 'package:career_pulse/stuffs/colors.dart';
 
 class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+  const RegisterScreen({super.key}); // Corrected constructor syntax
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Create an Account'),
-        backgroundColor: const Color(0xFFF9F9F9),
-        elevation: 0,
-        foregroundColor: Colors.black,
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+      backgroundColor: AppColors.secondaryColor,
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Create Account',
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: AppColors.primaryColor,
+              ),
+            ),
+            const SizedBox(height: 32),
+
+            // Full Name
+            const Text(
+              'Full name',
+              style: TextStyle(color: AppColors.headingColor),
+            ),
+            const TextField(
+              decoration: InputDecoration(
+                labelText: 'Ezio Auditore',
+                labelStyle: TextStyle(color: AppColors.headingColor),
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 10),
+            // Email
+            const Text(
+              'Email',
+              style: TextStyle(color: AppColors.headingColor),
+            ),
+            const TextField(
+              decoration: InputDecoration(
+                labelText: 'ezio@email.com',
+                labelStyle: TextStyle(color: AppColors.headingColor),
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 10),
+
+            // Password
+            const Text(
+              'Password',
+              style: TextStyle(color: AppColors.headingColor),
+            ),
+            const TextField(
+              decoration: InputDecoration(
+                labelText: '**********',
+                labelStyle: TextStyle(color: AppColors.headingColor),
+                border: OutlineInputBorder(),
+                suffixIcon: Icon(Icons.visibility_off),
+              ),
+              obscureText: true,
+            ),
+
+            // Remember me button and Forget password
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Full Name',
-                    hintText: 'Joe Done',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                Row(
+                  children: [
+                    Checkbox(
+                      value: false,
+                      onChanged: (bool? value) {},
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(8.0),
+                    const Text(
+                      'Remember me',
+                      style: TextStyle(color: AppColors.headingColor),
                     ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Email',
-                    hintText: 'JoeD@example.com',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    suffixIcon: const Icon(Icons.visibility_off),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor:
-                        Colors.blue, // Text Color (Foreground color)
-                  ),
-                  onPressed: () {
-                    // Placeholder for registration function
-                  },
-                  child: const Text('SIGN UP'),
-                ),
-                const SizedBox(height: 10),
-                ElevatedButton.icon(
-                  icon: const Icon(Icons.g_translate, color: Colors.white),
-                  label: const Text('SIGN UP WITH GOOGLE'),
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.blue, // Icon and Text color
-                  ),
-                  onPressed: () {
-                    // Placeholder for Google sign-up function
-                  },
+                  ],
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/forgotPassword');
                   },
-                  child: const Text('You don\'t have an account yet? Sign in'),
+                  child: const Text(
+                    'Forgot Password?',
+                    style: TextStyle(color: AppColors.primaryColor),
+                  ),
                 ),
               ],
             ),
-          ),
+
+            const SizedBox(height: 32),
+
+            // Sign Up button
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.buttonColor,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+              ),
+              child: const Center(
+                child: Text(
+                  'SIGN UP',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 16),
+
+            // Sign in with Google button
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.buttonColor2,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+              ),
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/google.png',
+                      height: 24,
+                    ),
+                    const SizedBox(width: 8),
+                    const Text(
+                      'SIGN IN WITH GOOGLE',
+                      style: TextStyle(color: AppColors.headingColor),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 32),
+
+            // Sign In button
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/login');
+                },
+                child: RichText(
+                  text: const TextSpan(
+                    text: 'Already have an account? ',
+                    style: TextStyle(color: Color.fromARGB(255, 40, 20, 121)),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: 'Sign In',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
