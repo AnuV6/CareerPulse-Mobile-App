@@ -1,8 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool _obscureText = true;
+  bool _rememberMe = false;
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+  void _toggleRememberMe(bool? newValue) {
+    setState(() {
+      _rememberMe = newValue ?? false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +52,8 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 32),
+
+            // Email
             const TextField(
               decoration: InputDecoration(
                 labelText: 'Email',
@@ -39,24 +62,38 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            const TextField(
+
+            // Password
+            TextField(
               decoration: InputDecoration(
                 labelText: 'Password',
-                labelStyle: TextStyle(color: AppColors.headingColor),
-                border: OutlineInputBorder(),
-                suffixIcon: Icon(Icons.visibility_off),
+                labelStyle: const TextStyle(color: AppColors.headingColor),
+                border: const OutlineInputBorder(),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                    color: AppColors.headingColor,
+                  ),
+                  onPressed: () {
+                    _togglePasswordVisibility();
+                  },
+                ),
               ),
-              obscureText: true,
+              obscureText: _obscureText,
             ),
             const SizedBox(height: 16),
+
+            // Remember me and Forgot password
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
                     Checkbox(
-                      value: false,
-                      onChanged: (bool? value) {},
+                      value: _rememberMe,
+                      onChanged: (bool? value) {
+                        _toggleRememberMe(value);
+                      },
                     ),
                     const Text(
                       'Remember me',
@@ -65,17 +102,19 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
                 TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/forgotPassword');
-                },
-                child: const Text(
-                  'Forgot Password?',
-                  style: TextStyle(color: AppColors.primaryColor),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/forgotPassword');
+                  },
+                  child: const Text(
+                    'Forgot Password?',
+                    style: TextStyle(color: AppColors.primaryColor),
+                  ),
                 ),
-              ),
               ],
             ),
             const SizedBox(height: 32),
+
+            // Login button
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
@@ -90,6 +129,8 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
+
+            // Login with Google button
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
@@ -101,7 +142,7 @@ class LoginScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/google.png', 
+                      'assets/google.png',
                       height: 24,
                     ),
                     const SizedBox(width: 8),
@@ -114,14 +155,26 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 32),
+
+            // Sign up button
             Center(
               child: TextButton(
-              onPressed: () {
+                onPressed: () {
                   Navigator.pushNamed(context, '/register');
-              },
-                child: const Text('You don\'t have an account yet? Sign up',
-                style: TextStyle(color: AppColors.headingColor),
-              ),
+                },
+                child: RichText(
+                  text: const TextSpan(
+                    text: 'You don\'t have an account yet? ',
+                    style: TextStyle(color: AppColors.headingColor),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: 'Sign up',
+                        style: TextStyle(
+                            color: Colors.red), // Only "Sign up" text is red
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ],
