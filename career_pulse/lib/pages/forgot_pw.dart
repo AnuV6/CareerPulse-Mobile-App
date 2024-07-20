@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
+import 'package:career_pulse/pages/check_email.dart';
 import 'package:career_pulse/stuffs/colors.dart';
-=======
-import 'package:career_pulse/pages/check_email.dart'; // Import the CheckEmailScreen
->>>>>>> 9d4c2cbc8ff7de8042d8630b84dbf92b76d19322
+
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _emailController = TextEditingController(); // Added TextEditingController
+    final TextEditingController emailController = TextEditingController(); // Added TextEditingController
 
-    void _resetPassword() {
-      final email = _emailController.text.trim();
+    void resetPassword() {
+      final email = emailController.text.trim();
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -56,7 +54,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               TextField(
-                controller: _emailController, // Added controller to TextField
+                controller: emailController, // Added controller to TextField
                 decoration: const InputDecoration(
                   labelText: 'Email',
                   hintText: 'xxx@gmail.com',
@@ -67,14 +65,10 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: _resetPassword, // Updated onPressed event
+                onPressed: resetPassword, // Updated onPressed event
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16), 
-<<<<<<< HEAD
-                  backgroundColor: AppColors.buttonColor,
-=======
                   backgroundColor: const Color(0xFF1954EE),
->>>>>>> 9d4c2cbc8ff7de8042d8630b84dbf92b76d19322
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16.0),
                   ),
@@ -91,12 +85,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16.0),
-<<<<<<< HEAD
-                  ), // text color
-=======
                   ),
                   side: const BorderSide(color: Colors.black54),
->>>>>>> 9d4c2cbc8ff7de8042d8630b84dbf92b76d19322
                 ),
                 child: const Text('BACK TO LOGIN',
                  style: TextStyle(color: AppColors.headingColor,
@@ -104,7 +94,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
               const SizedBox(height: 32),
             ],
-          ),
+       ),
         ),
       ),
     );
