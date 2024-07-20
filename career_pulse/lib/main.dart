@@ -1,10 +1,11 @@
+
+import 'package:career_pulse/pages/splash2.dart';
+//import 'package:career_pulse/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:career_pulse/pages/login.dart';
 import 'package:career_pulse/pages/register.dart';
 import 'package:career_pulse/pages/forgot_pw.dart';
-import 'package:career_pulse/pages/splash_screen.dart';
-import 'package:career_pulse/stuffs/colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,25 +21,10 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: 'Career Pulse App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: AppColors.secondaryColor, 
-        appBarTheme: const AppBarTheme(
-          color: AppColors.primaryColor, 
-          titleTextStyle: TextStyle(
-            color: AppColors.titleColor, 
-          ),
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.buttonColor, 
-          ),
-        ),
-      ),
       initialRoute: '/',
       routes: {
         '/': (context) =>
-            const SplashScreen(), // Home route for the splash screen
+            const Splash2(), // Home route for the splash screen
         '/login': (context) =>
             const LoginScreen(), // Home route for the Login screen
         '/register': (context) =>
