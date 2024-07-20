@@ -7,7 +7,7 @@ class ForgotPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF9F9F9),
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -76,6 +76,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 ),
                 child: const Text('BACK TO LOGIN', style: TextStyle(color: Colors.black54, fontWeight:FontWeight.w900)),
               ),
+              const SizedBox(height: 32),
             ],
           ),
         ),
