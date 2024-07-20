@@ -1,26 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:career_pulse/pages/check_email.dart'; // Import the CheckEmailScreen
 
-class ForgotPasswordScreen extends StatelessWidget {
-  const ForgotPasswordScreen({super.key});
+class CheckEmailScreen extends StatelessWidget {
+  final String email;
+
+  const CheckEmailScreen({super.key, required this.email});
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _emailController = TextEditingController(); // Added TextEditingController
-
-    void _resetPassword() {
-      final email = _emailController.text.trim();
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => CheckEmailScreen(email: email), // Passing email to CheckEmailScreen
-        ),
-      );
-    }
-
     return Scaffold(
       backgroundColor: const Color(0xFFF9F9F9),
-      body: SingleChildScrollView(
+      body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -28,7 +17,7 @@ class ForgotPasswordScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Text(
-                'Forgot Password?',
+                'Check Your Email',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25,
@@ -37,41 +26,32 @@ class ForgotPasswordScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              const Text(
-                'To reset your password, you need your email or mobile number that can be authenticated',
+              Text(
+                'We have sent the reset password to the email address\n$email',
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   color: Color.fromARGB(255, 53, 100, 170),
                 ),
               ),
               const SizedBox(height: 24),
               Image.asset(
-                'assets/fpw.png', 
+                'assets/check_email.png', // Update this asset
                 height: 150,
               ),
               const SizedBox(height: 24),
-              TextField(
-                controller: _emailController, // Added controller to TextField
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  hintText: 'xxx@gmail.com',
-                  border: OutlineInputBorder(),
-                  filled: true,
-                  fillColor: Colors.white,
-                ),
-              ),
-              const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: _resetPassword, // Updated onPressed event
+                onPressed: () {
+                  // Handle open email
+                },
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16), 
+                  padding: const EdgeInsets.symmetric(vertical: 16),
                   backgroundColor: const Color(0xFF1954EE),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16.0),
                   ),
                 ),
-                child: const Text('RESET PASSWORD', style: TextStyle(color: Colors.white)),
+                child: const Text('OPEN YOUR EMAIL', style: TextStyle(color: Colors.white)),
               ),
               const SizedBox(height: 8),
               OutlinedButton(
@@ -87,9 +67,21 @@ class ForgotPasswordScreen extends StatelessWidget {
                   ),
                   side: const BorderSide(color: Colors.black54),
                 ),
-                child: const Text('BACK TO LOGIN', style: TextStyle(color: Colors.black54, fontWeight:FontWeight.w900)),
+                child: const Text('BACK TO LOGIN', style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w900)),
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 20),
+              TextButton(
+                onPressed: () {
+                  // Handle resend email
+                },
+                child: const Text(
+                  'You have not received the email? Resend',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Color.fromARGB(255, 53, 100, 170),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
