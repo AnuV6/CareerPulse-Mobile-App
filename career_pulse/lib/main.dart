@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/pages/login.dart';
 import 'package:career_pulse/pages/register.dart';
 import 'package:career_pulse/pages/forgot_pw.dart';
 import 'package:career_pulse/pages/splash_screen.dart';
-import 'package:career_pulse/stuffs/colors.dart';
+import 'package:career_pulse/pages/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,6 +46,8 @@ class MainApp extends StatelessWidget {
             const RegisterScreen(), // Route for the Register screen
         '/forgotPassword': (context) =>
             const ForgotPasswordScreen(), // Route for the forgot password screen
+        '/home': (context) =>
+            const HomeScreen(), // Route for the home screen
       },
     );
   }

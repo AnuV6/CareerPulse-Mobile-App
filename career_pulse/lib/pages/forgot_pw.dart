@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:career_pulse/stuffs/colors.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
@@ -18,9 +19,9 @@ class ForgotPasswordScreen extends StatelessWidget {
                 'Forgot Password?',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 25,
+                  fontSize: 32,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF1954EE),
+                  color: AppColors.primaryColor,
                 ),
               ),
               const SizedBox(height: 8),
@@ -29,10 +30,10 @@ class ForgotPasswordScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16,
-                  color: Color.fromARGB(255, 53, 100, 170),
+                  color: AppColors.primaryColor,
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 30),
               Image.asset(
                 'assets/fpw.png', 
                 height: 150,
@@ -53,28 +54,29 @@ class ForgotPasswordScreen extends StatelessWidget {
                   // Handle reset password
                 },
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16), backgroundColor: const Color(0xFF1954EE),
+                  padding: const EdgeInsets.symmetric(vertical: 16), 
+                  backgroundColor: AppColors.buttonColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16.0),
                   ), // background color
                 ),
                 child: const Text('RESET PASSWORD', style: TextStyle(color: Colors.white)),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 16),
               OutlinedButton(
                 onPressed: () {
                   Navigator.pop(context); // Navigate back to login
                 },
                 style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.black54,
-                  backgroundColor: const Color.fromARGB(255, 181, 204, 239),
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  backgroundColor: AppColors.buttonColor2,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16.0),
                   ), // text color
-                  side: const BorderSide(color: Colors.black54),
                 ),
-                child: const Text('BACK TO LOGIN', style: TextStyle(color: Colors.black54, fontWeight:FontWeight.w900)),
+                child: const Text('BACK TO LOGIN',
+                 style: TextStyle(color: AppColors.headingColor,
+                 fontWeight:FontWeight.w900)),
               ),
             ],
           ),
