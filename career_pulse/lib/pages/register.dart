@@ -46,13 +46,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
             const SizedBox(height: 32),
 
             // Full Name
-            const Text(
-              'Full name',
-              style: TextStyle(color: AppColors.headingColor),
-            ),
             const TextField(
               decoration: InputDecoration(
-                labelText: 'Ezio Auditore',
+                labelText: 'Full name',
                 labelStyle: TextStyle(color: AppColors.headingColor),
                 border: OutlineInputBorder(),
               ),
@@ -60,13 +56,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
             const SizedBox(height: 10),
 
             // Email
-            const Text(
-              'Email',
-              style: TextStyle(color: AppColors.headingColor),
-            ),
             const TextField(
               decoration: InputDecoration(
-                labelText: 'ezio@email.com',
+                labelText: 'Email',
                 labelStyle: TextStyle(color: AppColors.headingColor),
                 border: OutlineInputBorder(),
               ),
@@ -74,13 +66,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
             const SizedBox(height: 10),
 
             // Password
-            const Text(
-              'Password',
-              style: TextStyle(color: AppColors.headingColor),
-            ),
             TextField(
               decoration: InputDecoration(
-                labelText: '**********',
+                labelText: 'Password',
                 labelStyle: const TextStyle(color: AppColors.headingColor),
                 border: const OutlineInputBorder(),
                 suffixIcon: IconButton(
