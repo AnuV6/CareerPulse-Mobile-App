@@ -40,6 +40,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(
+                  height:
+                      80), // Increased space here to push everything downward
               const SizedBox(height: 50), // Add some padding at the top
               const Text(
                 'Create Account',
@@ -49,6 +52,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   color: AppColors.primaryColor,
                 ),
               ),
+              const SizedBox(
+                  height: 32), // Maintain space between title and first input
+
+              // Full Name
+              const TextField(
+                decoration: InputDecoration(
+                  labelText: 'Full Name',
+                  labelStyle: TextStyle(color: AppColors.headingColor),
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 10),
+
+              // Email
+              const TextField(
+                decoration: InputDecoration(
+                  labelText: 'Email',
               const SizedBox(height: 32),
 
               // Full Name
@@ -64,7 +84,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-
+              // Password
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  labelStyle: const TextStyle(color: AppColors.headingColor),
+                  border: const OutlineInputBorder(),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscureText ? Icons.visibility_off : Icons.visibility,
+                      color: AppColors.headingColor,
+                    ),
+                    onPressed: _togglePasswordVisibility,
+                  ),
               // Email
               const Text(
                 'Email',
@@ -76,7 +108,41 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   labelStyle: TextStyle(color: AppColors.headingColor),
                   border: OutlineInputBorder(),
                 ),
+                obscureText: _obscureText,
               ),
+              const SizedBox(height: 16),
+
+              // Remember me and Forget password
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Checkbox(
+                        value: _rememberMe,
+                        onChanged: (bool? value) {
+                          _toggleRememberMe(value);
+                        },
+                      ),
+                      const Text(
+                        'Remember me',
+                        style: TextStyle(color: AppColors.headingColor),
+                      ),
+                    ],
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/forgotPassword');
+                    },
+                    child: const Text(
+                      'Forgot Password?',
+                      style: TextStyle(color: AppColors.primaryColor),
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 32),
               const SizedBox(height: 10),
 
               // Password
@@ -134,7 +200,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
 
               const SizedBox(height: 32),
-
               // Sign Up button
               ElevatedButton(
                 onPressed: () {},
@@ -198,6 +263,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       children: <TextSpan>[
                         TextSpan(
                           text: 'Sign In',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 50), // Add some padding at the bottom
                           style: TextStyle(color: AppColors.primaryColor),
                         ),
                       ],
