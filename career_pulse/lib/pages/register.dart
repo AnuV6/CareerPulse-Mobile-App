@@ -48,7 +48,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             // Full Name
             const TextField(
               decoration: InputDecoration(
-                labelText: 'Full name',
+                labelText: 'Full Name',
                 labelStyle: TextStyle(color: AppColors.headingColor),
                 border: OutlineInputBorder(),
               ),

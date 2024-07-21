@@ -1,13 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:career_pulse/pages/check_email.dart';
+import 'package:career_pulse/stuffs/colors.dart';
+
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController emailController = TextEditingController(); // Added TextEditingController
+
+    void resetPassword() {
+      final email = emailController.text.trim();
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CheckEmailScreen(email: email), // Passing email to CheckEmailScreen
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: const Color(0xFFF9F9F9),
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -18,9 +33,9 @@ class ForgotPasswordScreen extends StatelessWidget {
                 'Forgot Password?',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 25,
+                  fontSize: 32,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF1954EE),
+                  color: AppColors.primaryColor,
                 ),
               ),
               const SizedBox(height: 8),
@@ -29,17 +44,18 @@ class ForgotPasswordScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16,
-                  color: Color.fromARGB(255, 53, 100, 170),
+                  color: AppColors.primaryColor,
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 30),
               Image.asset(
                 'assets/fpw.png', 
                 height: 150,
               ),
               const SizedBox(height: 24),
-              const TextField(
-                decoration: InputDecoration(
+              TextField(
+                controller: emailController, // Added controller to TextField
+                decoration: const InputDecoration(
                   labelText: 'Email',
                   hintText: 'xxx@gmail.com',
                   border: OutlineInputBorder(),
@@ -49,35 +65,36 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () {
-                  // Handle reset password
-                },
+                onPressed: resetPassword, // Updated onPressed event
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16), backgroundColor: const Color(0xFF1954EE),
+                  padding: const EdgeInsets.symmetric(vertical: 16), 
+                  backgroundColor: const Color(0xFF1954EE),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16.0),
-                  ), // background color
+                  ),
                 ),
                 child: const Text('RESET PASSWORD', style: TextStyle(color: Colors.white)),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 16),
               OutlinedButton(
                 onPressed: () {
                   Navigator.pop(context); // Navigate back to login
                 },
                 style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.black54,
-                  backgroundColor: const Color.fromARGB(255, 181, 204, 239),
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  backgroundColor: AppColors.buttonColor2,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16.0),
-                  ), // text color
+                  ),
                   side: const BorderSide(color: Colors.black54),
                 ),
-                child: const Text('BACK TO LOGIN', style: TextStyle(color: Colors.black54, fontWeight:FontWeight.w900)),
+                child: const Text('BACK TO LOGIN',
+                 style: TextStyle(color: AppColors.headingColor,
+                 fontWeight:FontWeight.w900)),
               ),
+              const SizedBox(height: 32),
             ],
-          ),
+       ),
         ),
       ),
     );
