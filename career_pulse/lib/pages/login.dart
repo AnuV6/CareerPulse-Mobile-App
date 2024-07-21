@@ -1,4 +1,4 @@
-import 'package:career_pulse/services/authentication.dart';
+//import 'package:career_pulse/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 
@@ -13,11 +13,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _obscureText = true;
   bool _rememberMe = false;
-<<<<<<< HEAD
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-=======
->>>>>>> 9d4c2cbc8ff7de8042d8630b84dbf92b76d19322
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -32,18 +27,6 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   @override
-<<<<<<< HEAD
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-  
-
-  @override
-=======
->>>>>>> 9d4c2cbc8ff7de8042d8630b84dbf92b76d19322
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.secondaryColor,
@@ -202,70 +185,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-<<<<<<< HEAD
-              ],
-            ),
-            const SizedBox(height: 32),
-            ElevatedButton(
-              onPressed: () async {
-                await AuthenticationService().login(
-                  email: emailController.text,
-                  password: passwordController.text,
-                  context: context,
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.buttonColor,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-              ),
-              child: const Center(
-                child: Text(
-                  'LOGIN',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.buttonColor2,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-              ),
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/google.png', 
-                      height: 24,
-                    ),
-                    const SizedBox(width: 8),
-                    const Text(
-                      'SIGN IN WITH GOOGLE',
-                      style: TextStyle(color: AppColors.headingColor),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 32),
-            Center(
-              child: TextButton(
-              onPressed: () {
-                  Navigator.pushNamed(context, '/register');
-              },
-                child: const Text('You don\'t have an account yet? Sign up',
-                style: TextStyle(color: AppColors.headingColor),
-              ),
-              ),
-            ),
-          ],
-=======
               const SizedBox(height: 32), // Add some padding at the bottom
             ],
           ),
->>>>>>> 9d4c2cbc8ff7de8042d8630b84dbf92b76d19322
         ),
       ),
     );

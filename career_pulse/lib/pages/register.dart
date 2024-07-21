@@ -1,4 +1,4 @@
-import 'package:career_pulse/services/authentication.dart';
+//import 'package:career_pulse/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 
@@ -33,72 +33,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.secondaryColor,
-<<<<<<< HEAD
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Create Account',
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: AppColors.primaryColor,
-              ),
-            ),
-            const SizedBox(height: 32),
-
-            // Full Name
-            const Text(
-              'Full name',
-              style: TextStyle(color: AppColors.headingColor),
-            ),
-            const TextField(
-              decoration: InputDecoration(
-                labelText: 'Ezio Auditore',
-                labelStyle: TextStyle(color: AppColors.headingColor),
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 10),
-
-            // Email
-            const Text(
-              'Email',
-              style: TextStyle(color: AppColors.headingColor),
-            ),
-            TextField(
-              controller: _emailController,
-              decoration: const InputDecoration(
-                labelText: 'ezio@email.com',
-                labelStyle: TextStyle(color: AppColors.headingColor),
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 10),
-
-            // Password
-            const Text(
-              'Password',
-              style: TextStyle(color: AppColors.headingColor),
-            ),
-            TextField(
-              controller: _passwordController,
-              decoration: InputDecoration(
-                labelText: '**********',
-                labelStyle: const TextStyle(color: AppColors.headingColor),
-                border: const OutlineInputBorder(),
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    _obscureText ? Icons.visibility_off : Icons.visibility,
-                    color: AppColors.headingColor,
-                  ),
-                  onPressed: () {
-                    _togglePasswordVisibility();
-                  },
-=======
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -113,25 +47,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
                   color: AppColors.primaryColor,
->>>>>>> 9d4c2cbc8ff7de8042d8630b84dbf92b76d19322
                 ),
               ),
               const SizedBox(height: 32),
 
-<<<<<<< HEAD
-            // Remember me button and Forget password
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Row(
-                  children: [
-                    Text(
-                      'Remember me',
-                      style: TextStyle(color: AppColors.headingColor),
-                    ),
-                  ],
-=======
               // Full Name
               const Text(
                 'Full name',
@@ -142,7 +61,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   labelText: 'Ezio Auditore',
                   labelStyle: TextStyle(color: AppColors.headingColor),
                   border: OutlineInputBorder(),
->>>>>>> 9d4c2cbc8ff7de8042d8630b84dbf92b76d19322
                 ),
               ),
               const SizedBox(height: 10),
@@ -179,27 +97,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     onPressed: _togglePasswordVisibility,
                   ),
                 ),
-<<<<<<< HEAD
-              ],
-            ),
-
-            const SizedBox(height: 32),
-
-            // Sign Up button
-            ElevatedButton(
-              onPressed: () async {
-                await AuthenticationService().signup(
-                  email: _emailController.text,
-                  password: _passwordController.text,
-                  context: context,
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.buttonColor,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-=======
                 obscureText: _obscureText,
->>>>>>> 9d4c2cbc8ff7de8042d8630b84dbf92b76d19322
               ),
 
               // Remember me button and Forget password
@@ -209,12 +107,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 children: [
                   Row(
                     children: [
-                      Checkbox(
-                        value: _rememberMe,
+                        Checkbox(
+                        value: false,
                         onChanged: (bool? value) {
-                          _toggleRememberMe(value);
+                          setState(() {
+                          // Update the value of the checkbox
+                          });
                         },
-                      ),
+                        ),
                       const Text(
                         'Remember me',
                         style: TextStyle(color: AppColors.headingColor),
@@ -255,30 +155,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
               const SizedBox(height: 16),
 
-<<<<<<< HEAD
-            // Sign up with Google button
-            ElevatedButton(
-              onPressed: () {
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.buttonColor2,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-              ),
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/google.png',
-                      height: 24,
-                    ),
-                    const SizedBox(width: 8),
-                    const Text(
-                      'SIGN UP WITH GOOGLE',
-                      style: TextStyle(color: AppColors.headingColor),
-                    ),
-                  ],
-=======
               // Sign in with Google button
               ElevatedButton(
                 onPressed: () {},
@@ -288,7 +164,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16.0),
                   ),
->>>>>>> 9d4c2cbc8ff7de8042d8630b84dbf92b76d19322
                 ),
                 child: Center(
                   child: Row(
