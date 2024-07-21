@@ -1,3 +1,4 @@
+//import 'package:career_pulse/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 
@@ -11,7 +12,8 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   bool _obscureText = true;
-  bool _rememberMe = false;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -19,10 +21,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
   }
 
-  void _toggleRememberMe(bool? newValue) {
-    setState(() {
-      _rememberMe = newValue ?? false;
-    });
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -30,7 +34,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       backgroundColor: AppColors.secondaryColor,
       body: SingleChildScrollView(
-        // Enables scrolling when keyboard appears
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -40,6 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const SizedBox(
                   height:
                       80), // Increased space here to push everything downward
+              const SizedBox(height: 50), // Add some padding at the top
               const Text(
                 'Create Account',
                 style: TextStyle(
@@ -65,12 +69,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const TextField(
                 decoration: InputDecoration(
                   labelText: 'Email',
+              const SizedBox(height: 32),
+
+              // Full Name
+              const Text(
+                'Full name',
+                style: TextStyle(color: AppColors.headingColor),
+              ),
+              const TextField(
+                decoration: InputDecoration(
+                  labelText: 'Ezio Auditore',
                   labelStyle: TextStyle(color: AppColors.headingColor),
                   border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 10),
-
               // Password
               TextField(
                 decoration: InputDecoration(
@@ -84,10 +97,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     onPressed: _togglePasswordVisibility,
                   ),
+              // Email
+              const Text(
+                'Email',
+                style: TextStyle(color: AppColors.headingColor),
+              ),
+              const TextField(
+                decoration: InputDecoration(
+                  labelText: 'ezio@email.com',
+                  labelStyle: TextStyle(color: AppColors.headingColor),
+                  border: OutlineInputBorder(),
                 ),
                 obscureText: _obscureText,
               ),
-
               const SizedBox(height: 16),
 
               // Remember me and Forget password
@@ -121,13 +143,72 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
 
               const SizedBox(height: 32),
+              const SizedBox(height: 10),
 
+              // Password
+              const Text(
+                'Password',
+                style: TextStyle(color: AppColors.headingColor),
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: '**********',
+                  labelStyle: const TextStyle(color: AppColors.headingColor),
+                  border: const OutlineInputBorder(),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscureText ? Icons.visibility_off : Icons.visibility,
+                      color: AppColors.headingColor,
+                    ),
+                    onPressed: _togglePasswordVisibility,
+                  ),
+                ),
+                obscureText: _obscureText,
+              ),
+
+              // Remember me button and Forget password
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                        Checkbox(
+                        value: false,
+                        onChanged: (bool? value) {
+                          setState(() {
+                          // Update the value of the checkbox
+                          });
+                        },
+                        ),
+                      const Text(
+                        'Remember me',
+                        style: TextStyle(color: AppColors.headingColor),
+                      ),
+                    ],
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/forgotPassword');
+                    },
+                    child: const Text(
+                      'Forgot Password?',
+                      style: TextStyle(color: AppColors.primaryColor),
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 32),
               // Sign Up button
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.buttonColor,
                   padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.0),
+                  ),
                 ),
                 child: const Center(
                   child: Text(
@@ -145,6 +226,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.buttonColor2,
                   padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.0),
+                  ),
                 ),
                 child: Center(
                   child: Row(
@@ -187,6 +271,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
               const SizedBox(height: 50), // Add some padding at the bottom
+                          style: TextStyle(color: AppColors.primaryColor),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 32), 
             ],
           ),
         ),
