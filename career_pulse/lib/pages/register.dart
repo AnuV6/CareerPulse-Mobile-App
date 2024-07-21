@@ -40,15 +40,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                  height:
-                      80), // Increased space here to push everything downward
+               // Increased space here to push everything downward
               const SizedBox(height: 50), // Add some padding at the top
               const Text(
                 'Create Account',
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
+                  color: AppColors.primaryColor,
+                ),
+              ),
+              const Text(
+                'Sign up to get started!',
+                style: TextStyle(
+                  fontSize: 16,
                   color: AppColors.primaryColor,
                 ),
               ),
@@ -59,100 +64,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const TextField(
                 decoration: InputDecoration(
                   labelText: 'Full Name',
+                  hintText: "John Doe",
                   labelStyle: TextStyle(color: AppColors.headingColor),
                   border: OutlineInputBorder(),
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 16),
 
               // Email
               const TextField(
                 decoration: InputDecoration(
                   labelText: 'Email',
-              const SizedBox(height: 32),
-
-              // Full Name
-              const Text(
-                'Full name',
-                style: TextStyle(color: AppColors.headingColor),
-              ),
-              const TextField(
-                decoration: InputDecoration(
-                  labelText: 'Ezio Auditore',
+                  hintText: "contact@careerpuls.com",
                   labelStyle: TextStyle(color: AppColors.headingColor),
                   border: OutlineInputBorder(),
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 16),
+
               // Password
               TextField(
                 decoration: InputDecoration(
                   labelText: 'Password',
-                  labelStyle: const TextStyle(color: AppColors.headingColor),
-                  border: const OutlineInputBorder(),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _obscureText ? Icons.visibility_off : Icons.visibility,
-                      color: AppColors.headingColor,
-                    ),
-                    onPressed: _togglePasswordVisibility,
-                  ),
-              // Email
-              const Text(
-                'Email',
-                style: TextStyle(color: AppColors.headingColor),
-              ),
-              const TextField(
-                decoration: InputDecoration(
-                  labelText: 'ezio@email.com',
-                  labelStyle: TextStyle(color: AppColors.headingColor),
-                  border: OutlineInputBorder(),
-                ),
-                obscureText: _obscureText,
-              ),
-              const SizedBox(height: 16),
-
-              // Remember me and Forget password
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: _rememberMe,
-                        onChanged: (bool? value) {
-                          _toggleRememberMe(value);
-                        },
-                      ),
-                      const Text(
-                        'Remember me',
-                        style: TextStyle(color: AppColors.headingColor),
-                      ),
-                    ],
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/forgotPassword');
-                    },
-                    child: const Text(
-                      'Forgot Password?',
-                      style: TextStyle(color: AppColors.primaryColor),
-                    ),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 32),
-              const SizedBox(height: 10),
-
-              // Password
-              const Text(
-                'Password',
-                style: TextStyle(color: AppColors.headingColor),
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: '**********',
+                  hintText: '**********',
                   labelStyle: const TextStyle(color: AppColors.headingColor),
                   border: const OutlineInputBorder(),
                   suffixIcon: IconButton(
@@ -165,41 +99,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 obscureText: _obscureText,
               ),
-
-              // Remember me button and Forget password
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                        Checkbox(
-                        value: false,
-                        onChanged: (bool? value) {
-                          setState(() {
-                          // Update the value of the checkbox
-                          });
-                        },
-                        ),
-                      const Text(
-                        'Remember me',
-                        style: TextStyle(color: AppColors.headingColor),
-                      ),
-                    ],
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/forgotPassword');
-                    },
-                    child: const Text(
-                      'Forgot Password?',
-                      style: TextStyle(color: AppColors.primaryColor),
-                    ),
-                  ),
-                ],
-              ),
-
               const SizedBox(height: 32),
+
               // Sign Up button
               ElevatedButton(
                 onPressed: () {},
@@ -270,19 +171,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 50), // Add some padding at the bottom
-                          style: TextStyle(color: AppColors.primaryColor),
-                        ),
-                      ],
-                    ),
-                  ),
+              const SizedBox(
+                height: 50,
+                child: Text(
+                  '',
+                  style: TextStyle(color: AppColors.primaryColor),
                 ),
               ),
-              const SizedBox(height: 32), 
-            ],
+              const SizedBox(height: 10),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
   }
 }
