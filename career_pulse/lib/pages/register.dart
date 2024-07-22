@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 //import 'package:career_pulse/pages/home.dart';
 import 'package:career_pulse/stuffs/colors.dart';
+import 'package:career_pulse/stuffs/colors.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -171,7 +172,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       children: <TextSpan>[
                         TextSpan(
                           text: 'Sign In',
-                          style: TextStyle(color: Colors.red),
+                          style: TextStyle(color: AppColors.primaryColor),
                         ),
                       ],
                     ),
