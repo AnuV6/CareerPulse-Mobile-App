@@ -1,6 +1,7 @@
 //import 'package:career_pulse/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
+import 'package:career_pulse/widgets/common_blue_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -117,22 +118,12 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 32),
 
-              // Login button
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.buttonColor,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                ),
-                child: const Center(
-                  child: Text(
-                    'LOGIN',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+              // Login button with common blue button
+              CommonButton(
+                text: 'Sign In',  //button text 
+                onPressed: () {
+                  // action here
+                },
               ),
               const SizedBox(height: 16),
 
