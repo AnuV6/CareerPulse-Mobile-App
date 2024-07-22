@@ -1,7 +1,8 @@
 //import 'package:career_pulse/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
-import 'package:career_pulse/stuffs/colors.dart';
+import 'package:career_pulse/widgets/common_blue_button.dart';
+import 'package:career_pulse/widgets/google_signin_button.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -102,54 +103,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               const SizedBox(height: 32),
 
-              // Sign Up button
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.buttonColor,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                ),
-                child: const Center(
-                  child: Text(
-                    'SIGN UP',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+              // Login button with common blue button
+              CommonButton(
+                text: 'Sign Up',  //button text 
+                onPressed: () {
+                  // action here
+                },
               ),
-
               const SizedBox(height: 16),
 
-              // Sign in with Google button
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.buttonColor2,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                ),
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/google.png',
-                        height: 24,
-                      ),
-                      const SizedBox(width: 8),
-                      const Text(
-                        'SIGN UP WITH GOOGLE',
-                        style: TextStyle(color: AppColors.headingColor),
-                      ),
-                    ],
-                  ),
-                ),
+              //google sign in button 
+              GoogleSignInButton(
+                onPressed: () {
+                  // action here 
+                },
               ),
-
               const SizedBox(height: 32),
 
               // Sign In button
