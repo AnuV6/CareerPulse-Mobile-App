@@ -1,5 +1,6 @@
 //import 'package:career_pulse/services/authentication.dart';
 import 'package:flutter/material.dart';
+//import 'package:career_pulse/pages/home.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -103,7 +104,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
               // Sign Up button
               ElevatedButton(
-                onPressed: () {},
+                onPressed: ()async { /*
+                  await AuthenticationService().signup(
+                    context: context,
+                    email: _emailController.text,
+                    password: _passwordController.text,
+                  );*/
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.buttonColor,
                   padding: const EdgeInsets.symmetric(vertical: 16),
@@ -121,7 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
               const SizedBox(height: 16),
 
-              // Sign in with Google button
+              // Sign up with Google button
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(

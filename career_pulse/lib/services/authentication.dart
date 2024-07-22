@@ -1,3 +1,4 @@
+/*
 import 'package:career_pulse/pages/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class AuthenticationService{
         password: password,
       );
 
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 1));
       Navigator.pushReplacement(
         // ignore: use_build_context_synchronously
         context,
@@ -171,3 +172,4 @@ class AuthenticationService{
   }
 
 }
+*/
