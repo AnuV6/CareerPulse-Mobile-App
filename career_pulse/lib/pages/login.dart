@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/widgets/common_blue_button.dart';
+import 'package:career_pulse/widgets/google_signin_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -151,34 +152,14 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 16),
 
-              // Login with Google button
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.buttonColor2,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                ),
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/google.png',
-                        height: 24,
-                      ),
-                      const SizedBox(width: 8),
-                      const Text(
-                        'SIGN IN WITH GOOGLE',
-                        style: TextStyle(color: AppColors.headingColor),
-                      ),
-                    ],
-                  ),
-                ),
+              // Google sign-in button
+              GoogleSignInButton(
+                onPressed: () {
+                  // action here 
+                },
               ),
               const SizedBox(height: 32),
+
 
               // Sign up button
               Center(
