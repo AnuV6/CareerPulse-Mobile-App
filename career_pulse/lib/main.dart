@@ -47,7 +47,7 @@ class MainApp extends StatelessWidget {
         '/forgotPassword': (context) =>
             const ForgotPasswordScreen(), // Route for the forgot password screen
         '/home': (context) =>
-            const HomeScreen(), // Route for the home screen
+             HomeScreen(), // Route for the home screen
       },
     );
   }

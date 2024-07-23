@@ -1,173 +1,107 @@
-import 'package:career_pulse/pages/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:career_pulse/pages/home.dart';
+import 'package:career_pulse/pages/login.dart';
 
+class AuthService {
 
-class AuthenticationService{
-  //signup action
   Future<void> signup({
-    required BuildContext context, // Add BuildContext parameter
-    required String email, 
-    required String password
+    required String email,
+    required String password,
+    required BuildContext context
   }) async {
+    
     try {
+
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email, 
-        password: password,
+        email: email,
+        password: password
       );
 
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 1));
       Navigator.pushReplacement(
         // ignore: use_build_context_synchronously
         context,
         MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
-        ), 
+          builder: (BuildContext context) => const HomeScreen()
+        )
       );
-
-    } on FirebaseAuthException catch (e) {
+      
+    } on FirebaseAuthException catch(e) {
       String message = '';
       if (e.code == 'weak-password') {
-        message ='The password provided is too weak.';
+        message = 'The password provided is too weak.';
       } else if (e.code == 'email-already-in-use') {
-        message ='The account already exists for that email.';
+        message = 'An account already exists with that email.';
       }
-        
-        Fluttertoast.showToast(
-          msg: message,
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0
-        );
-
-    } catch (e) {
-  // ignore: avoid_print
-      print(e);
+       Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.SNACKBAR,
+        backgroundColor: Colors.black54,
+        textColor: Colors.white,
+        fontSize: 14.0,
+      );
     }
-  
+    catch(e){}
+
   }
-//login action
-  Future<void> login({
-    required BuildContext context, // Add BuildContext parameter
-    required String email, 
-    required String password
-  }) async {
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email, 
-        password: password,
-      );
 
-      await Future.delayed(const Duration(seconds: 2));
-      Navigator.pushReplacement(
-        // ignore: use_build_context_synchronously
-        context,
-        MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
-        ), 
-      );
-
-    } on FirebaseAuthException catch (e) {
-      String message = '';
-      if (e.code == 'user-not-found') {
-        message ='No user found for that email.';
-      } else if (e.code == 'wrong-password') {
-        message ='Wrong password provided for that user.';
-      }
-        
-        Fluttertoast.showToast(
-          msg: message,
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0
-        );
-
-    } catch (e) {
-}
-  }
-//forgot password action
-  Future<void> forgotPassword({
-    required BuildContext context, // Add BuildContext parameter
+  Future<void> signin({
     required String email,
+    required String password,
+    required BuildContext context
   }) async {
+    
     try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(
+
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
+        password: password
       );
 
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 1));
       Navigator.pushReplacement(
         // ignore: use_build_context_synchronously
         context,
         MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
-        ), 
+          builder: (BuildContext context) => const HomeScreen()
+        )
       );
-
-    } on FirebaseAuthException catch (e) {
+      
+    } on FirebaseAuthException catch(e) {
       String message = '';
-      if (e.message == 'user-not-found') {
-        message ='No user found for that email.';
+      if (e.code == 'invalid-email') {
+        message = 'No user found for that email.';
+      } else if (e.code == 'invalid-credential') {
+        message = 'Wrong password provided for that user.';
       }
-        
-        Fluttertoast.showToast(
-          msg: message,
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0
-        );
-
-    } catch (e) {
-  // ignore: avoid_print
-      print(e);
+       Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.SNACKBAR,
+        backgroundColor: Colors.black54,
+        textColor: Colors.white,
+        fontSize: 14.0,
+      );
     }
+    catch(e){}
+
   }
-//signout action
+
   Future<void> signout({
-    required BuildContext context, // Add BuildContext parameter
+    required BuildContext context
   }) async {
-    try {
-      await FirebaseAuth.instance.signOut();
-
-      await Future.delayed(const Duration(seconds: 2));
-      Navigator.pushReplacement(
+    
+    await FirebaseAuth.instance.signOut();
+    await Future.delayed(const Duration(seconds: 1));
+    Navigator.pushReplacement(
         // ignore: use_build_context_synchronously
         context,
         MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
-        ), 
+          builder: (BuildContext context) =>const LoginScreen()
+        )
       );
-
-    } on FirebaseAuthException catch (e) {
-      String message = '';
-      if (e.code == 'user-not-found') {
-        message ='No user found for that email.';
-      }
-        
-        Fluttertoast.showToast(
-          msg: message,
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0
-        );
-
-    } catch (e) {
-  // ignore: avoid_print
-      print(e);
-    }
   }
-
 }
