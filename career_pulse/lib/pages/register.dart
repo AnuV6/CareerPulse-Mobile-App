@@ -1,5 +1,7 @@
+//import 'package:career_pulse/services/authentication.dart';
 import 'package:career_pulse/services/authentication.dart';
 import 'package:flutter/material.dart';
+import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/widgets/common_blue_button.dart';
 import 'package:career_pulse/widgets/google_signin_button.dart';
 
@@ -13,8 +15,8 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   bool _obscureText = true;
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -107,6 +109,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 text: 'Sign Up',  //button text 
                 onPressed: () {
                   // action here
+                  AuthService().signup(
+                    email: _emailController.text,
+                    password: _passwordController.text, 
+                    context: context,
+                  );
+                  
                 },
               ),
               const SizedBox(height: 16),

@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:career_pulse/widgets/common_blue_button.dart';
 
@@ -69,7 +70,6 @@ class CheckEmailScreen extends StatelessWidget {
 
                 TextButton(
                   onPressed: () {
-                    // Handle resend email
                   },
                   child: const Text(
                     'You have not received the email? Resend',

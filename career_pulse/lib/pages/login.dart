@@ -1,5 +1,4 @@
 import 'package:career_pulse/services/authentication.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/widgets/common_blue_button.dart';
@@ -14,18 +13,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool _obscureText = true;
-  bool _rememberMe = false;
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
 
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
+    bool _obscureText = true;
+    bool _rememberMe = false;
+    final TextEditingController _emailController = TextEditingController();
+    final TextEditingController _passwordController = TextEditingController();
+
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -37,13 +30,6 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       _rememberMe = newValue ?? false;
     });
-  }
-
-  Future login() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: _emailController.text.trim(),
-      password: _passwordController.text.trim(),
-    );
   }
 
   @override
@@ -143,10 +129,10 @@ class _LoginScreenState extends State<LoginScreen> {
               CommonButton(
                 text: 'Sign In',  //button text 
                 onPressed: () {
-                  AuthenticationService().login(
-                    context: context,
+                  AuthService().signin(
                     email: _emailController.text,
-                    password: _passwordController.text,
+                    password: _passwordController.text, 
+                    context: context,
                   );
                 },
               ),
