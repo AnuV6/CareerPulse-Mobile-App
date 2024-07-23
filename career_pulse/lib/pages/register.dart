@@ -43,7 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               // Increased space here to push everything downward
+              // Increased space here to push everything downward
               const SizedBox(height: 50), // Add some padding at the top
               const Text(
                 'Create Account',
@@ -106,23 +106,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
               // Login button with common blue button
               CommonButton(
-                text: 'Sign Up',  //button text 
+                text: 'Sign Up', //button text
                 onPressed: () {
                   // action here
                   AuthService().signup(
                     email: _emailController.text,
-                    password: _passwordController.text, 
+                    password: _passwordController.text,
                     context: context,
                   );
-                  
                 },
               ),
               const SizedBox(height: 16),
 
-              //google sign in button 
+              //google sign in button
               GoogleSignInButton(
                 onPressed: () {
-                  // action here 
+                  // action here
                 },
               ),
               const SizedBox(height: 32),
@@ -155,10 +154,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              ],
-            ),
+            ],
           ),
         ),
-      );
+      ),
+    );
   }
 }
