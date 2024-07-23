@@ -1,4 +1,5 @@
-//import 'package:career_pulse/services/authentication.dart';
+import 'package:career_pulse/services/authentication.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/widgets/common_blue_button.dart';
@@ -14,6 +15,16 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _obscureText = true;
   bool _rememberMe = false;
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -25,6 +36,13 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       _rememberMe = newValue ?? false;
     });
+  }
+
+  Future login() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
+    );
   }
 
   @override
@@ -58,8 +76,9 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 32),
 
               // Email
-              const TextField(
-                decoration: InputDecoration(
+              TextField(
+                controller: _emailController,
+                decoration: const InputDecoration(
                   labelText: 'Email',
                   hintText: 'careerpulse@gmail.com',
                   labelStyle: TextStyle(color: AppColors.headingColor),
@@ -70,6 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
               // Password
               TextField(
+                controller: _passwordController,
                 decoration: InputDecoration(
                   labelText: 'Password',
                   hintText: '********',
@@ -122,7 +142,11 @@ class _LoginScreenState extends State<LoginScreen> {
               CommonButton(
                 text: 'Sign In',  //button text 
                 onPressed: () {
-                  // action here
+                  AuthenticationService().login(
+                    context: context,
+                    email: _emailController.text,
+                    password: _passwordController.text,
+                  );
                 },
               ),
               const SizedBox(height: 16),

@@ -1,7 +1,5 @@
-//import 'package:career_pulse/services/authentication.dart';
+import 'package:career_pulse/services/authentication.dart';
 import 'package:flutter/material.dart';
-//import 'package:career_pulse/pages/home.dart';
-import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -14,8 +12,8 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   bool _obscureText = true;
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -105,12 +103,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
               // Sign Up button
               ElevatedButton(
-                onPressed: ()async { /*
+                onPressed: ()async { 
                   await AuthenticationService().signup(
-                    context: context,
                     email: _emailController.text,
                     password: _passwordController.text,
-                  );*/
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.buttonColor,
