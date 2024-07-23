@@ -23,16 +23,16 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: AppColors.secondaryColor, 
+        scaffoldBackgroundColor: AppColors.secondaryColor,
         appBarTheme: const AppBarTheme(
-          color: AppColors.primaryColor, 
+          color: AppColors.primaryColor,
           titleTextStyle: TextStyle(
-            color: AppColors.titleColor, 
+            color: AppColors.titleColor,
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.buttonColor, 
+            backgroundColor: AppColors.buttonColor,
           ),
         ),
       ),
@@ -46,8 +46,7 @@ class MainApp extends StatelessWidget {
             const RegisterScreen(), // Route for the Register screen
         '/forgotPassword': (context) =>
             const ForgotPasswordScreen(), // Route for the forgot password screen
-        '/home': (context) =>
-            const HomeScreen(), // Route for the home screen
+        '/home': (context) => const HomeScreen(), // Route for the home screen
       },
     );
   }

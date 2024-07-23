@@ -40,12 +40,28 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 150,
             ),
             const SizedBox(height: 20),
-            const Text(
-              'CareerPulse',
-              style: TextStyle(
-                fontSize: 40,
-                color: AppColors.secondaryColor,
-                fontWeight: FontWeight.bold,
+            RichText(
+              text: const TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'Career',
+                    style: TextStyle(
+                      fontSize: 40,
+                      color: AppColors.secondaryColor,
+                      fontWeight: FontWeight.w200, // Extra Light
+                      fontFamily: 'Montserrat',
+                    ),
+                  ),
+                  TextSpan(
+                    text: 'Pulse',
+                    style: TextStyle(
+                      fontSize: 40,
+                      color: AppColors.secondaryColor,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Montserrat',
+                    ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 10),
@@ -54,6 +70,8 @@ class _SplashScreenState extends State<SplashScreen> {
               style: TextStyle(
                 fontSize: 20,
                 color: AppColors.secondaryColor,
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w200,
               ),
             ),
             const SizedBox(height: 50),

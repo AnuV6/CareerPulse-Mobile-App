@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:career_pulse/pages/check_email.dart';
 import 'package:career_pulse/stuffs/colors.dart';
+import 'package:career_pulse/widgets/common_blue_button.dart';
 
 
 class ForgotPasswordScreen extends StatelessWidget {
@@ -64,37 +65,30 @@ class ForgotPasswordScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: resetPassword, // Updated onPressed event
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16), 
-                  backgroundColor: const Color(0xFF1954EE),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                ),
-                child: const Text('RESET PASSWORD', style: TextStyle(color: Colors.white)),
+
+              CommonButton(
+                text: 'RESET PASSWORD',
+                onPressed: resetPassword,
               ),
               const SizedBox(height: 16),
-              OutlinedButton(
-                onPressed: () {
-                  Navigator.pop(context); // Navigate back to login
-                },
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: AppColors.buttonColor2,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.0),
+              
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context); // Navigate back to login
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 181, 204, 239),
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    foregroundColor: Colors.black, // Set the font color to black
                   ),
-                  side: const BorderSide(color: Colors.black54),
+                  child: const Text('BACK TO LOGIN', style: TextStyle(fontWeight: FontWeight.w900)),
                 ),
-                child: const Text('BACK TO LOGIN',
-                 style: TextStyle(color: AppColors.headingColor,
-                 fontWeight:FontWeight.w900)),
-              ),
-              const SizedBox(height: 32),
+                const SizedBox(height: 20),
             ],
-       ),
+          ),
         ),
       ),
     );

@@ -1,6 +1,8 @@
-//import 'package:career_pulse/services/authentication.dart';
+import 'package:career_pulse/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
+import 'package:career_pulse/widgets/common_blue_button.dart';
+import 'package:career_pulse/widgets/google_signin_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -11,8 +13,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool _obscureText = true;
-  bool _rememberMe = false;
+
+    bool _obscureText = true;
+    bool _rememberMe = false;
+    final TextEditingController _emailController = TextEditingController();
+    final TextEditingController _passwordController = TextEditingController();
+
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -57,8 +63,9 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 32),
 
               // Email
-              const TextField(
-                decoration: InputDecoration(
+              TextField(
+                controller: _emailController,
+                decoration: const InputDecoration(
                   labelText: 'Email',
                   hintText: 'careerpulse@gmail.com',
                   labelStyle: TextStyle(color: AppColors.headingColor),
@@ -69,6 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
               // Password
               TextField(
+                controller: _passwordController,
                 decoration: InputDecoration(
                   labelText: 'Password',
                   hintText: '********',
@@ -117,53 +125,27 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 32),
 
-              // Login button
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.buttonColor,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                ),
-                child: const Center(
-                  child: Text(
-                    'SIGN IN',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+              // Login button with common blue button
+              CommonButton(
+                text: 'Sign In',  //button text 
+                onPressed: () {
+                  AuthService().signin(
+                    email: _emailController.text,
+                    password: _passwordController.text, 
+                    context: context,
+                  );
+                },
               ),
               const SizedBox(height: 16),
 
-              // Login with Google button
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.buttonColor2,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                ),
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/google.png',
-                        height: 24,
-                      ),
-                      const SizedBox(width: 8),
-                      const Text(
-                        'SIGN IN WITH GOOGLE',
-                        style: TextStyle(color: AppColors.headingColor),
-                      ),
-                    ],
-                  ),
-                ),
+              // Google sign-in button
+              GoogleSignInButton(
+                onPressed: () {
+                  // action here 
+                },
               ),
               const SizedBox(height: 32),
+
 
               // Sign up button
               Center(
