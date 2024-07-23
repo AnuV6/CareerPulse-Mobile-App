@@ -7,6 +7,7 @@ import 'package:career_pulse/pages/forgot_pw.dart';
 import 'package:career_pulse/pages/splash_screen.dart';
 import 'package:career_pulse/pages/home.dart';
 import 'package:career_pulse/pages/almost_done_splash.dart';
+import 'package:career_pulse/pages/aboutUs.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,8 +49,8 @@ class MainApp extends StatelessWidget {
         '/forgotPassword': (context) =>
             const ForgotPasswordScreen(), // Route for the forgot password screen
         '/home': (context) => const HomeScreen(), // Route for the home screen
-        '/almostDone': (context) =>
-            const AlmostDoneScreen(), // Make sure this line is correct
+        '/almostDone': (context) => const AlmostDoneScreen(), //
+        '/aboutUs': (context) => const AboutUsPage(),
       },
     );
   }

@@ -122,6 +122,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                      context, '/aboutUs'); // Navigate to AlmostDoneScreen
+                },
+                child: const Text(
+                  'About us',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
