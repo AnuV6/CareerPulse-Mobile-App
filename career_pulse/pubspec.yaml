@@ -21,6 +21,7 @@ dependencies:
   fluttertoast: ^8.0.9
   cloud_firestore: ^5.1.0
   flutter_styled_toast: ^2.2.1
+  file_picker: ^4.1.6
  
 
 
