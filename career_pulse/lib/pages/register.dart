@@ -1,6 +1,5 @@
-//import 'package:career_pulse/services/authentication.dart';
-import 'package:career_pulse/services/authentication.dart';
 import 'package:flutter/material.dart';
+import 'package:career_pulse/services/authentication.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/widgets/common_blue_button.dart';
 import 'package:career_pulse/widgets/google_signin_button.dart';
@@ -26,7 +25,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is disposed.
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -43,122 +41,104 @@ class _RegisterScreenState extends State<RegisterScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               // Increased space here to push everything downward
-              const SizedBox(height: 50), // Add some padding at the top
-              const Text(
-                'Create Account',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.primaryColor,
-                ),
-              ),
-              const Text(
-                'Sign up to get started!',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: AppColors.primaryColor,
-                ),
-              ),
-              const SizedBox(
-                  height: 32), // Maintain space between title and first input
-
-              // Full Name
+              const SizedBox(height: 50),
+              const Text('Create Account',
+                  style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.primaryColor)),
+              const Text('Sign up to get started!',
+                  style:
+                      TextStyle(fontSize: 16, color: AppColors.primaryColor)),
+              const SizedBox(height: 32),
               const TextField(
-                decoration: InputDecoration(
-                  labelText: 'Full Name',
-                  hintText: "John Doe",
-                  labelStyle: TextStyle(color: AppColors.headingColor),
-                  border: OutlineInputBorder(),
-                ),
-              ),
+                  decoration: InputDecoration(
+                      labelText: 'Full Name',
+                      hintText: "John Doe",
+                      labelStyle: TextStyle(color: AppColors.headingColor),
+                      border: OutlineInputBorder())),
               const SizedBox(height: 16),
-
-              // Email
               const TextField(
-                decoration: InputDecoration(
-                  labelText: 'Email',
-                  hintText: "contact@careerpuls.com",
-                  labelStyle: TextStyle(color: AppColors.headingColor),
-                  border: OutlineInputBorder(),
-                ),
-              ),
+                  decoration: InputDecoration(
+                      labelText: 'Email',
+                      hintText: "example@email.com",
+                      labelStyle: TextStyle(color: AppColors.headingColor),
+                      border: OutlineInputBorder())),
               const SizedBox(height: 16),
-
-              // Password
               TextField(
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  hintText: '**********',
-                  labelStyle: const TextStyle(color: AppColors.headingColor),
-                  border: const OutlineInputBorder(),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _obscureText ? Icons.visibility_off : Icons.visibility,
-                      color: AppColors.headingColor,
-                    ),
-                    onPressed: _togglePasswordVisibility,
-                  ),
-                ),
-                obscureText: _obscureText,
-              ),
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                      labelText: 'Password',
+                      hintText: '**********',
+                      labelStyle:
+                          const TextStyle(color: AppColors.headingColor),
+                      border: const OutlineInputBorder(),
+                      suffixIcon: IconButton(
+                          icon: Icon(
+                              _obscureText
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: AppColors.headingColor),
+                          onPressed: _togglePasswordVisibility)),
+                  obscureText: _obscureText),
               const SizedBox(height: 32),
-
-              // Login button with common blue button
               CommonButton(
-                text: 'Sign Up',  //button text 
-                onPressed: () {
-                  // action here
-                  AuthService().signup(
-                    email: _emailController.text,
-                    password: _passwordController.text, 
-                    context: context,
-                  );
-                  
-                },
-              ),
-              const SizedBox(height: 16),
-
-              //google sign in button 
-              GoogleSignInButton(
-                onPressed: () {
-                  // action here 
-                },
-              ),
-              const SizedBox(height: 32),
-
-              // Sign In button
-              Center(
-                child: TextButton(
+                  text: 'Sign Up',
                   onPressed: () {
-                    Navigator.pushNamed(context, '/login');
-                  },
-                  child: RichText(
+                    AuthService().signup(
+                        email: _emailController.text,
+                        password: _passwordController.text,
+                        context: context);
+                  }),
+              const SizedBox(height: 16),
+              GoogleSignInButton(onPressed: () {}),
+              const SizedBox(height: 32),
+              Center(
+                  child: TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/login');
+                },
+                child: RichText(
                     text: const TextSpan(
-                      text: 'Already have an account? ',
-                      style: TextStyle(color: Color.fromARGB(255, 40, 20, 121)),
-                      children: <TextSpan>[
-                        TextSpan(
+                        text: 'Already have an account? ',
+                        style:
+                            TextStyle(color: Color.fromARGB(255, 40, 20, 121)),
+                        children: <TextSpan>[
+                      TextSpan(
                           text: 'Sign In',
-                          style: TextStyle(color: AppColors.primaryColor),
-                        ),
-                      ],
-                    ),
+                          style: TextStyle(color: AppColors.primaryColor))
+                    ])),
+              )),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                      context, '/almostDone'); // Navigate to AlmostDoneScreen
+                },
+                child: const Text(
+                  'Test Almost Done Page',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 16,
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 50,
-                child: Text(
-                  '',
-                  style: TextStyle(color: AppColors.primaryColor),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                      context, '/aboutUs'); // Navigate to AlmostDoneScreen
+                },
+                child: const Text(
+                  'About us',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 16,
+                  ),
                 ),
               ),
-              const SizedBox(height: 10),
-              ],
-            ),
+            ],
           ),
         ),
-      );
+      ),
+    );
   }
 }

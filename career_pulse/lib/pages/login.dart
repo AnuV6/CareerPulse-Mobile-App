@@ -14,11 +14,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-    bool _obscureText = true;
-    bool _rememberMe = false;
-    final TextEditingController _emailController = TextEditingController();
-    final TextEditingController _passwordController = TextEditingController();
-
+  bool _obscureText = true;
+  bool _rememberMe = false;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -146,6 +145,24 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 32),
 
+              // Temporary button to navigate to Upload Resume screen
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/uploadResume');
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  backgroundColor: AppColors.primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.0),
+                  ),
+                ),
+                child: const Text(
+                  'Upload Resume',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              const SizedBox(height: 16),
 
               // Sign up button
               Center(

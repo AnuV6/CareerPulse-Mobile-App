@@ -6,6 +6,9 @@ import 'package:career_pulse/pages/register.dart';
 import 'package:career_pulse/pages/forgot_pw.dart';
 import 'package:career_pulse/pages/splash_screen.dart';
 import 'package:career_pulse/pages/home.dart';
+import 'package:career_pulse/pages/upload_resume.dart'; // Import the UploadResumeScreen
+import 'package:career_pulse/pages/almost_done_splash.dart';
+import 'package:career_pulse/pages/aboutUs.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,16 +26,16 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: AppColors.secondaryColor, 
+        scaffoldBackgroundColor: AppColors.secondaryColor,
         appBarTheme: const AppBarTheme(
-          color: AppColors.primaryColor, 
+          color: AppColors.primaryColor,
           titleTextStyle: TextStyle(
-            color: AppColors.titleColor, 
+            color: AppColors.titleColor,
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.buttonColor, 
+            backgroundColor: AppColors.buttonColor,
           ),
         ),
       ),
@@ -46,8 +49,14 @@ class MainApp extends StatelessWidget {
             const RegisterScreen(), // Route for the Register screen
         '/forgotPassword': (context) =>
             const ForgotPasswordScreen(), // Route for the forgot password screen
-        '/home': (context) =>
-             HomeScreen(), // Route for the home screen
+        '/home': (context) => 
+            const HomeScreen(), // Route for the home screen
+        '/uploadResume': (context) => 
+            const UploadResumeScreen(), // Route for the upload resume screen
+        '/almostDone': (context) => 
+            const AlmostDoneScreen(), // Route for the almost done screen
+        '/aboutUs': (context) => 
+            const AboutUsPage(), // Route for the about us screen
       },
     );
   }
