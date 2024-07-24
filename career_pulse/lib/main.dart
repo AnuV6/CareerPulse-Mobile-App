@@ -6,6 +6,7 @@ import 'package:career_pulse/pages/register.dart';
 import 'package:career_pulse/pages/forgot_pw.dart';
 import 'package:career_pulse/pages/splash_screen.dart';
 import 'package:career_pulse/pages/home.dart';
+import 'package:career_pulse/pages/upload_resume.dart'; // Import the UploadResumeScreen
 import 'package:career_pulse/pages/almost_done_splash.dart';
 import 'package:career_pulse/pages/aboutUs.dart';
 
@@ -48,9 +49,14 @@ class MainApp extends StatelessWidget {
             const RegisterScreen(), // Route for the Register screen
         '/forgotPassword': (context) =>
             const ForgotPasswordScreen(), // Route for the forgot password screen
-        '/home': (context) => const HomeScreen(), // Route for the home screen
-        '/almostDone': (context) => const AlmostDoneScreen(), //
-        '/aboutUs': (context) => const AboutUsPage(),
+        '/home': (context) => 
+            const HomeScreen(), // Route for the home screen
+        '/uploadResume': (context) => 
+            const UploadResumeScreen(), // Route for the upload resume screen
+        '/almostDone': (context) => 
+            const AlmostDoneScreen(), // Route for the almost done screen
+        '/aboutUs': (context) => 
+            const AboutUsPage(), // Route for the about us screen
       },
     );
   }
