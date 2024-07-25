@@ -91,7 +91,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         context: context);
                   }),
               const SizedBox(height: 16),
-              GoogleSignInButton(onPressed: () {}),
+              GoogleSignInButton(
+                  text: 'Sign Up with Google',
+                onPressed: () {
+                AuthService().signUpWithGoogle(context: context);
+              }),
               const SizedBox(height: 32),
               Center(
                   child: TextButton(

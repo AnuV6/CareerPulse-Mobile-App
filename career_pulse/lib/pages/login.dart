@@ -139,8 +139,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
               // Google sign-in button
               GoogleSignInButton(
+                text: 'Sign In with Google',
                 onPressed: () {
-                  // action here 
+                  AuthService().signInWithGoogle(context: context);
                 },
               ),
               const SizedBox(height: 32),

@@ -21,7 +21,40 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
     'UI/UX Designer',
     'Data Scientist',
     'Backend Developer',
-    'Frontend Developer'
+    'Frontend Developer',
+    'Full Stack Developer',
+    'Software Engineer',
+    'DevOps Engineer',
+    'Cloud Engineer',
+    'Cyber Security Analyst',
+    'Network Engineer',
+    'Machine Learning Engineer',
+    'Artificial Intelligence Engineer',
+    'Game Developer',
+    'Embedded Systems Engineer',
+    'Robotics Engineer',
+    'Blockchain Developer',
+    'Digital Marketing Specialist',
+    'Content Writer',
+    'Graphic Designer',
+    'Video Editor',
+    'Photographer',
+    '3D Artist',
+    'Animator',
+    'Music Producer',
+    'Sound Engineer',
+    'VFX Artist',
+    'Fashion Designer',
+    'Interior Designer',
+    'Architect',
+    'Civil Engineer',
+    'Mechanical Engineer',
+    'Electrical Engineer',
+    'Chemical Engineer',
+    'Aerospace Engineer',
+    'Automobile Engineer',
+    'Biomedical Engineer',
+    'Environmental Engineer',
   ];
 
   @override
@@ -38,8 +71,10 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
           children: [
             const Text(
               'Select the fields in which you want internship.',
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
+            const Text('You can choose one or more.',
+                style: TextStyle(fontSize: 16, color: Colors.grey)),
             const SizedBox(height: 16),
             Autocomplete<String>(
               optionsBuilder: (TextEditingValue textEditingValue) {
@@ -88,7 +123,7 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
               children: _selectedInterests.map((interest) {
                 return Chip(
                   label: Text(interest),
-                  deleteIconColor: Colors.white,
+                  deleteIconColor: const Color.fromARGB(255, 107, 134, 140),
                   backgroundColor: Colors.blue,
                   labelStyle: const TextStyle(color: Colors.white),
                   onDeleted: () {
@@ -116,8 +151,3 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
   }
 }
 
-void main() {
-  runApp(const MaterialApp(
-    home: InterestedAreaScreen(),
-  ));
-}
