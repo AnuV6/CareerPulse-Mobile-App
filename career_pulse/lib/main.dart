@@ -1,3 +1,4 @@
+import 'package:career_pulse/pages/interested_area_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:career_pulse/stuffs/colors.dart';
@@ -57,6 +58,8 @@ class MainApp extends StatelessWidget {
             const AlmostDoneScreen(), // Route for the almost done screen
         '/aboutUs': (context) => 
             const AboutUsPage(), // Route for the about us screen
+        '/interestedArea': (context) => 
+            const InterestedAreaScreen(), // Route for the interested area screen
       },
     );
   }

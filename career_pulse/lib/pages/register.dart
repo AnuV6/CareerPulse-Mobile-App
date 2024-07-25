@@ -135,6 +135,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
+                TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                      context, '/interestedArea'); // Navigate to AlmostDoneScreen
+                },
+                child: const Text(
+                  'Interested Area',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
