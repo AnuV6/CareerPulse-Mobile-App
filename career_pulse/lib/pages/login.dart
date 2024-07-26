@@ -1,20 +1,19 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:career_pulse/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/widgets/common_blue_button.dart';
 import 'package:career_pulse/widgets/google_signin_button.dart';
-//import 'package:career_pulse/home/home_page.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   bool _obscureText = true;
   bool _rememberMe = false;
   final TextEditingController _emailController = TextEditingController();
@@ -43,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 50), // Add some padding at the top
+              const SizedBox(height: 50),
               const Text(
                 'Welcome Back',
                 style: TextStyle(
@@ -61,8 +60,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 32),
-
-              // Email
               TextField(
                 controller: _emailController,
                 decoration: const InputDecoration(
@@ -73,8 +70,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-
-              // Password
               TextField(
                 controller: _passwordController,
                 decoration: InputDecoration(
@@ -93,8 +88,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 obscureText: _obscureText,
               ),
               const SizedBox(height: 16),
-
-              // Remember me and Forgot password
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -124,21 +117,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
               const SizedBox(height: 32),
-
-              // Login button with common blue button
               CommonButton(
-                text: 'Sign In',  //button text 
+                text: 'Sign In',
                 onPressed: () {
                   AuthService().signin(
                     email: _emailController.text,
-                    password: _passwordController.text, 
+                    password: _passwordController.text,
                     context: context,
                   );
                 },
               ),
               const SizedBox(height: 16),
-
-              // Google sign-in button
               GoogleSignInButton(
                 text: 'Sign In with Google',
                 onPressed: () {
@@ -146,48 +135,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
               ),
               const SizedBox(height: 32),
-
-              // Temporary button to navigate to Upload Resume screen
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/uploadResume');
-                },
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  backgroundColor: AppColors.primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                ),
-                child: const Text(
-                  'Upload Resume',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              const SizedBox(height: 16),
-
-
-              // temp button for home screen 
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/homePage');
-                },
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  backgroundColor: AppColors.primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                ),
-                child: const Text(
-                  'test home page',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              const SizedBox(height: 16),
-
-
-              // Sign up button
               Center(
                 child: TextButton(
                   onPressed: () {
@@ -207,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 32), // Add some padding at the bottom
+              const SizedBox(height: 32),
             ],
           ),
         ),
