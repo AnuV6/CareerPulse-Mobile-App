@@ -10,6 +10,7 @@ import 'package:career_pulse/pages/home.dart';
 import 'package:career_pulse/pages/upload_resume.dart'; // Import the UploadResumeScreen
 import 'package:career_pulse/pages/almost_done_splash.dart';
 import 'package:career_pulse/pages/aboutUs.dart';
+import 'package:career_pulse/pages/test_pages.dart';
 
 // for home --nadun
 import 'package:provider/provider.dart';
@@ -62,26 +63,21 @@ class MainApp extends StatelessWidget {
               const RegisterScreen(), // Route for the Register screen
           '/forgotPassword': (context) =>
               const ForgotPasswordScreen(), // Route for the forgot password screen
-          '/home': (context) => 
-              const HomeScreen(), // Route for the home screen
-          '/uploadResume': (context) => 
+          '/home': (context) => const HomeScreen(), // Route for the home screen
+          '/uploadResume': (context) =>
               const UploadResumeScreen(), // Route for the upload resume screen
-          '/almostDone': (context) => 
+          '/almostDone': (context) =>
               const AlmostDoneScreen(), // Route for the almost done screen
-          '/aboutUs': (context) => 
+          '/aboutUs': (context) =>
               const AboutUsPage(), // Route for the about us screen
-          '/interestedArea': (context) => 
+          '/interestedArea': (context) =>
               const InterestedAreaScreen(), // Route for the interested area screen
-          '/homePage': (context) => 
-              const HomePage(),
-          '/resumeSuggestions': (context) => 
-              const ResumeSuggestionsPage(),
-          '/resumeReport': (context) => 
-              const ResumeReportPage(),
-          '/existingSkills': (context) => 
-              const ExistingSkillsPage(),
-          '/newSkills': (context) => 
-              const NewSkillsPage(),
+          '/homePage': (context) => const HomePage(),
+          '/resumeSuggestions': (context) => const ResumeSuggestionsPage(),
+          '/resumeReport': (context) => const ResumeReportPage(),
+          '/existingSkills': (context) => const ExistingSkillsPage(),
+          '/newSkills': (context) => const NewSkillsPage(),
+          '/testPages': (context) => const TestPagesScreen(),
         },
         onGenerateRoute: (settings) {
           if (settings.name == '/internshipDetails') {
