@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:career_pulse/services/authentication.dart';
 import 'package:career_pulse/stuffs/colors.dart';
@@ -8,7 +10,6 @@ class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _RegisterScreenState createState() => _RegisterScreenState();
 }
 
@@ -93,9 +94,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const SizedBox(height: 16),
               GoogleSignInButton(
                   text: 'Sign Up with Google',
-                onPressed: () {
-                AuthService().signUpWithGoogle(context: context);
-              }),
+                  onPressed: () {
+                    AuthService().signUpWithGoogle(context: context);
+                  }),
               const SizedBox(height: 32),
               Center(
                   child: TextButton(
@@ -113,45 +114,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           style: TextStyle(color: AppColors.primaryColor))
                     ])),
               )),
-              TextButton(
+              const SizedBox(height: 16),
+
+              //Testing part include here
+              Center(
+                  child: TextButton(
                 onPressed: () {
                   Navigator.pushNamed(
-                      context, '/almostDone'); // Navigate to AlmostDoneScreen
+                      context, '/testPages'); // Navigate to testPages
                 },
                 child: const Text(
-                  'Test Almost Done Page',
+                  'Test Pages',
                   style: TextStyle(
                     color: Colors.blue,
                     fontSize: 16,
                   ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(
-                      context, '/aboutUs'); // Navigate to AlmostDoneScreen
-                },
-                child: const Text(
-                  'About us',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-                TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(
-                      context, '/interestedArea'); // Navigate to AlmostDoneScreen
-                },
-                child: const Text(
-                  'Interested Area',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
+              )),
             ],
           ),
         ),
