@@ -19,10 +19,10 @@ class CommonButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   const CommonButton({
-    required this.text,
-    required this.onPressed,
-    super.key, 
-  });
+      required this.text,
+      required this.onPressed,
+      super.key, 
+    });
 
   @override
   Widget build(BuildContext context) {

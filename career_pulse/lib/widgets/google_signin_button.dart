@@ -3,8 +3,10 @@ import 'package:career_pulse/stuffs/colors.dart';
 
 class GoogleSignInButton extends StatelessWidget {
   final VoidCallback onPressed;
+  final String text;
 
   const GoogleSignInButton({
+    required this.text,
     required this.onPressed, 
     super.key,
   });
@@ -29,9 +31,8 @@ class GoogleSignInButton extends StatelessWidget {
               height: 24,
             ),
             const SizedBox(width: 8),
-            const Text(
-              'SIGN IN WITH GOOGLE',
-              style: TextStyle(color: AppColors.headingColor),
+            Text( text,
+              style: const TextStyle(color: AppColors.headingColor),
             ),
           ],
         ),

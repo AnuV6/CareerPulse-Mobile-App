@@ -46,9 +46,7 @@ class CheckEmailScreen extends StatelessWidget {
 
                 CommonButton(
                   text: 'OPEN YOUR EMAIL',
-                  onPressed: () {
-                    // Handle open email
-                  },
+                  onPressed: () { },
                 ),
                 const SizedBox(height: 8),
 

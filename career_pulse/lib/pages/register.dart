@@ -91,7 +91,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         context: context);
                   }),
               const SizedBox(height: 16),
-              GoogleSignInButton(onPressed: () {}),
+              GoogleSignInButton(
+                  text: 'Sign Up with Google',
+                onPressed: () {
+                AuthService().signUpWithGoogle(context: context);
+              }),
               const SizedBox(height: 32),
               Center(
                   child: TextButton(
@@ -129,6 +133,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 },
                 child: const Text(
                   'About us',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+                TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                      context, '/interestedArea'); // Navigate to AlmostDoneScreen
+                },
+                child: const Text(
+                  'Interested Area',
                   style: TextStyle(
                     color: Colors.blue,
                     fontSize: 16,

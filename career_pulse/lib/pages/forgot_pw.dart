@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:career_pulse/pages/check_email.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/widgets/common_blue_button.dart';
+import 'package:career_pulse/services/authentication.dart';
 
 
 class ForgotPasswordScreen extends StatelessWidget {
@@ -10,16 +11,6 @@ class ForgotPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController(); // Added TextEditingController
-
-    void resetPassword() {
-      final email = emailController.text.trim();
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => CheckEmailScreen(email: email), // Passing email to CheckEmailScreen
-        ),
-      );
-    }
 
     return Scaffold(
       backgroundColor: const Color(0xFFF9F9F9),
@@ -68,7 +59,15 @@ class ForgotPasswordScreen extends StatelessWidget {
 
               CommonButton(
                 text: 'RESET PASSWORD',
-                onPressed: resetPassword,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CheckEmailScreen(email: emailController.text),
+                    ),
+                  );
+                  AuthService().resetPassword(email: emailController.text);
+                },
               ),
               const SizedBox(height: 16),
               

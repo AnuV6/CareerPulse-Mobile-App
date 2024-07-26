@@ -10,25 +10,37 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back),
-        onPressed: onBack ??
-            () {
-              Navigator.of(context).pop();
-            },
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        border: Border(
+          bottom: BorderSide(
+              color: Color.fromARGB(255, 204, 204, 204),
+              width: 1), // Black horizontal line at the bottom
+        ),
       ),
-      title: Text(title),
-      centerTitle: true,
-      backgroundColor:
-          const Color.fromARGB(255, 148, 147, 147), // Customize your color
+      child: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.blue),
+          onPressed: onBack ??
+              () {
+                Navigator.of(context).pop();
+              },
+        ),
+        title: Text(
+          title,
+          style: const TextStyle(color: Colors.blue),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.white, // White background color
+        elevation: 0, // Remove default shadow
+      ),
     );
   }
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
-
 
 
 
