@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:career_pulse/pages/home.dart';
-import 'package:career_pulse/pages/login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
@@ -125,6 +124,6 @@ class AuthService {
         // ignore: use_build_context_synchronously
         context,
         MaterialPageRoute(
-            builder: (BuildContext context) => const LoginScreen()));
+            builder: (BuildContext context) => const HomeScreen()));
   }
 }
