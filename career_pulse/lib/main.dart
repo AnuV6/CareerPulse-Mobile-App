@@ -11,6 +11,7 @@ import 'package:career_pulse/pages/upload_resume.dart'; // Import the UploadResu
 import 'package:career_pulse/pages/almost_done_splash.dart';
 import 'package:career_pulse/pages/aboutUs.dart';
 import 'package:career_pulse/pages/test_pages.dart';
+import 'package:career_pulse/pages/password.dart';
 
 // for home --nadun
 import 'package:provider/provider.dart';
@@ -78,6 +79,7 @@ class MainApp extends StatelessWidget {
           '/existingSkills': (context) => const ExistingSkillsPage(),
           '/newSkills': (context) => const NewSkillsPage(),
           '/testPages': (context) => const TestPagesScreen(),
+          '/password': (context) => const PasswordScreen(),
         },
         onGenerateRoute: (settings) {
           if (settings.name == '/internshipDetails') {
