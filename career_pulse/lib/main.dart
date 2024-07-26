@@ -11,6 +11,16 @@ import 'package:career_pulse/pages/upload_resume.dart'; // Import the UploadResu
 import 'package:career_pulse/pages/almost_done_splash.dart';
 import 'package:career_pulse/pages/aboutUs.dart';
 
+// for home --nadun
+import 'package:provider/provider.dart';
+import 'package:career_pulse/saved_internships_state.dart';
+import 'package:career_pulse/home/home_page.dart';
+import 'package:career_pulse/home/resume_suggestions_page.dart';
+import 'package:career_pulse/home/internship_details_page.dart';
+import 'package:career_pulse/home/resume_report.dart';
+import 'package:career_pulse/home/existing_skills.dart';
+import 'package:career_pulse/home/new_skills.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -22,45 +32,73 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Career Pulse App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: AppColors.secondaryColor,
-        appBarTheme: const AppBarTheme(
-          color: AppColors.primaryColor,
-          titleTextStyle: TextStyle(
-            color: AppColors.titleColor,
+    return ChangeNotifierProvider(
+      create: (_) => SavedInternshipsState(),
+      child: MaterialApp(
+        title: 'Career Pulse App',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: AppColors.secondaryColor,
+          appBarTheme: const AppBarTheme(
+            color: AppColors.primaryColor,
+            titleTextStyle: TextStyle(
+              color: AppColors.titleColor,
+            ),
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.buttonColor,
+            ),
           ),
         ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.buttonColor,
-          ),
-        ),
+        initialRoute: '/',
+        routes: {
+          '/': (context) =>
+              const SplashScreen(), // Home route for the splash screen
+          '/login': (context) =>
+              const LoginScreen(), // Home route for the Login screen
+          '/register': (context) =>
+              const RegisterScreen(), // Route for the Register screen
+          '/forgotPassword': (context) =>
+              const ForgotPasswordScreen(), // Route for the forgot password screen
+          '/home': (context) => 
+              const HomeScreen(), // Route for the home screen
+          '/uploadResume': (context) => 
+              const UploadResumeScreen(), // Route for the upload resume screen
+          '/almostDone': (context) => 
+              const AlmostDoneScreen(), // Route for the almost done screen
+          '/aboutUs': (context) => 
+              const AboutUsPage(), // Route for the about us screen
+          '/interestedArea': (context) => 
+              const InterestedAreaScreen(), // Route for the interested area screen
+          '/homePage': (context) => 
+              const HomePage(),
+          '/resumeSuggestions': (context) => 
+              const ResumeSuggestionsPage(),
+          '/resumeReport': (context) => 
+              const ResumeReportPage(),
+          '/existingSkills': (context) => 
+              const ExistingSkillsPage(),
+          '/newSkills': (context) => 
+              const NewSkillsPage(),
+        },
+        onGenerateRoute: (settings) {
+          if (settings.name == '/internshipDetails') {
+            final args = settings.arguments as Map<String, String>;
+            return MaterialPageRoute(
+              builder: (context) {
+                return InternshipDetailsPage(
+                  title: args['title']!,
+                  company: args['company']!,
+                  role: args['role']!,
+                );
+              },
+            );
+          }
+          return null;
+        },
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) =>
-            const SplashScreen(), // Home route for the splash screen
-        '/login': (context) =>
-            const LoginScreen(), // Home route for the Login screen
-        '/register': (context) =>
-            const RegisterScreen(), // Route for the Register screen
-        '/forgotPassword': (context) =>
-            const ForgotPasswordScreen(), // Route for the forgot password screen
-        '/home': (context) => 
-            const HomeScreen(), // Route for the home screen
-        '/uploadResume': (context) => 
-            const UploadResumeScreen(), // Route for the upload resume screen
-        '/almostDone': (context) => 
-            const AlmostDoneScreen(), // Route for the almost done screen
-        '/aboutUs': (context) => 
-            const AboutUsPage(), // Route for the about us screen
-        '/interestedArea': (context) => 
-            const InterestedAreaScreen(), // Route for the interested area screen
-      },
     );
   }
 }
