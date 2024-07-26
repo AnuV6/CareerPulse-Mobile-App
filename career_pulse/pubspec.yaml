@@ -24,6 +24,9 @@ dependencies:
   google_sign_in: ^6.2.1
   file_picker: ^4.1.6
   url_launcher: ^6.3.0
+  provider: ^6.0.0
+  
+
  
 
 
