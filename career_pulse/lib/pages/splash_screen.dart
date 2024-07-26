@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
-import 'package:career_pulse/pages/login.dart';
+import 'package:career_pulse/pages/start.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.pushReplacement(
       // ignore: use_build_context_synchronously
       context,
-      MaterialPageRoute(builder: (context) => const LoginScreen()),
+      MaterialPageRoute(builder: (context) => const StartScreen()),
     );
   }
 
