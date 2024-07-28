@@ -59,8 +59,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       labelStyle: TextStyle(color: AppColors.headingColor),
                       border: OutlineInputBorder())),
               const SizedBox(height: 16),
-              const TextField(
-                  decoration: InputDecoration(
+              TextField(
+                  controller: _emailController,
+                  decoration: const InputDecoration(
                       labelText: 'Email',
                       hintText: "example@email.com",
                       labelStyle: TextStyle(color: AppColors.headingColor),
@@ -89,7 +90,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     AuthService().signup(
                         email: _emailController.text,
                         password: _passwordController.text,
-                        context: context);
+                        context: context
+                    );
                   }),
               const SizedBox(height: 16),
               GoogleSignInButton(

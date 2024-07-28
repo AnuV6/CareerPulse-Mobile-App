@@ -1,24 +1,27 @@
+import 'package:career_pulse/pages/login.dart';
+import 'package:career_pulse/pages/test_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:career_pulse/pages/home.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
-  Future<void> signup(
-      {required String email,
-      required String password,
-      required BuildContext context}) async {
+  Future<void> signup({
+    required String email,
+    required String password,
+    required BuildContext context,
+  }) async {
     try {
-      await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: email,
+          password: password,
+      );
 
       await Future.delayed(const Duration(seconds: 1));
       Navigator.pushReplacement(
-          // ignore: use_build_context_synchronously
-          context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => const HomeScreen()));
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) => const TestPagesScreen()));
     } on FirebaseAuthException catch (e) {
       String message = '';
       if (e.code == 'weak-password') {
@@ -55,24 +58,28 @@ class AuthService {
           // ignore: use_build_context_synchronously
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => const HomeScreen()));
+              builder: (BuildContext context) => const TestPagesScreen()));
     }
   }
 
-  Future<void> signin(
-      {required String email,
-      required String password,
-      required BuildContext context}) async {
+  Future<void> signin({
+    required String email,
+    required String password,
+    required BuildContext context
+  }) async {
     try {
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password
+      );
 
       await Future.delayed(const Duration(seconds: 1));
       Navigator.pushReplacement(
-          // ignore: use_build_context_synchronously
-          context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => const HomeScreen()));
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => const TestPagesScreen()
+        )
+      );
     } on FirebaseAuthException catch (e) {
       String message = '';
       if (e.code == 'invalid-email') {
@@ -109,7 +116,7 @@ class AuthService {
           // ignore: use_build_context_synchronously
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => const HomeScreen()));
+              builder: (BuildContext context) => const TestPagesScreen()));
     }
   }
 
@@ -124,6 +131,8 @@ class AuthService {
         // ignore: use_build_context_synchronously
         context,
         MaterialPageRoute(
-            builder: (BuildContext context) => const HomeScreen()));
+            builder: (BuildContext context) => const LoginScreen()
+        )
+    );
   }
 }
