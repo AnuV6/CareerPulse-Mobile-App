@@ -2,18 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>213729217153-84a79q078tojaps5vffu1l4jbbg4d8oa.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.213729217153-84a79q078tojaps5vffu1l4jbbg4d8oa</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>213729217153-ir066m9aprnpdovirtpab6j66id5sonq.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBxj0fSW9pZRhKX30NNSn8oHhsiEEj1h2A</string>
+	<string>AIzaSyBinEBmWjKtb9b4r_0jZrW1dOIxkbik9zw</string>
 	<key>GCM_SENDER_ID</key>
-	<string>695544969833</string>
+	<string>213729217153</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.careerPulse</string>
 	<key>PROJECT_ID</key>
-	<string>careerpulse1</string>
+	<string>careerpulse-bb42c</string>
 	<key>STORAGE_BUCKET</key>
-	<string>careerpulse1.appspot.com</string>
+	<string>careerpulse-bb42c.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:695544969833:ios:a33847911d84159c6b40f8</string>
+	<string>1:213729217153:ios:96ae30c4a0950e52b59b80</string>
 </dict>
 </plist>

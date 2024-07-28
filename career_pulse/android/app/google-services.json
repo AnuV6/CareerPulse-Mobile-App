@@ -1,73 +1,45 @@
 {
   "project_info": {
-    "project_number": "695544969833",
-    "project_id": "careerpulse1",
-    "storage_bucket": "careerpulse1.appspot.com"
+    "project_number": "213729217153",
+    "project_id": "careerpulse-bb42c",
+    "storage_bucket": "careerpulse-bb42c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:695544969833:android:f1b7e706074cd9306b40f8",
-        "android_client_info": {
-          "package_name": "com.cp.app"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "695544969833-d48tptkmn8rfo9pbalon0edn40brjml3.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCT9XrnCCSU-pidoOgIpcdr7Xxzuo-3cik"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "695544969833-d48tptkmn8rfo9pbalon0edn40brjml3.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "695544969833-vtj3hi5l95ia8ta9c9e4ftqqbv70kc3s.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.careerPulse"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:695544969833:android:302bfbf584cc44a16b40f8",
+        "mobilesdk_app_id": "1:213729217153:android:66430659113e01a5b59b80",
         "android_client_info": {
           "package_name": "com.example.career_pulse"
         }
       },
       "oauth_client": [
         {
-          "client_id": "695544969833-d48tptkmn8rfo9pbalon0edn40brjml3.apps.googleusercontent.com",
+          "client_id": "213729217153-ir066m9aprnpdovirtpab6j66id5sonq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.career_pulse",
+            "certificate_hash": "de89c030a81df7f02ecfa48b22e62cdbc15e4087"
+          }
+        },
+        {
+          "client_id": "213729217153-45t48f93n5i3rbiefr633ertjf92pskh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCT9XrnCCSU-pidoOgIpcdr7Xxzuo-3cik"
+          "current_key": "AIzaSyBMZqhLUhGQJNl7UF_TT6c8AQ6KPqp3JXA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "695544969833-d48tptkmn8rfo9pbalon0edn40brjml3.apps.googleusercontent.com",
+              "client_id": "213729217153-45t48f93n5i3rbiefr633ertjf92pskh.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "695544969833-vtj3hi5l95ia8ta9c9e4ftqqbv70kc3s.apps.googleusercontent.com",
+              "client_id": "213729217153-84a79q078tojaps5vffu1l4jbbg4d8oa.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.example.careerPulse"
