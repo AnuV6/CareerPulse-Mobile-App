@@ -1,17 +1,14 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
 
-  // ignore: use_super_parameters
   const CustomBottomNavigationBar({
-    Key? key,
+    super.key,  
     required this.currentIndex,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -48,23 +45,23 @@ class CustomBottomNavigationBar extends StatelessWidget {
         onExit: (_) {},
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
-          padding: const EdgeInsets.symmetric(vertical: 5), // Reduced padding
+          padding: const EdgeInsets.symmetric(vertical: 5), 
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
-                width: isSelected ? 30 : 25, // Reduced size
-                height: isSelected ? 30 : 25, // Reduced size
+                width: isSelected ? 35 : 25, 
+                height: isSelected ? 35 : 25, 
                 decoration: isSelected
                     ? BoxDecoration(
                         boxShadow: [
                           BoxShadow(
                             color: const Color.fromARGB(255, 192, 255, 247)
-                                .withOpacity(0.15),
-                            spreadRadius: 1,
-                            blurRadius: 3,
-                            offset: const Offset(0, 2),
+                                .withOpacity(0.3),
+                            spreadRadius: 5,
+                            blurRadius: 10,
+                            offset: const Offset(0, 4),
                           ),
                         ],
                       )
@@ -76,7 +73,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                       : const Color.fromARGB(255, 51, 131, 235),
                 ),
               ),
-              const SizedBox(height: 3), // Reduced spacing
+              const SizedBox(height: 3), 
             ],
           ),
         ),
@@ -85,8 +82,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   }
 }
 
-
-//Usages
+// Usages
 /* 
 
 int _selectedIndex = 0;
@@ -106,6 +102,5 @@ Scaffold(
   ),
   ...
 ),
-
 
 */
