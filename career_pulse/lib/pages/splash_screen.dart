@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/pages/start.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart'; //loading animation widget
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -75,9 +76,9 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
             const SizedBox(height: 50),
-            const CircularProgressIndicator(
-              valueColor:
-                  AlwaysStoppedAnimation<Color>(AppColors.secondaryColor),
+            LoadingAnimationWidget.staggeredDotsWave(            // add loading animation
+              color: AppColors.textColorinBlue,
+              size: 70,
             ),
           ],
         ),

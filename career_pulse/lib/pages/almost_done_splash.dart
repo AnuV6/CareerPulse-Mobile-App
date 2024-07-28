@@ -1,5 +1,6 @@
-import 'package:career_pulse/widgets/ThreeDotLoader.dart';
 import 'package:flutter/material.dart';
+import 'package:career_pulse/stuffs/colors.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart'; //loading animation widget
 
 class AlmostDoneScreen extends StatelessWidget {
   const AlmostDoneScreen({super.key});
@@ -43,8 +44,10 @@ class AlmostDoneScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 40), // Increased space to 40 pixels
-                  const ThreeDotLoader(
-                      color: Colors.blue), // Using custom three-dot loader
+                  LoadingAnimationWidget.threeRotatingDots(            // add loading animation
+                    color: AppColors.primaryColor,
+                    size: 40,
+                  ),
                 ],
               ),
             ),
