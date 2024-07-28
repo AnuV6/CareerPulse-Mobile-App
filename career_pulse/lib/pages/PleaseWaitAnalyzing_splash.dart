@@ -1,7 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:career_pulse/widgets/ThreeDotLoader.dart'; // Ensure this path is correct
+import 'package:career_pulse/stuffs/colors.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart'; //loading animation widget
 
 class PleaseWaitAnalyzingSplash extends StatelessWidget {
   const PleaseWaitAnalyzingSplash({super.key});
@@ -9,7 +10,7 @@ class PleaseWaitAnalyzingSplash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.secondaryColor,
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -21,7 +22,7 @@ class PleaseWaitAnalyzingSplash extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Colors.blue,
+                color: AppColors.primaryColor,
               ),
             ),
             const SizedBox(height: 40), // Space between text and image
@@ -33,14 +34,16 @@ class PleaseWaitAnalyzingSplash extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 40), // Space between image and loader
-            const ThreeDotLoader(
-                color: Colors.blue), // Using custom three-dot loader
+            LoadingAnimationWidget.halfTriangleDot(            // add loading animation
+              color: AppColors.primaryColor,
+              size: 60,
+            ),
             const SizedBox(height: 40), // Space at the bottom before footer
             const Text(
               'Analyzing...',
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.blue,
+                color: AppColors.primaryColor,
               ),
             ),
             const Spacer(), // Pushes everything up
@@ -56,6 +59,8 @@ class PleaseWaitAnalyzingSplash extends StatelessWidget {
                 ),
               ),
             ),
+
+            
           ],
         ),
       ),
