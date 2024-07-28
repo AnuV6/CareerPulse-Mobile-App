@@ -50,6 +50,13 @@ class TestPagesScreen extends StatelessWidget {
               child: const Text(
                   'Password Page'), // Button to test the Password screen
             ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/pleaseWaitAnalyzing');
+              },
+              child: const Text(
+                  'Please Wait Analyzing Page'), // Button to test the screen
+            ),
           ],
         ),
       ),
