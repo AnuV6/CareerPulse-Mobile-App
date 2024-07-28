@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:career_pulse/stuffs/colors.dart';
 
 class UserProfileButton extends StatelessWidget {
   final String iconPath;
@@ -20,7 +21,7 @@ class UserProfileButton extends StatelessWidget {
         width: double.infinity,  // Make the button take the full width of its parent
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.white,
+            backgroundColor: AppColors.secondaryColor,
             side: const BorderSide(color: Colors.transparent),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
@@ -37,13 +38,13 @@ class UserProfileButton extends StatelessWidget {
                 iconPath,
                 height: 24.0,
                 width: 24.0,
-                color: Colors.blue,
+                
               ),
               const SizedBox(width: 12.0),  // Add a small gap between the icon and text
               Text(
                 text,
                 style: const TextStyle(
-                  color: Colors.blue,
+                  color: AppColors.primaryColor,
                   fontSize: 20.0,
                   fontWeight: FontWeight.w500,
                 ),

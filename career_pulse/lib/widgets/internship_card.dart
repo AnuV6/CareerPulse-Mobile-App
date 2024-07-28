@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../saved_internships_state.dart';
+import 'package:career_pulse/saved_internships_state.dart';
 
 class InternshipCard extends StatefulWidget {
   final String title;
