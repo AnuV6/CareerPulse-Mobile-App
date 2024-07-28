@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:career_pulse/widgets/user_profile_button.dart';
 import 'package:career_pulse/widgets/AppBarWithBackButton.dart';
+import 'package:career_pulse/stuffs/colors.dart';
 
 class UserProfilePage extends StatelessWidget {
   const UserProfilePage({super.key});
@@ -16,7 +17,7 @@ class UserProfilePage extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              color: Colors.blue,
+              color: AppColors.primaryColor,
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 20.0),
               child: Column(
@@ -29,16 +30,16 @@ class UserProfilePage extends StatelessWidget {
                   const SizedBox(height: 10),
                   const Text(
                     'Mamitha Bhaju',
-                    style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+                    style: TextStyle(color: AppColors.textColorinBlue, fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   const Text(
                     'University of Sri Jayewardenepura',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    style: TextStyle(color: AppColors.textColorinBlue, fontSize: 16),
                   ),
                   const SizedBox(height: 10),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue[700],
+                      backgroundColor: AppColors.secondaryColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -46,7 +47,10 @@ class UserProfilePage extends StatelessWidget {
                     onPressed: () {
                       // Define the action when Edit Profile is pressed
                     },
-                    child: const Text('Edit Profile'),
+                    child: const Text(
+                      'Edit Profile',
+                      style: TextStyle(color: AppColors.primaryColor, fontSize: 16),
+                    ),
                   ),
                 ],
               ),

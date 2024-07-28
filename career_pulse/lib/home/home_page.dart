@@ -82,9 +82,9 @@ class HomePageState extends State<HomePage> {
           const SizedBox(height: 20),
           Material(
             color: AppColors.primaryColor,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(25),
             child: InkWell(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(25),
               onTap: () {
                 Navigator.pushNamed(context, '/resumeReport');
               },
@@ -102,7 +102,7 @@ class HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Your Score is 85%.",
+                          "Your Score is 85%.",                                                // score generate in backend
                           style: TextStyle(fontSize: 22, color: AppColors.textColorinBlue),
                         ),
                         Text(
@@ -122,9 +122,9 @@ class HomePageState extends State<HomePage> {
               Expanded(
                 child: Material(
                   color: AppColors.primaryColor,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(25),
                   child: InkWell(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(25),
                     onTap: () {
                       Navigator.pushNamed(context, '/existingSkills');
                     },
@@ -132,16 +132,18 @@ class HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(20),
                       child: Column(
                         children: [
+                          const Text(
+                            "Suggestions",
+                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textColorinBlue),
+                          ),
+
                           Image.asset(
                             'assets/chart.png',
                             height: 50,
                             width: 50,
                           ),
                           const SizedBox(height: 10),
-                          const Text(
-                            "Suggestions",
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textColorinBlue),
-                          ),
+                          
                           const Text(
                             "To improve Your Existing Skills",
                             textAlign: TextAlign.center,
@@ -157,9 +159,9 @@ class HomePageState extends State<HomePage> {
               Expanded(
                 child: Material(
                   color: AppColors.primaryColor,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(25),
                   child: InkWell(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(25),
                     onTap: () {
                       Navigator.pushNamed(context, '/newSkills');
                     },
@@ -167,16 +169,17 @@ class HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(20),
                       child: Column(
                         children: [
+                          const Text(
+                            "Suggestions",
+                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textColorinBlue),
+                          ),
                           Image.asset(
                             'assets/lightbulb.png',
                             height: 50,
                             width: 50,
                           ),
                           const SizedBox(height: 10),
-                          const Text(
-                            "Suggestions",
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textColorinBlue),
-                          ),
+                          
                           const Text(
                             "To improve Your New Skills",
                             textAlign: TextAlign.center,
@@ -193,9 +196,9 @@ class HomePageState extends State<HomePage> {
           const SizedBox(height: 20),
           Material(
             color: AppColors.primaryColor,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(25),
             child: InkWell(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(25),
               onTap: () {
                 Navigator.pushNamed(context, '/resumeSuggestions');
               },
@@ -236,6 +239,22 @@ class HomePageState extends State<HomePage> {
                   'title': "Software Engineering",
                   'company': "BeGOOD Solutions",
                   'role': "Web Developer",
+                },
+              );
+            },
+          ),
+          InternshipCard(
+            title: "UI/UX Designer",
+            company: "LoopCODE",
+            role: "UI/UX Designer Intern",
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                '/internshipDetails',
+                arguments: {
+                  'title': "UI/UX Designer",
+                  'company': "LoopCODE",
+                  'role': "UI/UX Designer Intern",
                 },
               );
             },
