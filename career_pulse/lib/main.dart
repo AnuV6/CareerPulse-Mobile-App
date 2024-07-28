@@ -12,6 +12,7 @@ import 'package:career_pulse/pages/almost_done_splash.dart';
 import 'package:career_pulse/pages/aboutUs.dart';
 import 'package:career_pulse/pages/test_pages.dart';
 import 'package:career_pulse/pages/password.dart';
+import 'package:career_pulse/pages/PleaseWaitAnalyzing_splash.dart';
 
 // for home --nadun
 import 'package:provider/provider.dart';
@@ -80,6 +81,8 @@ class MainApp extends StatelessWidget {
           '/newSkills': (context) => const NewSkillsPage(),
           '/testPages': (context) => const TestPagesScreen(),
           '/password': (context) => const PasswordScreen(),
+          '/pleaseWaitAnalyzing': (context) =>
+              const PleaseWaitAnalyzingSplash(),
         },
         onGenerateRoute: (settings) {
           if (settings.name == '/internshipDetails') {
