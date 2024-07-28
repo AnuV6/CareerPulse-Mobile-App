@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "career_pulse",
+            "cwd": "career_pulse",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "career_pulse (profile mode)",
+            "cwd": "career_pulse",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "career_pulse (release mode)",
+            "cwd": "career_pulse",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

@@ -1,3 +1,4 @@
+import 'package:career_pulse/services/authentication.dart';
 import 'package:flutter/material.dart';
 
 class TestPagesScreen extends StatelessWidget {
@@ -57,9 +58,17 @@ class TestPagesScreen extends StatelessWidget {
               child: const Text(
                   'Please Wait Analyzing Page'), // Button to test the screen
             ),
+            //logout button
+            TextButton(
+              onPressed: () {
+                AuthService().signout(context: context);
+              },
+              child: const Text('Logout'),
+            ),
           ],
         ),
       ),
+    
     );
   }
 }
