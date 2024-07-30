@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:career_pulse/widgets/internship_card.dart';
 import 'package:career_pulse/saved_internships_state.dart';
+import 'package:career_pulse/widgets/AppBarWithBackButton.dart';
 
 class SavedInternshipsPage extends StatelessWidget {
   const SavedInternshipsPage({super.key});
@@ -9,9 +10,8 @@ class SavedInternshipsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Saved Internships'),
-      ),
+      appBar: const CustomAppBar(
+          title: 'Saved Internships'), // Custom app bar with a back button
       body: Consumer<SavedInternshipsState>(
         builder: (context, savedInternshipsState, child) {
           return ListView.builder(
