@@ -13,15 +13,16 @@ class AuthService {
   }) async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: email,
-          password: password,
+        email: email,
+        password: password,
       );
 
       await Future.delayed(const Duration(seconds: 1));
       Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (BuildContext context) => const TestPagesScreen()));
+          // ignore: use_build_context_synchronously
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => const TestPagesScreen()));
     } on FirebaseAuthException catch (e) {
       String message = '';
       if (e.code == 'weak-password') {
@@ -45,7 +46,8 @@ class AuthService {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     if (googleUser != null) {
       // Obtain the GoogleSignInAuthentication object
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
       // Create a new credential
       final OAuthCredential googleCredential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
@@ -62,24 +64,20 @@ class AuthService {
     }
   }
 
-  Future<void> signin({
-    required String email,
-    required String password,
-    required BuildContext context
-  }) async {
+  Future<void> signin(
+      {required String email,
+      required String password,
+      required BuildContext context}) async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email,
-        password: password
-      );
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
 
       await Future.delayed(const Duration(seconds: 1));
       Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (BuildContext context) => const TestPagesScreen()
-        )
-      );
+          // ignore: use_build_context_synchronously
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => const TestPagesScreen()));
     } on FirebaseAuthException catch (e) {
       String message = '';
       if (e.code == 'invalid-email') {
@@ -98,12 +96,13 @@ class AuthService {
     }
   }
 
-  Future <void> signInWithGoogle({required BuildContext context}) async {
+  Future<void> signInWithGoogle({required BuildContext context}) async {
     // Trigger the Google Sign In process
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     if (googleUser != null) {
       // Obtain the GoogleSignInAuthentication object
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
       // Create a new credential
       final OAuthCredential googleCredential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
@@ -131,8 +130,6 @@ class AuthService {
         // ignore: use_build_context_synchronously
         context,
         MaterialPageRoute(
-            builder: (BuildContext context) => const LoginScreen()
-        )
-    );
+            builder: (BuildContext context) => const LoginScreen()));
   }
 }

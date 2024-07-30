@@ -1,4 +1,5 @@
-// ignore: file_names
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
@@ -6,7 +7,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   final Function(int) onTap;
 
   const CustomBottomNavigationBar({
-    super.key,  
+    super.key,
     required this.currentIndex,
     required this.onTap,
   });
@@ -46,14 +47,14 @@ class CustomBottomNavigationBar extends StatelessWidget {
         onExit: (_) {},
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
-          padding: const EdgeInsets.symmetric(vertical: 5), 
+          padding: const EdgeInsets.symmetric(vertical: 5),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
-                width: isSelected ? 35 : 25, 
-                height: isSelected ? 35 : 25, 
+                width: isSelected ? 35 : 25,
+                height: isSelected ? 35 : 25,
                 decoration: isSelected
                     ? BoxDecoration(
                         boxShadow: [
@@ -74,7 +75,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                       : const Color.fromARGB(255, 51, 131, 235),
                 ),
               ),
-              const SizedBox(height: 3), 
+              const SizedBox(height: 3),
             ],
           ),
         ),
