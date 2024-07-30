@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:career_pulse/widgets/user_profile_button.dart';
 import 'package:career_pulse/widgets/AppBarWithBackButton.dart';
 import 'package:career_pulse/stuffs/colors.dart';
+import 'package:career_pulse/home/saved_internships_page.dart'; // Import the SavedInternshipPage
+import 'package:career_pulse/pages/interested_area_screen.dart';
+import 'package:career_pulse/home/upload_resume_only.dart';
+import 'package:career_pulse/home/linkedin_link.dart';
 
 class UserProfilePage extends StatelessWidget {
   const UserProfilePage({super.key});
@@ -60,28 +64,40 @@ class UserProfilePage extends StatelessWidget {
               iconPath: 'assets/selection_edit_icon.png', 
               text: 'Edit Your Field Selections',
               onPressed: () {
-                // Define the action when button is pressed
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const InterestedAreaScreen()), // Navigate to SavedInternshipPage
+                );
               },
             ),
             UserProfileButton(
               iconPath: 'assets/upload_icon.png', 
               text: 'ReUpload Your Resume',
               onPressed: () {
-                // Define the action when button is pressed
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const UploadResumeOnlyScreen()), // Navigate to SavedInternshipPage
+                );
               },
             ),
             UserProfileButton(
               iconPath: 'assets/linkedin_icon.png', 
               text: 'Connect with LinkedIn',
               onPressed: () {
-                // Define the action when button is pressed
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AddLinkedInScreen()), // Navigate to SavedInternshipPage
+                );
               },
             ),
             UserProfileButton(
               iconPath: 'assets/saved_icon.png', 
               text: 'Saved Internships',
               onPressed: () {
-                // Define the action when button is pressed
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SavedInternshipsPage()), // Navigate to SavedInternshipPage
+                );
               },
             ),
             UserProfileButton(

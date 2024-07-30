@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:career_pulse/widgets/AppBarWithBackButton.dart';
 
-class UploadResumeScreen extends StatefulWidget {
-  const UploadResumeScreen({super.key});
+class UploadResumeOnlyScreen extends StatefulWidget {
+  const UploadResumeOnlyScreen({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _UploadResumeScreenState createState() => _UploadResumeScreenState();
+  _UploadResumeOnlyScreenState createState() => _UploadResumeOnlyScreenState();
 }
 
-class _UploadResumeScreenState extends State<UploadResumeScreen> {
+class _UploadResumeOnlyScreenState extends State<UploadResumeOnlyScreen> {
   PlatformFile? _pickedFile;
-  final TextEditingController _linkedinController = TextEditingController();
 
   void _pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -28,24 +27,17 @@ class _UploadResumeScreenState extends State<UploadResumeScreen> {
   }
 
   void _submit() {
-    final linkedinUrl = _linkedinController.text.trim();
     if (_pickedFile == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please upload your resume')),
       );
       return;
     }
-    if (linkedinUrl.isEmpty || !Uri.parse(linkedinUrl).isAbsolute) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a valid LinkedIn profile link')),
-      );
-      return;
-    }
 
-    // Handle the file and LinkedIn URL submission logic here
+    // Handle the file submission logic here
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Resume and LinkedIn profile submitted successfully')),
+      const SnackBar(content: Text('Resume submitted successfully')),
     );
   }
 
@@ -54,7 +46,8 @@ class _UploadResumeScreenState extends State<UploadResumeScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF9F9F9),
       appBar: const CustomAppBar(
-          title: 'Upload Your Resume'), // Custom app bar with a back button
+        title: 'Re-Upload Your Resume',
+      ), // Custom app bar with a back button
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -62,7 +55,7 @@ class _UploadResumeScreenState extends State<UploadResumeScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Text(
-                'Upload Your Resume',
+                'Re-Upload Your Resume',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -119,34 +112,6 @@ class _UploadResumeScreenState extends State<UploadResumeScreen> {
                       ),
                     ],
                   ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              const Text(
-                'And',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black54,
-                ),
-              ),
-              const SizedBox(height: 16),
-              const Text(
-                'Upload Your LinkedIn profile Link',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-              const SizedBox(height: 8),
-              TextField(
-                controller: _linkedinController,
-                decoration: const InputDecoration(
-                  labelText: 'Add file URL',
-                  border: OutlineInputBorder(),
-                  filled: true,
-                  fillColor: Colors.white,
                 ),
               ),
               const SizedBox(height: 24),
