@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:career_pulse/widgets/AppBarWithBackButton.dart'; // Import CustomAppBar
+import 'package:career_pulse/widgets/internship_card.dart'; // Import CustomAppBar
 
 class InternshipsPage extends StatelessWidget {
   const InternshipsPage({super.key});
@@ -39,7 +41,7 @@ class InternshipsPage extends StatelessWidget {
       'companyLogo': 'assets/ilogo3.png',
       'title': 'Software Engineering',
       'company': 'Google',
-      'role': 'Fron-end Developer'
+      'role': 'Front-end Developer'
     },
     {
       'companyLogo': 'assets/ilogo3.png',
@@ -68,39 +70,21 @@ class InternshipsPage extends StatelessWidget {
           itemCount: internships.length,
           itemBuilder: (context, index) {
             final internship = internships[index];
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 1,
-                      blurRadius: 5,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: AssetImage(internship['companyLogo']!),
-                  ),
-                  title: Text(internship['title']!),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(internship['company']!),
-                      Text(internship['role']!),
-                    ],
-                  ),
-                  trailing: IconButton(
-                    icon: Icon(Icons.bookmark_border),
-                    onPressed: () {},
-                  ),
-                ),
-              ),
+            return InternshipCard(
+              title: internship['title']!,
+              company: internship['company']!,
+              role: internship['role']!,
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  '/internshipDetails',
+                  arguments: {
+                    'title': internship['title']!,
+                    'company': internship['company']!,
+                    'role': internship['role']!,
+                  },
+                );
+              },
             );
           },
         ),
