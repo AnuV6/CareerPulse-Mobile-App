@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; // Import the services package
+import 'package:career_pulse/stuffs/colors.dart';
 
 class LogoutConfirmationDialog extends StatelessWidget {
   const LogoutConfirmationDialog({super.key});
@@ -29,12 +31,13 @@ class LogoutConfirmationDialog extends StatelessWidget {
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
+                    backgroundColor: AppColors.primaryColor,
+                    foregroundColor: Colors.white,
                   ),
                   onPressed: () {
                     // Handle the "Yes" action
                     Navigator.of(context).pop(); // Close the dialog
-                    // Add your logout logic here
+                    SystemNavigator.pop(); // Close the whole app
                   },
                   child: const Text('YES'),
                 ),
