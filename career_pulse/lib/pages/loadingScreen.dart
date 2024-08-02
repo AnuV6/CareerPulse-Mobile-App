@@ -1,4 +1,6 @@
-// ignore_for_file: file_names, camel_case_types
+// loadingScreen.dart
+
+// ignore_for_file: camel_case_types, library_private_types_in_public_api, use_build_context_synchronously, file_names
 
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
@@ -8,7 +10,6 @@ class loadingScreen extends StatefulWidget {
   const loadingScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _SplashScreenState createState() => _SplashScreenState();
 }
 
@@ -22,7 +23,6 @@ class _SplashScreenState extends State<loadingScreen> {
   _navigateToLogin() async {
     await Future.delayed(const Duration(seconds: 3), () {});
     Navigator.pushReplacement(
-      // ignore: use_build_context_synchronously
       context,
       MaterialPageRoute(builder: (context) => const loadingScreen()),
     );

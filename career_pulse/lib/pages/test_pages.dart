@@ -1,5 +1,8 @@
-import 'package:career_pulse/services/authentication.dart';
+// test_page.dart
+
 import 'package:flutter/material.dart';
+
+import '../services/authentication.dart'; // Import loadingScreen
 
 class TestPagesScreen extends StatelessWidget {
   const TestPagesScreen({super.key});
@@ -48,17 +51,22 @@ class TestPagesScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/password');
               },
-              child: const Text(
-                  'Password Page'), // Button to test the Password screen
+              child: const Text('Password Page'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/pleaseWaitAnalyzing');
               },
-              child: const Text(
-                  'Please Wait Analyzing Page'), // Button to test the screen
+              child: const Text('Please Wait Analyzing Page'),
             ),
-            //logout button
+            // Button to navigate to loadingScreen
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/loadingScreen');
+              },
+              child: const Text('Loading Screen'),
+            ),
+            // Logout button
             TextButton(
               onPressed: () {
                 AuthService().signout(context: context);
@@ -68,7 +76,6 @@ class TestPagesScreen extends StatelessWidget {
           ],
         ),
       ),
-    
     );
   }
 }
