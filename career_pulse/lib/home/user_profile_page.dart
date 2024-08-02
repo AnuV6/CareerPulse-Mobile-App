@@ -6,6 +6,7 @@ import 'package:career_pulse/home/saved_internships_page.dart'; // Import the Sa
 import 'package:career_pulse/pages/interested_area_screen.dart';
 import 'package:career_pulse/home/upload_resume_only.dart';
 import 'package:career_pulse/home/linkedin_link.dart';
+import 'package:career_pulse/home/edit_profile_page.dart'; // Import EditProfilePage
 
 class UserProfilePage extends StatelessWidget {
   const UserProfilePage({super.key});
@@ -49,7 +50,10 @@ class UserProfilePage extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      // Define the action when Edit Profile is pressed
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const EditProfilePage()), // Navigate to EditProfilePage
+                      );
                     },
                     child: const Text(
                       'Edit Profile',
@@ -66,7 +70,7 @@ class UserProfilePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const InterestedAreaScreen()), // Navigate to SavedInternshipPage
+                  MaterialPageRoute(builder: (context) => const InterestedAreaScreen()), // Navigate to InterestedAreaScreen
                 );
               },
             ),
@@ -76,7 +80,7 @@ class UserProfilePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const UploadResumeOnlyScreen()), // Navigate to SavedInternshipPage
+                  MaterialPageRoute(builder: (context) => const UploadResumeOnlyScreen()), // Navigate to UploadResumeOnlyScreen
                 );
               },
             ),
@@ -86,7 +90,7 @@ class UserProfilePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const AddLinkedInScreen()), // Navigate to SavedInternshipPage
+                  MaterialPageRoute(builder: (context) => const AddLinkedInScreen()), // Navigate to AddLinkedInScreen
                 );
               },
             ),
@@ -96,7 +100,7 @@ class UserProfilePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SavedInternshipsPage()), // Navigate to SavedInternshipPage
+                  MaterialPageRoute(builder: (context) => const SavedInternshipsPage()), // Navigate to SavedInternshipsPage
                 );
               },
             ),

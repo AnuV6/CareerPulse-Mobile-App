@@ -26,6 +26,7 @@ dependencies:
   url_launcher: ^6.3.0
   provider: ^6.0.0
   loading_animation_widget: ^1.2.1
+  image_picker: ^0.8.4+4
   
 
  
