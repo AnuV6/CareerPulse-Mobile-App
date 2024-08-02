@@ -1,3 +1,5 @@
+// main.dart
+
 import 'package:career_pulse/pages/interested_area_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -7,14 +9,13 @@ import 'package:career_pulse/pages/register.dart';
 import 'package:career_pulse/pages/forgot_pw.dart';
 import 'package:career_pulse/pages/splash_screen.dart';
 import 'package:career_pulse/pages/home.dart';
-import 'package:career_pulse/pages/upload_resume.dart'; // Import the UploadResumeScreen
+import 'package:career_pulse/pages/upload_resume.dart';
 import 'package:career_pulse/pages/almost_done_splash.dart';
 import 'package:career_pulse/pages/aboutUs.dart';
 import 'package:career_pulse/pages/test_pages.dart';
 import 'package:career_pulse/pages/password.dart';
 import 'package:career_pulse/pages/PleaseWaitAnalyzing_splash.dart';
-
-// for home --nadun
+import 'package:career_pulse/pages/loadingScreen.dart';
 import 'package:provider/provider.dart';
 import 'package:career_pulse/saved_internships_state.dart';
 import 'package:career_pulse/home/home_page.dart';
@@ -57,23 +58,15 @@ class MainApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          '/': (context) =>
-              const SplashScreen(), // Home route for the splash screen
-          '/login': (context) =>
-              const LoginScreen(), // Home route for the Login screen
-          '/register': (context) =>
-              const RegisterScreen(), // Route for the Register screen
-          '/forgotPassword': (context) =>
-              const ForgotPasswordScreen(), // Route for the forgot password screen
-          '/home': (context) => const HomeScreen(), // Route for the home screen
-          '/uploadResume': (context) =>
-              const UploadResumeScreen(), // Route for the upload resume screen
-          '/almostDone': (context) =>
-              const AlmostDoneScreen(), // Route for the almost done screen
-          '/aboutUs': (context) =>
-              const AboutUsPage(), // Route for the about us screen
-          '/interestedArea': (context) =>
-              const InterestedAreaScreen(), // Route for the interested area screen
+          '/': (context) => const SplashScreen(),
+          '/login': (context) => const LoginScreen(),
+          '/register': (context) => const RegisterScreen(),
+          '/forgotPassword': (context) => const ForgotPasswordScreen(),
+          '/home': (context) => const HomeScreen(),
+          '/uploadResume': (context) => const UploadResumeScreen(),
+          '/almostDone': (context) => const AlmostDoneScreen(),
+          '/aboutUs': (context) => const AboutUsPage(),
+          '/interestedArea': (context) => const InterestedAreaScreen(),
           '/homePage': (context) => const HomePage(),
           '/resumeSuggestions': (context) => const ResumeSuggestionsPage(),
           '/resumeReport': (context) => const ResumeReportPage(),
@@ -83,6 +76,7 @@ class MainApp extends StatelessWidget {
           '/password': (context) => const PasswordScreen(),
           '/pleaseWaitAnalyzing': (context) =>
               const PleaseWaitAnalyzingSplash(),
+          '/loadingScreen': (context) => const loadingScreen(),
         },
         onGenerateRoute: (settings) {
           if (settings.name == '/internshipDetails') {
