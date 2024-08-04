@@ -72,7 +72,6 @@ class InternshipDetailsPage extends StatelessWidget {
                 ],
               ),
             ),
-
             SizedBox(height: 20),
             Text(
               generateAIDetails(title, company, role),
@@ -99,35 +98,18 @@ class InternshipDetailsPage extends StatelessWidget {
                 child: Text('Read more'),
               ),
             ),
-
+            SizedBox(height: 20),
             Text(
               'Requirements',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               textAlign: TextAlign.left,
             ),
             SizedBox(height: 10),
+            // Remaining space for additional details or widgets
             Expanded(
-              // This will take all available space pushing the button to bottom
+              // This will take all available space
               child: Container(),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.blue, // Background color
-                  padding: EdgeInsets.symmetric(horizontal: 150, vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                ),
-                onPressed: () {
-                  // Implement what happens when the button is pressed
-                },
-                child: Text('Apply'),
-              ),
-            ),
-            SizedBox(height: 16), // Adds spacing at the bottom
           ],
         ),
       ),
@@ -139,3 +121,10 @@ class InternshipDetailsPage extends StatelessWidget {
     return 'As a $title at $company, you will be responsible for $role. This role requires strong skills in software development, problem-solving, and teamwork. You will work closely with other developers and stakeholders to create high-quality software solutions.';
   }
 }
+
+void main() => runApp(MaterialApp(
+        home: InternshipDetailsPage(
+      title: 'Software Developer Internship',
+      company: 'Tech Solutions',
+      role: 'Developing and maintaining software applications',
+    )));

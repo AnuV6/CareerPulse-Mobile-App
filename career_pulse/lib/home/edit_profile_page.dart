@@ -15,7 +15,8 @@ class EditProfilePageState extends State<EditProfilePage> {
   File? _image;
 
   Future<void> _pickImage() async {
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
       setState(() {
@@ -58,22 +59,25 @@ class EditProfilePageState extends State<EditProfilePage> {
                     children: [
                       _image == null
                           ? const Column(
-                              children:
-                               [
-                                Icon(Icons.camera_alt, size: 50, color: Colors.blueAccent),
+                              children: [
+                                Icon(Icons.camera_alt,
+                                    size: 50, color: Colors.blueAccent),
                                 SizedBox(height: 10),
                                 Text(
                                   'Upload Your Image',
-                                  style: TextStyle(fontSize: 18, color: Colors.black),
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.black),
                                 ),
                                 SizedBox(height: 10),
                                 Text(
                                   'Drag your file(s) or browse',
-                                  style: TextStyle(fontSize: 14, color: Colors.black54),
+                                  style: TextStyle(
+                                      fontSize: 14, color: Colors.black54),
                                 ),
                                 Text(
                                   'Max 10 MB files are allowed',
-                                  style: TextStyle(fontSize: 12, color: Colors.black54),
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.black54),
                                 ),
                               ],
                             )
