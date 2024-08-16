@@ -24,15 +24,22 @@ import 'package:career_pulse/home/internship_details_page.dart';
 import 'package:career_pulse/home/resume_report.dart';
 import 'package:career_pulse/home/existing_skills.dart';
 import 'package:career_pulse/home/new_skills.dart';
+// ignore: depend_on_referenced_packages
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:career_pulse/pages/start.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MainApp());
+  final prefs = await SharedPreferences.getInstance();
+  bool? onboardingCompleted = prefs.getBool('onboarding_completed') ?? false;
+
+  runApp(MainApp(onboardingCompleted: onboardingCompleted));
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  final bool onboardingCompleted;
+
+  const MainApp({super.key, required this.onboardingCompleted});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +63,7 @@ class MainApp extends StatelessWidget {
             ),
           ),
         ),
-        initialRoute: '/',
+        initialRoute: onboardingCompleted ? '/home' : '/start',
         routes: {
           '/': (context) => const SplashScreen(),
           '/login': (context) => const LoginScreen(),
@@ -68,6 +75,7 @@ class MainApp extends StatelessWidget {
           '/aboutUs': (context) => const AboutUsPage(),
           '/interestedArea': (context) => const InterestedAreaScreen(),
           '/homePage': (context) => const HomePage(),
+          '/start': (context) => const StartScreen(),
           '/resumeSuggestions': (context) => const ResumeSuggestionsPage(),
           '/resumeReport': (context) => const ResumeReportPage(),
           '/existingSkills': (context) => const ExistingSkillsPage(),
