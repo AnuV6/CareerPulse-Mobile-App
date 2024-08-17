@@ -25,9 +25,9 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  void _toggleRememberMe(bool? newValue) {
+  void _toggleRememberMe(bool newValue) {
     setState(() {
-      _rememberMe = newValue ?? false;
+      _rememberMe = newValue;
     });
   }
 
@@ -96,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Checkbox(
                         value: _rememberMe,
                         onChanged: (bool? value) {
-                          _toggleRememberMe(value);
+                          _toggleRememberMe(value!);
                         },
                       ),
                       const Text(

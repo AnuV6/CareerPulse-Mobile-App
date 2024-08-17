@@ -84,16 +84,17 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
                 return _allSuggestions.where((String option) {
                   return option.toLowerCase().contains(textEditingValue.text.toLowerCase()) &&
                          !_selectedInterests.contains(option);
-                });
+                }
+                );
               },
-              onSelected: (String selection) {
+                onSelected: (String selection) {
                 setState(() {
                   if (!_selectedInterests.contains(selection)) {
-                    _selectedInterests.add(selection);
+                  _selectedInterests.add(selection);
                   }
                 });
                 _controller.clear();
-              },
+                },
               fieldViewBuilder: (BuildContext context, TextEditingController fieldTextEditingController, FocusNode fieldFocusNode, VoidCallback onFieldSubmitted) {
                 return TextField(
                   controller: fieldTextEditingController,
@@ -123,7 +124,7 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
               children: _selectedInterests.map((interest) {
                 return Chip(
                   label: Text(interest),
-                  deleteIconColor: const Color.fromARGB(255, 107, 134, 140),
+                  deleteIconColor: const Color.fromARGB(255, 105, 51, 34),
                   backgroundColor: Colors.blue,
                   labelStyle: const TextStyle(color: Colors.white),
                   onDeleted: () {

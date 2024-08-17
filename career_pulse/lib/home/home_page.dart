@@ -6,7 +6,7 @@ import 'package:career_pulse/widgets/BottomNavigationBar.dart';
 import 'package:career_pulse/home/internships_page.dart';
 import 'package:career_pulse/home/user_profile_page.dart';
 import 'package:career_pulse/home/settings_page.dart';
-
+import 'package:career_pulse/widgets/job_popup.dart'; // Import JobPopup
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -136,14 +136,12 @@ class HomePageState extends State<HomePage> {
                             "Suggestions",
                             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textColorinBlue),
                           ),
-
                           Image.asset(
                             'assets/chart.png',
                             height: 50,
                             width: 50,
                           ),
                           const SizedBox(height: 10),
-                          
                           const Text(
                             "To improve Your Existing Skills",
                             textAlign: TextAlign.center,
@@ -179,7 +177,6 @@ class HomePageState extends State<HomePage> {
                             width: 50,
                           ),
                           const SizedBox(height: 10),
-                          
                           const Text(
                             "To improve Your New Skills",
                             textAlign: TextAlign.center,
@@ -231,14 +228,20 @@ class HomePageState extends State<HomePage> {
             title: "Software Engineering",
             company: "BeGOOD Solutions",
             role: "Web Developer",
+            location: "Colombo, Sri Lanka.", // Added location
+            datePosted: "2024-08-13", // Added datePosted
+            daysAgo: "2 days ago", // Added daysAgo
             onTap: () {
-              Navigator.pushNamed(
-                context,
-                '/internshipDetails',
-                arguments: {
-                  'title': "Software Engineering",
-                  'company': "BeGOOD Solutions",
-                  'role': "Web Developer",
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return const JobPopup(
+                    companyName: "BeGOOD Solutions",
+                    roleTitle: "Web Developer",
+                    location: "Colombo, Sri Lanka.",
+                    datePosted: "2024-08-13",
+                    daysAgo: "2 days ago",
+                  );
                 },
               );
             },
@@ -247,14 +250,20 @@ class HomePageState extends State<HomePage> {
             title: "UI/UX Designer",
             company: "LoopCODE",
             role: "UI/UX Designer Intern",
+            location: "Colombo, Sri Lanka.", // Added location
+            datePosted: "2024-08-12", // Added datePosted
+            daysAgo: "3 days ago", // Added daysAgo
             onTap: () {
-              Navigator.pushNamed(
-                context,
-                '/internshipDetails',
-                arguments: {
-                  'title': "UI/UX Designer",
-                  'company': "LoopCODE",
-                  'role': "UI/UX Designer Intern",
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return const JobPopup(
+                    companyName: "LoopCODE",
+                    roleTitle: "UI/UX Designer Intern",
+                    location: "Colombo, Sri Lanka.",
+                    datePosted: "2024-08-12",
+                    daysAgo: "3 days ago",
+                  );
                 },
               );
             },
@@ -263,14 +272,20 @@ class HomePageState extends State<HomePage> {
             title: "Software Engineering",
             company: "Metana",
             role: "Full Stack",
+            location: "Colombo, Sri Lanka.", // Added location
+            datePosted: "2024-08-10", // Added datePosted
+            daysAgo: "5 days ago", // Added daysAgo
             onTap: () {
-              Navigator.pushNamed(
-                context,
-                '/internshipDetails',
-                arguments: {
-                  'title': "Software Engineering",
-                  'company': "Metana",
-                  'role': "Full Stack",
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return const JobPopup(
+                    companyName: "Metana",
+                    roleTitle: "Full Stack",
+                    location: "Colombo, Sri Lanka.",
+                    datePosted: "2024-08-10",
+                    daysAgo: "5 days ago",
+                  );
                 },
               );
             },
