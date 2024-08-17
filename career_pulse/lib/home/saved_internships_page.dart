@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:career_pulse/widgets/internship_card.dart';
 import 'package:career_pulse/saved_internships_state.dart';
 import 'package:career_pulse/widgets/AppBarWithBackButton.dart';
+import 'package:career_pulse/widgets/job_popup.dart';
 
 class SavedInternshipsPage extends StatelessWidget {
   const SavedInternshipsPage({super.key});
@@ -11,22 +12,54 @@ class SavedInternshipsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(
-          title: 'Saved Internships'), // Custom app bar with a back button
+        title: 'Saved Internships',
+      ),
       body: Consumer<SavedInternshipsState>(
         builder: (context, savedInternshipsState, child) {
+          // Check if there are any saved internships
+          if (savedInternshipsState.savedInternships.isEmpty) {
+            return const Center(
+              child: Text(
+                'No saved internships',
+                style: TextStyle(fontSize: 18),
+              ),
+            );
+          }
+
+          // Build the list of saved internships
           return ListView.builder(
             itemCount: savedInternshipsState.savedInternships.length,
             itemBuilder: (context, index) {
               final internship = savedInternshipsState.savedInternships[index];
+
+              // Ensure all keys are present in the map
+              final title = internship['title'] ?? 'Title Not Available';
+              final company = internship['company'] ?? 'Company Not Available';
+              final role = internship['role'] ?? 'Role Not Available';
+              final location = internship['location'] ?? 'Location Not Available';
+              final datePosted = internship['datePosted'] ?? 'Date Not Available';
+              final daysAgo = internship['daysAgo'] ?? 'Date Not Available';
+
               return InternshipCard(
-                title: internship['title']!,
-                company: internship['company']!,
-                role: internship['role']!,
+                title: title,
+                company: company,
+                role: role,
+                location: location,
+                datePosted: datePosted,
+                daysAgo: daysAgo,
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    '/internshipDetails',
-                    arguments: internship,
+                  // Show the JobPopup when tapped
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return JobPopup(
+                        companyName: company,
+                        roleTitle: role,
+                        location: location,
+                        datePosted: datePosted,
+                        daysAgo: daysAgo,
+                      );
+                    },
                   );
                 },
               );
