@@ -1,20 +1,18 @@
 import 'package:career_pulse/pages/interested_area_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/pages/login.dart';
 import 'package:career_pulse/pages/register.dart';
 import 'package:career_pulse/pages/forgot_pw.dart';
 import 'package:career_pulse/pages/splash_screen.dart';
 import 'package:career_pulse/pages/home.dart';
-import 'package:career_pulse/pages/upload_resume.dart'; // Import the UploadResumeScreen
+import 'package:career_pulse/pages/upload_resume.dart'; 
 import 'package:career_pulse/pages/almost_done_splash.dart';
 import 'package:career_pulse/pages/aboutUs.dart';
 import 'package:career_pulse/pages/test_pages.dart';
 import 'package:career_pulse/pages/password.dart';
 import 'package:career_pulse/pages/PleaseWaitAnalyzing_splash.dart';
-
-// for home --nadun
 import 'package:provider/provider.dart';
 import 'package:career_pulse/saved_internships_state.dart';
 import 'package:career_pulse/home/home_page.dart';
@@ -23,12 +21,14 @@ import 'package:career_pulse/home/internship_details_page.dart';
 import 'package:career_pulse/home/resume_report.dart';
 import 'package:career_pulse/home/existing_skills.dart';
 import 'package:career_pulse/home/new_skills.dart';
+import 'package:career_pulse/pages/start.dart';
+import 'package:career_pulse/pages/job_search.dart';
+
 // ignore: depend_on_referenced_packages
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:career_pulse/pages/start.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();  // Initialize Firebase
   final prefs = await SharedPreferences.getInstance();
   bool? onboardingCompleted = prefs.getBool('onboarding_completed') ?? false;
 
@@ -91,6 +91,7 @@ class MainApp extends StatelessWidget {
           '/password': (context) => const PasswordScreen(),
           '/pleaseWaitAnalyzing': (context) =>
               const PleaseWaitAnalyzingSplash(),
+          '/jobSearch': (context) => JobSearchScreen(),
         },
         onGenerateRoute: (settings) {
           if (settings.name == '/internshipDetails') {

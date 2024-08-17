@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../services/authentication.dart'; // Import loadingScreen
+import '../services/authentication.dart'; 
 
 class TestPagesScreen extends StatelessWidget {
   const TestPagesScreen({super.key});
@@ -65,6 +65,13 @@ class TestPagesScreen extends StatelessWidget {
                 Navigator.pushNamed(context, '/loadingScreen');
               },
               child: const Text('Loading Screen'),
+            ),
+            // Button to navigate to jobSearch
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/jobSearch');
+              },
+              child: const Text('Job Search'),
             ),
             // Logout button
             TextButton(

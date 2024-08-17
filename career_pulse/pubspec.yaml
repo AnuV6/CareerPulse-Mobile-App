@@ -1,5 +1,5 @@
 name: career_pulse
-description: "A new Flutter project."
+description: "A new Flutter project for career guidance and job search. This project is a career guidance app that helps users to find jobs, internships, and career advice. The app provides users with a platform to search for jobs, internships, and career advice. Users can also create a profile and upload their resume to apply for jobs. The app also provides users with career advice and tips to help them succeed in their career. The app is designed to help users find the right job and succeed in their career."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -26,7 +26,8 @@ dependencies:
   url_launcher: ^6.3.0
   provider: ^6.0.0
   loading_animation_widget: ^1.2.1
-  image_picker: ^0.8.4+4
+  image_picker: ^1.1.2
+  http: ^1.2.2
   
 
  
