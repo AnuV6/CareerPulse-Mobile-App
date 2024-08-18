@@ -22,7 +22,6 @@ import 'package:career_pulse/home/resume_report.dart';
 import 'package:career_pulse/home/existing_skills.dart';
 import 'package:career_pulse/home/new_skills.dart';
 import 'package:career_pulse/pages/start.dart';
-import 'package:career_pulse/pages/job_search.dart';
 
 // ignore: depend_on_referenced_packages
 import 'package:shared_preferences/shared_preferences.dart';
@@ -91,7 +90,6 @@ class MainApp extends StatelessWidget {
           '/password': (context) => const PasswordScreen(),
           '/pleaseWaitAnalyzing': (context) =>
               const PleaseWaitAnalyzingSplash(),
-          '/jobSearch': (context) => JobSearchScreen(),
         },
         onGenerateRoute: (settings) {
           if (settings.name == '/internshipDetails') {

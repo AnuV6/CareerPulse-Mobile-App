@@ -17,7 +17,9 @@ class HomeScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 10,),
                 Text(
-                  FirebaseAuth.instance.currentUser!.email!.toString(),
+                  FirebaseAuth.instance.currentUser != null
+                  ? FirebaseAuth.instance.currentUser!.email.toString()
+                    : "No user",
                   style: const TextStyle(
                     fontStyle: FontStyle.normal,
                     color: Colors.black,

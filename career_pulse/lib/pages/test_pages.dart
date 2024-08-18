@@ -66,13 +66,6 @@ class TestPagesScreen extends StatelessWidget {
               },
               child: const Text('Loading Screen'),
             ),
-            // Button to navigate to jobSearch
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/jobSearch');
-              },
-              child: const Text('Job Search'),
-            ),
             // Logout button
             TextButton(
               onPressed: () {
