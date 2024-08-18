@@ -2,14 +2,69 @@ import 'package:flutter/material.dart';
 import 'package:career_pulse/widgets/user_profile_button.dart';
 import 'package:career_pulse/widgets/AppBarWithBackButton.dart';
 import 'package:career_pulse/stuffs/colors.dart';
-import 'package:career_pulse/home/saved_internships_page.dart'; // Import the SavedInternshipPage
+import 'package:career_pulse/home/saved_internships_page.dart';
 import 'package:career_pulse/pages/interested_area_screen.dart';
 import 'package:career_pulse/home/upload_resume_only.dart';
-import 'package:career_pulse/home/linkedin_link.dart';
-import 'package:career_pulse/home/edit_profile_page.dart'; // Import EditProfilePage
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
-class UserProfilePage extends StatelessWidget {
-  const UserProfilePage({super.key});
+class UserProfilePage extends StatefulWidget {
+  const UserProfilePage({Key? key}) : super(key: key);
+
+  @override
+  _UserProfilePageState createState() => _UserProfilePageState();
+}
+
+class _UserProfilePageState extends State<UserProfilePage> {
+  String userName = 'Mamitha Bhaju';
+  String userImagePath = 'assets/user_image.jpg';
+  File? _image;
+
+  Future<void> _changeProfilePicture() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      setState(() {
+        _image = File(image.path);
+      });
+    }
+  }
+
+  void _changeUserName() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        String newName = userName;
+        return AlertDialog(
+          title: Text('Change Name'),
+          content: TextField(
+            onChanged: (value) {
+              newName = value;
+            },
+            decoration: InputDecoration(hintText: "Enter new name"),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Save'),
+              onPressed: () {
+                setState(() {
+                  userName = newName;
+                });
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,87 +83,78 @@ class UserProfilePage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const CircleAvatar(
-                    backgroundImage: AssetImage('assets/user_image.jpg'), // user image asset
-                    radius: 50,
-                  ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'Mamitha Bhaju',
-                    style: TextStyle(color: AppColors.textColorinBlue, fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  const Text(
-                    'University of Sri Jayewardenepura',
-                    style: TextStyle(color: AppColors.textColorinBlue, fontSize: 16),
-                  ),
-                  const SizedBox(height: 10),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.secondaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                  Stack(
+                    alignment: Alignment.bottomRight,
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: _image != null
+                            ? FileImage(_image!)
+                            : AssetImage(userImagePath) as ImageProvider,
+                        radius: 50,
                       ),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const EditProfilePage()), // Navigate to EditProfilePage
-                      );
-                    },
-                    child: const Text(
-                      'Edit Profile',
-                      style: TextStyle(color: AppColors.primaryColor, fontSize: 16),
-                    ),
+                      GestureDetector(
+                        onTap: _changeProfilePicture,
+                        child: Container(
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: AppColors.secondaryColor,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(Icons.edit, color: AppColors.primaryColor, size: 20),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        userName,
+                        style: TextStyle(
+                          color: AppColors.textColorinBlue,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.edit, color: AppColors.textColorinBlue),
+                        onPressed: _changeUserName,
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 20),
             UserProfileButton(
-              iconPath: 'assets/selection_edit_icon.png', 
+              iconPath: 'assets/selection_edit_icon.png',
               text: 'Edit Your Field Selections',
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const InterestedAreaScreen()), // Navigate to InterestedAreaScreen
+                  MaterialPageRoute(builder: (context) => const InterestedAreaScreen()),
                 );
               },
             ),
             UserProfileButton(
-              iconPath: 'assets/upload_icon.png', 
+              iconPath: 'assets/upload_icon.png',
               text: 'ReUpload Your Resume',
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const UploadResumeOnlyScreen()), // Navigate to UploadResumeOnlyScreen
+                  MaterialPageRoute(builder: (context) => const UploadResumeOnlyScreen()),
                 );
               },
             ),
             UserProfileButton(
-              iconPath: 'assets/linkedin_icon.png', 
-              text: 'Connect with LinkedIn',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AddLinkedInScreen()), // Navigate to AddLinkedInScreen
-                );
-              },
-            ),
-            UserProfileButton(
-              iconPath: 'assets/saved_icon.png', 
+              iconPath: 'assets/saved_icon.png',
               text: 'Saved Internships',
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SavedInternshipsPage()), // Navigate to SavedInternshipsPage
+                  MaterialPageRoute(builder: (context) => const SavedInternshipsPage()),
                 );
-              },
-            ),
-            UserProfileButton(
-              iconPath: 'assets/applied_icon.png', 
-              text: 'Applied Internships',
-              onPressed: () {
-                // Define the action when button is pressed
               },
             ),
           ],
