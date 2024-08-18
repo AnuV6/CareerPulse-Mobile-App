@@ -1,6 +1,7 @@
 import 'package:career_pulse/pages/login.dart';
 import 'package:flutter/material.dart';
-
+import 'package:career_pulse/stuffs/colors.dart'; // Import the colors file if not already imported
+import 'package:career_pulse/widgets/common_blue_button.dart'; // Import the CommonButton widget
 
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key});
@@ -104,7 +105,8 @@ class StartScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
+              CommonButton(
+                text: 'Start Now',
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -113,16 +115,6 @@ class StartScreen extends StatelessWidget {
                     ),
                   );
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
-                  textStyle: const TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.w800,
-                    color: Colors.white,
-                  ),
-                ),
-                child: const Text('Start Now'),
               ),
               const SizedBox(height: 35),
             ],
