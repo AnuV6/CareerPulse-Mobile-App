@@ -7,7 +7,7 @@ import 'package:career_pulse/pages/register.dart';
 import 'package:career_pulse/pages/forgot_pw.dart';
 import 'package:career_pulse/pages/splash_screen.dart';
 import 'package:career_pulse/pages/home.dart';
-import 'package:career_pulse/pages/upload_resume.dart'; 
+import 'package:career_pulse/pages/upload_resume.dart';
 import 'package:career_pulse/pages/almost_done_splash.dart';
 import 'package:career_pulse/pages/aboutUs.dart';
 import 'package:career_pulse/pages/test_pages.dart';
@@ -22,22 +22,21 @@ import 'package:career_pulse/home/resume_report.dart';
 import 'package:career_pulse/home/existing_skills.dart';
 import 'package:career_pulse/home/new_skills.dart';
 import 'package:career_pulse/pages/start.dart';
-
-// ignore: depend_on_referenced_packages
 import 'package:shared_preferences/shared_preferences.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();  // Initialize Firebase
-  final prefs = await SharedPreferences.getInstance();
-  bool? onboardingCompleted = prefs.getBool('onboarding_completed') ?? false;
+  await Firebase.initializeApp(); // Initialize Firebase
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool firstTime = prefs.getBool('first_time') ?? true;
 
-  runApp(MainApp(onboardingCompleted: onboardingCompleted));
+  runApp(MainApp(firstTime: firstTime));
 }
 
 class MainApp extends StatelessWidget {
-  final bool onboardingCompleted;
+  final bool firstTime;
 
-  const MainApp({super.key, required this.onboardingCompleted});
+  const MainApp({super.key, required this.firstTime});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +60,7 @@ class MainApp extends StatelessWidget {
             ),
           ),
         ),
-        initialRoute: onboardingCompleted ? '/home' : '/start',
+        initialRoute: firstTime ? '/start' : '/home',
         routes: {
           '/': (context) =>
               const SplashScreen(), // Home route for the splash screen
