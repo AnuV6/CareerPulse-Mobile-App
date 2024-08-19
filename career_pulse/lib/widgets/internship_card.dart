@@ -34,7 +34,7 @@ class InternshipCardState extends State<InternshipCard> {
     final isBookmarked = savedInternshipsState.isInternshipSaved({
       'title': widget.title,
       'company': widget.company,
-      'role': widget.role,
+      'daysAgo': widget.daysAgo,
     });
 
     return Card(
@@ -74,13 +74,13 @@ class InternshipCardState extends State<InternshipCard> {
                 savedInternshipsState.removeSavedInternship({
                   'title': widget.title,
                   'company': widget.company,
-                  'role': widget.role,
+                  'daysAgo': widget.daysAgo,
                 });
               } else {
                 savedInternshipsState.addSavedInternship({
                   'title': widget.title,
                   'company': widget.company,
-                  'role': widget.role,
+                  'daysAgo': widget.daysAgo,
                 });
               }
             },
