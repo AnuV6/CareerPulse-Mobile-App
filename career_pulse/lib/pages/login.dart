@@ -1,10 +1,9 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:career_pulse/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/widgets/common_blue_button.dart';
 import 'package:career_pulse/widgets/google_signin_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -19,6 +18,21 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    _checkRememberMe();
+  }
+
+  void _checkRememberMe() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool? rememberMe = prefs.getBool('rememberMe');
+    if (rememberMe != null && rememberMe) {
+      // If "Remember Me" was checked, automatically navigate to Home Screen
+      Navigator.pushReplacementNamed(context, '/homePage');
+    }
+  }
+
   void _togglePasswordVisibility() {
     setState(() {
       _obscureText = !_obscureText;
@@ -29,6 +43,22 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       _rememberMe = newValue;
     });
+  }
+
+  Future<void> _handleSignIn() async {
+    if (_rememberMe) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('rememberMe', true);
+    }
+
+    AuthService().signin(
+      email: _emailController.text,
+      password: _passwordController.text,
+      context: context,
+    );
+
+    // Navigate to Home Screen after sign in
+    Navigator.pushReplacementNamed(context, '/homePage');
   }
 
   @override
@@ -119,13 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 32),
               CommonButton(
                 text: 'Sign In',
-                onPressed: () {
-                  AuthService().signin(
-                    email: _emailController.text,
-                    password: _passwordController.text,
-                    context: context,
-                  );
-                },
+                onPressed: _handleSignIn,
               ),
               const SizedBox(height: 16),
               GoogleSignInButton(

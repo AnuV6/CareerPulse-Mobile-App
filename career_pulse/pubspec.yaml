@@ -28,7 +28,7 @@ dependencies:
   loading_animation_widget: ^1.2.1
   image_picker: ^1.1.2
   http: ^1.2.2
-  shared_preferences: ^2.0.13
+  shared_preferences: ^2.3.2
   
 
  

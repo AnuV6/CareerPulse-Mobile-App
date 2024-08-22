@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // Import the services package
 import 'package:career_pulse/stuffs/colors.dart';
+import 'package:career_pulse/services/authentication.dart';
 
 class LogoutConfirmationDialog extends StatelessWidget {
   const LogoutConfirmationDialog({super.key});
@@ -34,10 +35,12 @@ class LogoutConfirmationDialog extends StatelessWidget {
                     backgroundColor: AppColors.primaryColor,
                     foregroundColor: Colors.white,
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     // Handle the "Yes" action
-                    Navigator.of(context).pop(); // Close the dialog
-                    SystemNavigator.pop(); // Close the whole app
+                    await AuthService().signout(context: context);
+
+                    // Navigate to login screen after logout
+                    Navigator.pushReplacementNamed(context, '/login');
                   },
                   child: const Text('YES'),
                 ),

@@ -1,9 +1,10 @@
 import 'package:career_pulse/pages/login.dart';
-import 'package:career_pulse/pages/test_pages.dart';
+import 'package:career_pulse/home/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   Future<void> signup({
@@ -17,12 +18,10 @@ class AuthService {
         password: password,
       );
 
-      await Future.delayed(const Duration(seconds: 1));
-      Navigator.pushReplacement(
-          // ignore: use_build_context_synchronously
-          context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => const TestPagesScreen()));
+      // After successful signup, navigate to the home page
+      if (context.mounted) {
+        Navigator.pushReplacementNamed(context, '/homePage');
+      }
     } on FirebaseAuthException catch (e) {
       String message = '';
       if (e.code == 'weak-password') {
@@ -42,47 +41,50 @@ class AuthService {
   }
 
   Future<void> signUpWithGoogle({required BuildContext context}) async {
-    // Trigger the Google Sign In process
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     if (googleUser != null) {
-      // Obtain the GoogleSignInAuthentication object
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
-      // Create a new credential
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
       final OAuthCredential googleCredential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
-      // Sign in to Firebase with the Google Auth credential
       await FirebaseAuth.instance.signInWithCredential(googleCredential);
-      await Future.delayed(const Duration(seconds: 1));
-      Navigator.pushReplacement(
-          // ignore: use_build_context_synchronously
-          context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => const TestPagesScreen()));
+
+      // Save the remember me state to SharedPreferences
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('rememberMe', true);
+
+      // Navigate to the home page after successful Google sign-in
+      if (context.mounted) {
+        Navigator.pushReplacementNamed(context, '/homePage');
+      }
     }
   }
 
-  Future<void> signin(
-      {required String email,
-      required String password,
-      required BuildContext context}) async {
+  Future<void> signin({
+    required String email,
+    required String password,
+    required BuildContext context,
+  }) async {
     try {
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
-      await Future.delayed(const Duration(seconds: 1));
-      Navigator.pushReplacement(
-          // ignore: use_build_context_synchronously
-          context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => const TestPagesScreen()));
+      // Save the remember me state to SharedPreferences
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('rememberMe', true);
+
+      // Navigate to the home page after successful sign-in
+      if (context.mounted) {
+        Navigator.pushReplacementNamed(context, '/homePage');
+      }
     } on FirebaseAuthException catch (e) {
       String message = '';
       if (e.code == 'invalid-email') {
         message = 'No user found for that email.';
-      } else if (e.code == 'invalid-credential') {
+      } else if (e.code == 'wrong-password') {
         message = 'Wrong password provided for that user.';
       }
       Fluttertoast.showToast(
@@ -97,25 +99,23 @@ class AuthService {
   }
 
   Future<void> signInWithGoogle({required BuildContext context}) async {
-    // Trigger the Google Sign In process
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     if (googleUser != null) {
-      // Obtain the GoogleSignInAuthentication object
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
-      // Create a new credential
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
       final OAuthCredential googleCredential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
-      // Sign in to Firebase with the Google Auth credential
       await FirebaseAuth.instance.signInWithCredential(googleCredential);
-      await Future.delayed(const Duration(seconds: 1));
-      Navigator.pushReplacement(
-          // ignore: use_build_context_synchronously
-          context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => const TestPagesScreen()));
+
+      // Save the remember me state to SharedPreferences
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('rememberMe', true);
+
+      // Navigate to the home page after successful Google sign-in
+      if (context.mounted) {
+        Navigator.pushReplacementNamed(context, '/homePage');
+      }
     }
   }
 
@@ -125,11 +125,14 @@ class AuthService {
 
   Future<void> signout({required BuildContext context}) async {
     await FirebaseAuth.instance.signOut();
-    await Future.delayed(const Duration(seconds: 1));
-    Navigator.pushReplacement(
-        // ignore: use_build_context_synchronously
-        context,
-        MaterialPageRoute(
-            builder: (BuildContext context) => const LoginScreen()));
+
+    // Clear the remember me state from SharedPreferences
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('rememberMe', false);
+
+    // Navigate back to the login screen after sign-out
+    if (context.mounted) {
+      Navigator.pushReplacementNamed(context, '/login');
+    }
   }
 }

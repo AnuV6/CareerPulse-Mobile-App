@@ -27,16 +27,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(); // Initialize Firebase
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool firstTime = prefs.getBool('first_time') ?? true;
 
-  runApp(MainApp(firstTime: firstTime));
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
-  final bool firstTime;
-
-  const MainApp({super.key, required this.firstTime});
+  const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,25 +56,16 @@ class MainApp extends StatelessWidget {
             ),
           ),
         ),
-        initialRoute: firstTime ? '/start' : '/home',
+        home: const SplashWrapper(), // Set the SplashWrapper as the initial home
         routes: {
-          '/': (context) =>
-              const SplashScreen(), // Home route for the splash screen
-          '/login': (context) =>
-              const LoginScreen(), // Home route for the Login screen
-          '/register': (context) =>
-              const RegisterScreen(), // Route for the Register screen
-          '/forgotPassword': (context) =>
-              const ForgotPasswordScreen(), // Route for the forgot password screen
+          '/login': (context) => const LoginScreen(), // Home route for the Login screen
+          '/register': (context) => const RegisterScreen(), // Route for the Register screen
+          '/forgotPassword': (context) => const ForgotPasswordScreen(), // Route for the forgot password screen
           '/home': (context) => const HomeScreen(), // Route for the home screen
-          '/uploadResume': (context) =>
-              const UploadResumeScreen(), // Route for the upload resume screen
-          '/almostDone': (context) =>
-              const AlmostDoneScreen(), // Route for the almost done screen
-          '/aboutUs': (context) =>
-              const AboutUsPage(), // Route for the about us screen
-          '/interestedArea': (context) =>
-              const InterestedAreaScreen(), // Route for the interested area screen
+          '/uploadResume': (context) => const UploadResumeScreen(), // Route for the upload resume screen
+          '/almostDone': (context) => const AlmostDoneScreen(), // Route for the almost done screen
+          '/aboutUs': (context) => const AboutUsPage(), // Route for the about us screen
+          '/interestedArea': (context) => const InterestedAreaScreen(), // Route for the interested area screen
           '/homePage': (context) => const HomePage(),
           '/start': (context) => const StartScreen(),
           '/resumeSuggestions': (context) => const ResumeSuggestionsPage(),
@@ -87,8 +74,7 @@ class MainApp extends StatelessWidget {
           '/newSkills': (context) => const CoursesPage_1(),
           '/testPages': (context) => const TestPagesScreen(),
           '/password': (context) => const PasswordScreen(),
-          '/pleaseWaitAnalyzing': (context) =>
-              const PleaseWaitAnalyzingSplash(),
+          '/pleaseWaitAnalyzing': (context) => const PleaseWaitAnalyzingSplash(),
         },
         onGenerateRoute: (settings) {
           if (settings.name == '/internshipDetails') {
@@ -107,5 +93,32 @@ class MainApp extends StatelessWidget {
         },
       ),
     );
+  }
+}
+
+class SplashWrapper extends StatelessWidget {
+  const SplashWrapper({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<bool>(
+      future: _checkLoginState(),
+      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const SplashScreen(); // Show splash screen while checking login state
+        } else {
+          if (snapshot.data == true) {
+            return const HomePage(); // If remembered, navigate to home page
+          } else {
+            return const LoginScreen(); // Otherwise, navigate to login screen
+          }
+        }
+      },
+    );
+  }
+
+  Future<bool> _checkLoginState() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('rememberMe') ?? false;
   }
 }
