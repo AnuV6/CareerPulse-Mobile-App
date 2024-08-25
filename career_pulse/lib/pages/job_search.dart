@@ -9,7 +9,7 @@ class JobSearchService {
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, dynamic>{
-        'keywords': ['hr','software engineer','designer'], // Example keyword for testing
+        'keywords': ['business','designer','developer'], // Example keyword for testing
         'location': 'Sri Lanka', 
         'experienceLevel': 'internship',
         'dateSincePosted': 'past Week',
