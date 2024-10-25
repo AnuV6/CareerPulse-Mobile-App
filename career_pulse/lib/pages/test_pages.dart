@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../services/authentication.dart'; // Import loadingScreen
+import '../services/authentication.dart'; 
 
 class TestPagesScreen extends StatelessWidget {
   const TestPagesScreen({super.key});

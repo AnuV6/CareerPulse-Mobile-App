@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/pages/start.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart'; //loading animation widget
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
-
   @override
-  // ignore: library_private_types_in_public_api
   _SplashScreenState createState() => _SplashScreenState();
 }
 
@@ -21,11 +19,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _navigateToLogin() async {
     await Future.delayed(const Duration(seconds: 3), () {});
-    Navigator.pushReplacement(
-      // ignore: use_build_context_synchronously
-      context,
-      MaterialPageRoute(builder: (context) => const StartScreen()),
-    );
+    if (mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const StartScreen()),
+      );
+    }
   }
 
   @override
@@ -49,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     style: TextStyle(
                       fontSize: 40,
                       color: AppColors.secondaryColor,
-                      fontWeight: FontWeight.w200, // Extra Light
+                      fontWeight: FontWeight.w200,
                       fontFamily: 'Montserrat',
                     ),
                   ),
@@ -76,7 +75,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
             const SizedBox(height: 50),
-            LoadingAnimationWidget.staggeredDotsWave(            // add loading animation
+            LoadingAnimationWidget.staggeredDotsWave(
               color: AppColors.textColorinBlue,
               size: 70,
             ),

@@ -6,7 +6,7 @@ import 'package:career_pulse/widgets/BottomNavigationBar.dart';
 import 'package:career_pulse/home/internships_page.dart';
 import 'package:career_pulse/home/user_profile_page.dart';
 import 'package:career_pulse/home/settings_page.dart';
-import 'package:career_pulse/widgets/job_popup.dart'; // Import JobPopup
+import 'package:career_pulse/widgets/job_popup.dart'; // Import JobPopup hgcgf
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

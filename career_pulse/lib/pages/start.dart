@@ -2,9 +2,21 @@ import 'package:career_pulse/pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart'; // Import the colors file if not already imported
 import 'package:career_pulse/widgets/common_blue_button.dart'; // Import the CommonButton widget
+import 'package:shared_preferences/shared_preferences.dart'; // Import SharedPreferences
 
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key});
+
+  void _markOnboardingComplete(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('first_time', false); // Mark onboarding as completed
+    Navigator.pushReplacement(
+      // Use pushReplacement to avoid back navigation to the StartScreen
+      // ignore: use_build_context_synchronously
+      context,
+      MaterialPageRoute(builder: (context) => const LoginScreen()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,14 +119,7 @@ class StartScreen extends StatelessWidget {
               const SizedBox(height: 20),
               CommonButton(
                 text: 'Start Now',
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LoginScreen(),
-                    ),
-                  );
-                },
+                onPressed: () => _markOnboardingComplete(context),
               ),
               const SizedBox(height: 35),
             ],
