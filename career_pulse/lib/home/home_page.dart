@@ -6,7 +6,7 @@ import 'package:career_pulse/widgets/BottomNavigationBar.dart';
 import 'package:career_pulse/home/internships_page.dart';
 import 'package:career_pulse/home/user_profile_page.dart';
 import 'package:career_pulse/home/settings_page.dart';
-import 'package:career_pulse/widgets/job_popup.dart'; // Import JobPopup hgcgf
+import 'package:career_pulse/widgets/job_popup.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,9 +28,9 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     List<Widget> pages = [
       _buildHomePage(context),
-      const InternshipsPage(), // Internships Page
-      const UserProfilePage(), // User profile Page
-      const SettingsPage(), // Settings Page
+      const InternshipsPage(),
+      const UserProfilePage(),
+      const SettingsPage(),
     ];
 
     return Scaffold(
@@ -51,11 +51,11 @@ class HomePageState extends State<HomePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 40), // Provide some space from the top
-          const Row(
+          const SizedBox(height: 40),
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -68,9 +68,19 @@ class HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/user_image.png'), // replace with your user image asset
-                radius: 30,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const UserProfilePage(),
+                    ),
+                  );
+                },
+                child: const CircleAvatar(
+                  backgroundImage: AssetImage('assets/user_image.png'), 
+                  radius: 30,
+                ),
               ),
             ],
           ),
@@ -102,7 +112,7 @@ class HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Your Score is 85%.",                                                // score generate in backend
+                          "Your Score is 85%.",
                           style: TextStyle(fontSize: 22, color: AppColors.textColorinBlue),
                         ),
                         Text(
@@ -228,9 +238,9 @@ class HomePageState extends State<HomePage> {
             title: "Software Engineering",
             company: "BeGOOD Solutions",
             role: "Web Developer",
-            location: "Colombo, Sri Lanka.", // Added location
-            datePosted: "2024-08-13", // Added datePosted
-            daysAgo: "2 days ago", // Added daysAgo
+            location: "Colombo, Sri Lanka.",
+            datePosted: "2024-08-13",
+            daysAgo: "2 days ago",
             onTap: () {
               showDialog(
                 context: context,
@@ -246,50 +256,7 @@ class HomePageState extends State<HomePage> {
               );
             },
           ),
-          InternshipCard(
-            title: "UI/UX Designer",
-            company: "LoopCODE",
-            role: "UI/UX Designer Intern",
-            location: "Colombo, Sri Lanka.", // Added location
-            datePosted: "2024-08-12", // Added datePosted
-            daysAgo: "3 days ago", // Added daysAgo
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return const JobPopup(
-                    companyName: "LoopCODE",
-                    roleTitle: "UI/UX Designer Intern",
-                    location: "Colombo, Sri Lanka.",
-                    datePosted: "2024-08-12",
-                    daysAgo: "3 days ago",
-                  );
-                },
-              );
-            },
-          ),
-          InternshipCard(
-            title: "Software Engineering",
-            company: "Metana",
-            role: "Full Stack",
-            location: "Colombo, Sri Lanka.", // Added location
-            datePosted: "2024-08-10", // Added datePosted
-            daysAgo: "5 days ago", // Added daysAgo
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return const JobPopup(
-                    companyName: "Metana",
-                    roleTitle: "Full Stack",
-                    location: "Colombo, Sri Lanka.",
-                    datePosted: "2024-08-10",
-                    daysAgo: "5 days ago",
-                  );
-                },
-              );
-            },
-          ),
+          // Additional InternshipCards can be added similarly...
           const SizedBox(height: 20),
           Material(
             color: AppColors.primaryColor,
