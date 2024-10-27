@@ -1,16 +1,23 @@
+// ignore_for_file: avoid_print
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class JobSearchService {
   Future<List<Map<String, dynamic>>> fetchJobs() async {
     final response = await http.post(
-      Uri.parse('https://careerpulse-aqfdecdkbpg7cyeq.eastus-01.azurewebsites.net/api/search-jobs'), // Update with your server's IP and port
+      Uri.parse(
+          'https://careerpulse-aqfdecdkbpg7cyeq.eastus-01.azurewebsites.net/api/search-jobs'), // Update with your server's IP and port
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, dynamic>{
-        'keywords': ['business','designer','developer'], // Example keyword for testing
-        'location': 'Sri Lanka', 
+        'keywords': [
+          'business',
+          'designer',
+          'developer'
+        ], // Example keyword for testing
+        'location': 'Sri Lanka',
         'experienceLevel': 'internship',
         'dateSincePosted': 'past Week',
         'jobType': 'I',
