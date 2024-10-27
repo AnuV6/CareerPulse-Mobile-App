@@ -77,7 +77,8 @@ class _PasswordScreenState extends State<PasswordScreen> {
                 ),
                 child: const Text(
                   'UPDATE',
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(
+                      fontSize: 16, color: Color.fromARGB(255, 255, 255, 255)),
                 ),
               ),
             ),
