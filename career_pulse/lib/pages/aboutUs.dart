@@ -50,7 +50,7 @@ class AboutUsContent extends StatelessWidget {
           _buildHeadingWithLine('Who We Are'),
           const SizedBox(height: 8),
           const Text(
-            'At [Your Company Name], we are a dedicated team of tech enthusiasts, designers, and developers who are passionate about creating exceptional mobile experiences. With a diverse background in software engineering, user experience design, and digital marketing, we work tirelessly to deliver a product that not only meets but exceeds your expectations.',
+            'At Faculty of Technology in University of Sri Jayewardanapura, we are a dedicated team of tech enthusiasts, designers, and developers who are passionate about creating exceptional mobile experiences. With a diverse background in software engineering, user experience design, and digital marketing, we work tirelessly to deliver a product that not only meets but exceeds your expectations.',
             style: TextStyle(fontSize: 16, color: Colors.black54),
           ),
           const SizedBox(height: 16),
@@ -62,7 +62,7 @@ class AboutUsContent extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           const Text(
-            'Thank you for choosing [Your App Name]. We are excited to be part of your journey and look forward to bringing more value to your mobile experience.',
+            'Thank you for choosing CareerPulse. We are excited to be part of your journey and look forward to bringing more value to your mobile experience.',
             style: TextStyle(fontSize: 16, color: Colors.black54),
           ),
         ],
