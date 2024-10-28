@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2243c918-f076-4b07-ad05-81bf6f466feb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/career_pulse/lib/pages/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/lib/pages/login.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/career_pulse/lib/services/authentication.dart" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/lib/services/authentication.dart" afterDir="false" />
-    </list>
+    <list default="true" id="2243c918-f076-4b07-ad05-81bf6f466feb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
