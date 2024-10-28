@@ -71,11 +71,13 @@ class AuthService {
         Navigator.pushReplacementNamed(context, '/homePage');
       }
     } on FirebaseAuthException catch (e) {
-      String message = '';
-      if (e.code == 'invalid-email') {
+      String message;
+      if (e.code == 'user-not-found') {
         message = 'No user found for that email.';
       } else if (e.code == 'wrong-password') {
         message = 'Wrong password provided for that user.';
+      } else {
+        message = 'An error occurred. Please try again.';
       }
       Fluttertoast.showToast(
         msg: message,
@@ -98,7 +100,6 @@ class AuthService {
         idToken: googleAuth.idToken,
       );
       await FirebaseAuth.instance.signInWithCredential(googleCredential);
-
     }
   }
 
@@ -108,7 +109,6 @@ class AuthService {
 
   Future<void> signout({required BuildContext context}) async {
     await FirebaseAuth.instance.signOut();
-
 
     // Navigate back to the login screen after sign-out
     if (context.mounted) {

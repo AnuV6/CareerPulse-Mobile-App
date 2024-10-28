@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2243c918-f076-4b07-ad05-81bf6f466feb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/career_pulse/lib/widgets/google_signin_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/lib/widgets/google_signin_button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/career_pulse/lib/widgets/internship_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/lib/widgets/internship_card.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/career_pulse/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/career_pulse/lib/pages/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/lib/pages/login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/career_pulse/lib/services/authentication.dart" beforeDir="false" afterPath="$PROJECT_DIR$/career_pulse/lib/services/authentication.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

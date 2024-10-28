@@ -1,10 +1,9 @@
-// ignore_for_file: library_private_types_in_public_api, use_build_context_synchronously
-
 import 'package:career_pulse/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/widgets/common_blue_button.dart';
 import 'package:career_pulse/widgets/google_signin_button.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -49,19 +48,28 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> _handleSignIn() async {
+    if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Email and password cannot be empty",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.SNACKBAR,
+        backgroundColor: Colors.black54,
+        textColor: Colors.white,
+        fontSize: 14.0,
+      );
+      return;
+    }
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (_rememberMe) {
       await prefs.setBool('rememberMe', true);
     }
 
-    AuthService().signin(
+    await AuthService().signin(
       email: _emailController.text,
       password: _passwordController.text,
       context: context,
     );
-
-    // Navigate to Home Screen after sign in
-    Navigator.pushReplacementNamed(context, '/homePage');
   }
 
   @override
