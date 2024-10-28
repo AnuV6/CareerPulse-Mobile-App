@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:career_pulse/widgets/course_card.dart';
+import 'package:career_pulse/widgets/AppBarWithBackButton.dart';
 
 class CoursesPage extends StatelessWidget {
   const CoursesPage({super.key});
@@ -28,13 +29,8 @@ class CoursesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Courses'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-      ),
+      appBar: const CustomAppBar(
+          title: 'Skill Gaps'),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView.builder(

@@ -149,13 +149,7 @@ class HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(20),
                       child: Column(
                         children: [
-                          const Text(
-                            "Suggestions",
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.textColorinBlue),
-                          ),
+                          
                           Image.asset(
                             'assets/chart.png',
                             height: 50,
@@ -163,7 +157,7 @@ class HomePageState extends State<HomePage> {
                           ),
                           const SizedBox(height: 10),
                           const Text(
-                            "To improve Your Existing Skills",
+                            "Find more about Your Skill Gaps ",
                             textAlign: TextAlign.center,
                             style: TextStyle(color: AppColors.textColorinBlue),
                           ),
@@ -187,13 +181,7 @@ class HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(20),
                       child: Column(
                         children: [
-                          const Text(
-                            "Suggestions",
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.textColorinBlue),
-                          ),
+                          
                           Image.asset(
                             'assets/lightbulb.png',
                             height: 50,
