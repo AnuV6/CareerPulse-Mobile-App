@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, depend_on_referenced_packages
+// ignore_for_file: prefer_const_constructors, depend_on_referenced_packages, unused_import
 
 import 'package:career_pulse/pages/interested_area_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -59,12 +59,8 @@ class MainApp extends StatelessWidget {
             ),
           ),
         ),
-<<<<<<< HEAD
-        home: const SplashWrapper(), 
-=======
-        // The initial screen that shows up when the app is opened
-        home: const SplashWrapper(),
->>>>>>> 884144a8aa821fb5cb95b51018b1812616e9f6a7
+        home:
+            const SplashWrapper(), // The initial screen that shows up when the app is opened
         routes: {
           '/login': (context) => const LoginScreen(),
           '/register': (context) => const RegisterScreen(),
