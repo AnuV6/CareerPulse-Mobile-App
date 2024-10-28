@@ -50,7 +50,12 @@ class _InternshipsPageState extends State<InternshipsPage> {
     return Scaffold(
       appBar: CustomAppBar(
         title: 'Internships',
-        onBack: () => Navigator.of(context).pop(),
+        onBack: () {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+          '/homePage', 
+          (route) => false, 
+          );
+        },
       ),
       body: RefreshIndicator(
         onRefresh: fetchInternships, // Re-fetch internships on pull down

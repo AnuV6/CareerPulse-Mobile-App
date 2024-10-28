@@ -73,7 +73,12 @@ class _UserProfilePageState extends State<UserProfilePage> {
     return Scaffold(
       appBar: CustomAppBar(
         title: 'User Account',
-        onBack: () => Navigator.of(context).pop(),
+        onBack: () {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+          '/homePage', 
+          (route) => false, 
+          );
+        },
       ),
       body: SingleChildScrollView(
         child: Column(
