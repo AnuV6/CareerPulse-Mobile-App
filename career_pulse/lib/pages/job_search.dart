@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -6,13 +8,18 @@ import 'dart:convert';
 class JobSearchService {
   Future<List<Map<String, dynamic>>> fetchJobs() async {
     final response = await http.post(
-      Uri.parse('https://careerpulse-aqfdecdkbpg7cyeq.eastus-01.azurewebsites.net/api/search-jobs'), // Update with your server's IP and port
+      Uri.parse(
+          'https://careerpulse-aqfdecdkbpg7cyeq.eastus-01.azurewebsites.net/api/search-jobs'), // Update with your server's IP and port
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, dynamic>{
-        'keywords': ['business','designer','developer'], // Example keyword for testing
-        'location': 'Sri Lanka', 
+        'keywords': [
+          'business',
+          'designer',
+          'developer'
+        ], // Example keyword for testing
+        'location': 'Sri Lanka',
         'experienceLevel': 'internship',
         'dateSincePosted': 'past Week',
         'jobType': 'I',
@@ -73,13 +80,16 @@ class JobSearchService {
 
 // Main JobSearchPage widget
 class JobSearchPage extends StatefulWidget {
+  const JobSearchPage({super.key});
+
   @override
   _JobSearchPageState createState() => _JobSearchPageState();
 }
 
 class _JobSearchPageState extends State<JobSearchPage> {
   List<Map<String, dynamic>> _jobs = []; // List to store job data
-  final JobSearchService _jobSearchService = JobSearchService(); // Instance of JobSearchService
+  final JobSearchService _jobSearchService =
+      JobSearchService(); // Instance of JobSearchService
 
   @override
   void initState() {
@@ -108,7 +118,7 @@ class _JobSearchPageState extends State<JobSearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Job Listings'),
+        title: const Text('Job Listings'),
       ),
       body: RefreshIndicator(
         onRefresh: _onRefresh,
@@ -119,7 +129,8 @@ class _JobSearchPageState extends State<JobSearchPage> {
             return ListTile(
               leading: Image.network(job['companyLogo']),
               title: Text(job['title']),
-              subtitle: Text('${job['company']} • ${job['role']}\n${job['location']}'),
+              subtitle: Text(
+                  '${job['company']} • ${job['role']}\n${job['location']}'),
               trailing: Text('${job['daysAgo']} days ago'),
               onTap: () {
                 // Optionally, handle job tap to open a detailed view or job URL
@@ -135,7 +146,7 @@ class _JobSearchPageState extends State<JobSearchPage> {
 
 // Example of how to use the JobSearchPage in your app
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: JobSearchPage(),
   ));
 }
