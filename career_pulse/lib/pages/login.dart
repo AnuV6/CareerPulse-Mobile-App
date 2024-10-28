@@ -30,7 +30,9 @@ class _LoginScreenState extends State<LoginScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? rememberMe = prefs.getBool('rememberMe');
     if (rememberMe != null && rememberMe) {
-      Navigator.pushReplacementNamed(context, '/homePage');
+      setState(() {
+        _rememberMe = true;
+      });
     }
   }
 

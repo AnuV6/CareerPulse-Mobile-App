@@ -48,15 +48,6 @@ class AuthService {
         idToken: googleAuth.idToken,
       );
       await FirebaseAuth.instance.signInWithCredential(googleCredential);
-
-      // Save the remember me state to SharedPreferences
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setBool('rememberMe', true);
-
-      // Navigate to the home page after successful Google sign-in
-      if (context.mounted) {
-        Navigator.pushReplacementNamed(context, '/homePage');
-      }
     }
   }
 
