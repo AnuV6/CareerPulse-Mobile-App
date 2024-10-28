@@ -16,6 +16,7 @@ class InternshipsPage extends StatefulWidget {
 class _InternshipsPageState extends State<InternshipsPage> {
   List<Map<String, dynamic>> internships = [];
   final JobSearchService jobSearchService = JobSearchService();
+  bool isLoading = false; // To manage loading state during refresh
 
   @override
   void initState() {
@@ -24,6 +25,10 @@ class _InternshipsPageState extends State<InternshipsPage> {
   }
 
   Future<void> fetchInternships() async {
+    setState(() {
+      isLoading = true; // Show loading indicator
+    });
+
     try {
       final fetchedInternships = await jobSearchService.fetchJobs();
       print('Internships fetched: $fetchedInternships');
@@ -33,6 +38,10 @@ class _InternshipsPageState extends State<InternshipsPage> {
     } catch (e) {
       // Handle any errors here
       print('Error fetching internships: $e');
+    } finally {
+      setState(() {
+        isLoading = false; // Hide loading indicator
+      });
     }
   }
 
@@ -43,40 +52,42 @@ class _InternshipsPageState extends State<InternshipsPage> {
         title: 'Internships',
         onBack: () => Navigator.of(context).pop(),
       ),
-      body: internships.isEmpty
-          ? const Center(child: CircularProgressIndicator())
-          : Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListView.builder(
-                itemCount: internships.length,
-                itemBuilder: (context, index) {
-                  final internship = internships[index];
-                  return InternshipCard(
-                    title: internship['title']!, // This is the job 'position'
-                    company: internship['company']!, // Company name
-                    role: internship['role']!, // Role, if applicable
-                    location: internship['location']!, // Location
-                    datePosted: internship['date']!, // Posting date
-                    daysAgo: internship[
-                        'daysAgo']!, // How long ago the job was posted
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return JobPopup(
-                            companyName: internship['company']!,
-                            roleTitle: internship['role']!,
-                            location: internship['location']!,
-                            datePosted: internship['date']!,
-                            daysAgo: internship['daysAgo']!,
-                          );
-                        },
-                      );
-                    },
-                  );
-                },
+      body: RefreshIndicator(
+        onRefresh: fetchInternships, // Re-fetch internships on pull down
+        child: isLoading && internships.isEmpty
+            ? const Center(child: CircularProgressIndicator())
+            : Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListView.builder(
+                  itemCount: internships.length,
+                  itemBuilder: (context, index) {
+                    final internship = internships[index];
+                    return InternshipCard(
+                      title: internship['title']!, // Job position title
+                      company: internship['company']!, // Company name
+                      role: internship['role']!, // Role, if applicable
+                      location: internship['location']!, // Location
+                      datePosted: internship['date']!, // Posting date
+                      daysAgo: internship['daysAgo']!, // Days ago posted
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return JobPopup(
+                              companyName: internship['company']!,
+                              roleTitle: internship['role']!,
+                              location: internship['location']!,
+                              datePosted: internship['date']!,
+                              daysAgo: internship['daysAgo']!,
+                            );
+                          },
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
-            ),
+      ),
     );
   }
 }
