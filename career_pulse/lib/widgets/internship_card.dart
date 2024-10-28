@@ -23,6 +23,8 @@ class InternshipCard extends StatefulWidget {
     required this.onTap,
   });
 
+  get jobUrl => null;
+
   @override
   InternshipCardState createState() => InternshipCardState();
 }
@@ -50,6 +52,7 @@ class InternshipCardState extends State<InternshipCard> {
                 location: widget.location,
                 datePosted: widget.datePosted,
                 daysAgo: widget.daysAgo,
+                jobUrl: widget.jobUrl,
               );
             },
           );

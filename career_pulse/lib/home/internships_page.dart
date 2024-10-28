@@ -68,22 +68,32 @@ class _InternshipsPageState extends State<InternshipsPage> {
                   itemBuilder: (context, index) {
                     final internship = internships[index];
                     return InternshipCard(
-                      title: internship['title']!, // Job position title
-                      company: internship['company']!, // Company name
-                      role: internship['role']!, // Role, if applicable
-                      location: internship['location']!, // Location
-                      datePosted: internship['date']!, // Posting date
-                      daysAgo: internship['daysAgo']!, // Days ago posted
+                      title: internship['title'] ??
+                          'Unknown Title', // Job position title
+                      company: internship['company'] ??
+                          'Unknown Company', // Company name
+                      role: internship['role'] ??
+                          'Unknown Role', // Role, if applicable
+                      location: internship['location'] ??
+                          'Unknown Location', // Location
+                      datePosted:
+                          internship['date'] ?? 'Unknown Date', // Posting date
+                      daysAgo:
+                          internship['daysAgo'] ?? 'N/A', // Days ago posted
                       onTap: () {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
                             return JobPopup(
-                              companyName: internship['company']!,
-                              roleTitle: internship['role']!,
-                              location: internship['location']!,
-                              datePosted: internship['date']!,
-                              daysAgo: internship['daysAgo']!,
+                              companyName:
+                                  internship['company'] ?? 'Unknown Company',
+                              roleTitle: internship['role'] ?? 'Unknown Role',
+                              location:
+                                  internship['location'] ?? 'Unknown Location',
+                              datePosted: internship['date'] ?? 'Unknown Date',
+                              daysAgo: internship['daysAgo'] ?? 'N/A',
+                              jobUrl: internship['jobUrl'] ??
+                                  '', // Pass the job URL or an empty string if null
                             );
                           },
                         );

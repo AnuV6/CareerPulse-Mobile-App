@@ -36,8 +36,10 @@ class SavedInternshipsPage extends StatelessWidget {
               final title = internship['title'] ?? 'Title Not Available';
               final company = internship['company'] ?? 'Company Not Available';
               final role = internship['role'] ?? 'Role Not Available';
-              final location = internship['location'] ?? 'Location Not Available';
-              final datePosted = internship['datePosted'] ?? 'Date Not Available';
+              final location =
+                  internship['location'] ?? 'Location Not Available';
+              final datePosted =
+                  internship['datePosted'] ?? 'Date Not Available';
               final daysAgo = internship['daysAgo'] ?? 'Date Not Available';
 
               return InternshipCard(
@@ -58,6 +60,7 @@ class SavedInternshipsPage extends StatelessWidget {
                         location: location,
                         datePosted: datePosted,
                         daysAgo: daysAgo,
+                        jobUrl: '',
                       );
                     },
                   );
