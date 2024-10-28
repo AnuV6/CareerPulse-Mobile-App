@@ -268,6 +268,7 @@ class HomePageState extends State<HomePage> {
                     location: "Colombo, Sri Lanka.",
                     datePosted: "2024-08-13",
                     daysAgo: "2 days ago",
+                    jobUrl: '',
                   );
                 },
               );
