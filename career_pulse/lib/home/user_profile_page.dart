@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:career_pulse/widgets/user_profile_button.dart';
 import 'package:career_pulse/widgets/AppBarWithBackButton.dart';
@@ -9,7 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
 class UserProfilePage extends StatefulWidget {
-  const UserProfilePage({Key? key}) : super(key: key);
+  const UserProfilePage({super.key});
 
   @override
   _UserProfilePageState createState() => _UserProfilePageState();
@@ -21,8 +23,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
   File? _image;
 
   Future<void> _changeProfilePicture() async {
-    final ImagePicker _picker = ImagePicker();
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
     if (image != null) {
       setState(() {
@@ -37,22 +39,22 @@ class _UserProfilePageState extends State<UserProfilePage> {
       builder: (BuildContext context) {
         String newName = userName;
         return AlertDialog(
-          title: Text('Change Name'),
+          title: const Text('Change Name'),
           content: TextField(
             onChanged: (value) {
               newName = value;
             },
-            decoration: InputDecoration(hintText: "Enter new name"),
+            decoration: const InputDecoration(hintText: "Enter new name"),
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text('Save'),
+              child: const Text('Save'),
               onPressed: () {
                 setState(() {
                   userName = newName;
@@ -71,7 +73,12 @@ class _UserProfilePageState extends State<UserProfilePage> {
     return Scaffold(
       appBar: CustomAppBar(
         title: 'User Account',
-        onBack: () => Navigator.of(context).pop(),
+        onBack: () {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+          '/homePage', 
+          (route) => false, 
+          );
+        },
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -95,12 +102,13 @@ class _UserProfilePageState extends State<UserProfilePage> {
                       GestureDetector(
                         onTap: _changeProfilePicture,
                         child: Container(
-                          padding: EdgeInsets.all(4),
-                          decoration: BoxDecoration(
+                          padding: const EdgeInsets.all(4),
+                          decoration: const BoxDecoration(
                             color: AppColors.secondaryColor,
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(Icons.edit, color: AppColors.primaryColor, size: 20),
+                          child: const Icon(Icons.edit,
+                              color: AppColors.primaryColor, size: 20),
                         ),
                       ),
                     ],
@@ -111,14 +119,15 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     children: [
                       Text(
                         userName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: AppColors.textColorinBlue,
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       IconButton(
-                        icon: Icon(Icons.edit, color: AppColors.textColorinBlue),
+                        icon: const Icon(Icons.edit,
+                            color: AppColors.textColorinBlue),
                         onPressed: _changeUserName,
                       ),
                     ],
@@ -133,7 +142,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const InterestedAreaScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const InterestedAreaScreen()),
                 );
               },
             ),
@@ -143,7 +153,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const UploadResumeOnlyScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const UploadResumeOnlyScreen()),
                 );
               },
             ),
@@ -153,7 +164,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SavedInternshipsPage()),
+                  MaterialPageRoute(
+                      builder: (context) => const SavedInternshipsPage()),
                 );
               },
             ),

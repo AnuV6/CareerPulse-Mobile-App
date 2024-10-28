@@ -38,7 +38,7 @@ class _ResumeReportPageState extends State<ResumeReportPage> {
               ),
             ),
             const SizedBox(height: 16),
-            ScoreWidget(
+            const ScoreWidget(
               score: 85,
               comment: "Very Good!",
             ),

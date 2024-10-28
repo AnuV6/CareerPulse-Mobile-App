@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:career_pulse/widgets/AppBarWithBackButton.dart';
-import 'package:career_pulse/widgets/BottomNavigationBar.dart'; // Ensure correct import of your custom widget
 
 class ResumeSuggestionsPage extends StatefulWidget {
   const ResumeSuggestionsPage({super.key});
@@ -12,19 +11,12 @@ class ResumeSuggestionsPage extends StatefulWidget {
 }
 
 class _ResumeSuggestionsPageState extends State<ResumeSuggestionsPage> {
-  int _selectedIndex = 0; // Initial index for the bottom navigation bar
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index; // Update the index on tap
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(
-          title: 'Suggestion to Improve Resume'), // Custom app bar with a back button
+          title:
+              'Suggestion to Improve Resume'), // Custom app bar with a back button
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -36,7 +28,7 @@ class _ResumeSuggestionsPageState extends State<ResumeSuggestionsPage> {
                   .infinity, // Ensures the container takes the full width available
               height: 100, // Fixed height for the image container
               child: Image.asset(
-                'assets/thumbs_up.png', 
+                'assets/thumbs_up.png',
                 fit: BoxFit
                     .contain, // Ensures the image is contained within the container without distortion
               ),
@@ -153,10 +145,6 @@ class _ResumeSuggestionsPageState extends State<ResumeSuggestionsPage> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: CustomBottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
       ),
     );
   }

@@ -32,11 +32,13 @@ class ScoreWidget extends StatelessWidget {
                 children: [
                   Text(
                     "Your Score is $score%.", // Dynamically set score
-                    style: TextStyle(fontSize: 22, color: AppColors.textColorinBlue),
+                    style: const TextStyle(
+                        fontSize: 22, color: AppColors.textColorinBlue),
                   ),
                   Text(
                     comment,
-                    style: TextStyle(fontSize: 18, color: AppColors.textColorinBlue),
+                    style: const TextStyle(
+                        fontSize: 18, color: AppColors.textColorinBlue),
                   ),
                 ],
               ),

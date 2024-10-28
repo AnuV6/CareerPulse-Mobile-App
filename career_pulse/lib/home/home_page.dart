@@ -60,11 +60,15 @@ class HomePageState extends State<HomePage> {
                 children: [
                   Text(
                     "Hello",
-                    style: TextStyle(fontSize: 22, color: AppColors.primaryColor),
+                    style:
+                        TextStyle(fontSize: 22, color: AppColors.primaryColor),
                   ),
                   Text(
-                    "ABC Perera!",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppColors.primaryColor),
+                    "UserName",
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primaryColor),
                   ),
                 ],
               ),
@@ -78,7 +82,7 @@ class HomePageState extends State<HomePage> {
                   );
                 },
                 child: const CircleAvatar(
-                  backgroundImage: AssetImage('assets/user_image.png'), 
+                  backgroundImage: AssetImage('assets/user_image.png'),
                   radius: 30,
                 ),
               ),
@@ -99,7 +103,8 @@ class HomePageState extends State<HomePage> {
                 Navigator.pushNamed(context, '/resumeReport');
               },
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 child: Row(
                   children: [
                     Image.asset(
@@ -113,11 +118,13 @@ class HomePageState extends State<HomePage> {
                       children: [
                         Text(
                           "Your Score is 85%.",
-                          style: TextStyle(fontSize: 22, color: AppColors.textColorinBlue),
+                          style: TextStyle(
+                              fontSize: 22, color: AppColors.textColorinBlue),
                         ),
                         Text(
                           "Very Good!",
-                          style: TextStyle(fontSize: 18, color: AppColors.textColorinBlue),
+                          style: TextStyle(
+                              fontSize: 18, color: AppColors.textColorinBlue),
                         ),
                       ],
                     ),
@@ -144,7 +151,10 @@ class HomePageState extends State<HomePage> {
                         children: [
                           const Text(
                             "Suggestions",
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textColorinBlue),
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.textColorinBlue),
                           ),
                           Image.asset(
                             'assets/chart.png',
@@ -179,7 +189,10 @@ class HomePageState extends State<HomePage> {
                         children: [
                           const Text(
                             "Suggestions",
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textColorinBlue),
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.textColorinBlue),
                           ),
                           Image.asset(
                             'assets/lightbulb.png',
@@ -210,7 +223,8 @@ class HomePageState extends State<HomePage> {
                 Navigator.pushNamed(context, '/resumeSuggestions');
               },
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 child: Row(
                   children: [
                     Image.asset(
@@ -221,7 +235,10 @@ class HomePageState extends State<HomePage> {
                     const SizedBox(width: 10),
                     const Text(
                       "Suggestions to improve resume",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textColorinBlue),
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.textColorinBlue),
                     ),
                   ],
                 ),
@@ -251,6 +268,7 @@ class HomePageState extends State<HomePage> {
                     location: "Colombo, Sri Lanka.",
                     datePosted: "2024-08-13",
                     daysAgo: "2 days ago",
+                    jobUrl: '',
                   );
                 },
               );
@@ -272,11 +290,15 @@ class HomePageState extends State<HomePage> {
                 );
               },
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 child: const Center(
                   child: Text(
                     "View Saved Internships",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textColorinBlue),
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.textColorinBlue),
                   ),
                 ),
               ),
