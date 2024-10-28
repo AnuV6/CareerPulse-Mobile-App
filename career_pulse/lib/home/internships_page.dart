@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:career_pulse/widgets/AppBarWithBackButton.dart'; // Import CustomAppBar
 import 'package:career_pulse/widgets/internship_card.dart'; // Import InternshipCard
@@ -42,7 +44,7 @@ class _InternshipsPageState extends State<InternshipsPage> {
         onBack: () => Navigator.of(context).pop(),
       ),
       body: internships.isEmpty
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListView.builder(
@@ -55,7 +57,8 @@ class _InternshipsPageState extends State<InternshipsPage> {
                     role: internship['role']!, // Role, if applicable
                     location: internship['location']!, // Location
                     datePosted: internship['date']!, // Posting date
-                    daysAgo: internship['daysAgo']!, // How long ago the job was posted
+                    daysAgo: internship[
+                        'daysAgo']!, // How long ago the job was posted
                     onTap: () {
                       showDialog(
                         context: context,
