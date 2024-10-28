@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // Import the services package
+// Import the services package
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/services/authentication.dart';
 

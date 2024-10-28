@@ -28,7 +28,6 @@ class _LoginScreenState extends State<LoginScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? rememberMe = prefs.getBool('rememberMe');
     if (rememberMe != null && rememberMe) {
-      // If "Remember Me" was checked, automatically navigate to Home Screen
       Navigator.pushReplacementNamed(context, '/homePage');
     }
   }
@@ -46,8 +45,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> _handleSignIn() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     if (_rememberMe) {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setBool('rememberMe', true);
     }
 

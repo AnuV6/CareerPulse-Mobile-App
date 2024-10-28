@@ -1,5 +1,3 @@
-import 'package:career_pulse/pages/login.dart';
-import 'package:career_pulse/home/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -108,14 +106,6 @@ class AuthService {
       );
       await FirebaseAuth.instance.signInWithCredential(googleCredential);
 
-      // Save the remember me state to SharedPreferences
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setBool('rememberMe', true);
-
-      // Navigate to the home page after successful Google sign-in
-      if (context.mounted) {
-        Navigator.pushReplacementNamed(context, '/homePage');
-      }
     }
   }
 
@@ -126,9 +116,6 @@ class AuthService {
   Future<void> signout({required BuildContext context}) async {
     await FirebaseAuth.instance.signOut();
 
-    // Clear the remember me state from SharedPreferences
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('rememberMe', false);
 
     // Navigate back to the login screen after sign-out
     if (context.mounted) {

@@ -1,6 +1,6 @@
 import 'package:career_pulse/pages/login.dart';
 import 'package:flutter/material.dart';
-import 'package:career_pulse/stuffs/colors.dart'; // Import the colors file if not already imported
+// Import the colors file if not already imported
 import 'package:career_pulse/widgets/common_blue_button.dart'; // Import the CommonButton widget
 import 'package:shared_preferences/shared_preferences.dart'; // Import SharedPreferences
 
