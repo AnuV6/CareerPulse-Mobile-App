@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/widgets/internship_card.dart';
@@ -17,6 +19,25 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
+
+  Future<String?> _fetchUserFullName() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      try {
+        final doc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+        if (doc.exists) {
+          return doc.data()?['fullName'] ?? 'User';
+        } else {
+          print("Document does not exist.");
+          return 'User';
+        }
+      } catch (e) {
+        print("Error fetching full name: $e");
+        return 'User';
+      }
+    }
+    return 'User';
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -55,22 +76,37 @@ class HomePageState extends State<HomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Hello",
-                    style:
-                        TextStyle(fontSize: 22, color: AppColors.primaryColor),
-                  ),
-                  Text(
-                    "UserName",
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.primaryColor),
-                  ),
-                ],
+              FutureBuilder<String?>(
+                future: _fetchUserFullName(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Text(
+                      "Loading...",
+                      style: TextStyle(fontSize: 22, color: AppColors.primaryColor),
+                    );
+                  } else if (snapshot.hasError) {
+                    return const Text("Error loading name");
+                  } else {
+                    String fullName = snapshot.data ?? 'User';
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Hello",
+                          style: TextStyle(fontSize: 22, color: AppColors.primaryColor),
+                        ),
+                        Text(
+                          fullName,
+                          style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                      ],
+                    );
+                  }
+                },
               ),
               GestureDetector(
                 onTap: () {
@@ -103,8 +139,7 @@ class HomePageState extends State<HomePage> {
                 Navigator.pushNamed(context, '/resumeReport');
               },
               child: Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 child: Row(
                   children: [
                     Image.asset(
@@ -118,13 +153,11 @@ class HomePageState extends State<HomePage> {
                       children: [
                         Text(
                           "Your Score is 85%.",
-                          style: TextStyle(
-                              fontSize: 22, color: AppColors.textColorinBlue),
+                          style: TextStyle(fontSize: 22, color: AppColors.textColorinBlue),
                         ),
                         Text(
                           "Very Good!",
-                          style: TextStyle(
-                              fontSize: 18, color: AppColors.textColorinBlue),
+                          style: TextStyle(fontSize: 18, color: AppColors.textColorinBlue),
                         ),
                       ],
                     ),
@@ -149,7 +182,6 @@ class HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(20),
                       child: Column(
                         children: [
-                          
                           Image.asset(
                             'assets/chart.png',
                             height: 50,
@@ -157,7 +189,7 @@ class HomePageState extends State<HomePage> {
                           ),
                           const SizedBox(height: 10),
                           const Text(
-                            "Find more about Your Skill Gaps ",
+                            "Find more about Your Skill Gaps",
                             textAlign: TextAlign.center,
                             style: TextStyle(color: AppColors.textColorinBlue),
                           ),
@@ -181,7 +213,6 @@ class HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(20),
                       child: Column(
                         children: [
-                          
                           Image.asset(
                             'assets/lightbulb.png',
                             height: 50,
@@ -211,8 +242,7 @@ class HomePageState extends State<HomePage> {
                 Navigator.pushNamed(context, '/resumeSuggestions');
               },
               child: Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 child: Row(
                   children: [
                     Image.asset(
@@ -262,7 +292,6 @@ class HomePageState extends State<HomePage> {
               );
             },
           ),
-          // Additional InternshipCards can be added similarly...
           const SizedBox(height: 20),
           Material(
             color: AppColors.primaryColor,
@@ -278,8 +307,7 @@ class HomePageState extends State<HomePage> {
                 );
               },
               child: Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 child: const Center(
                   child: Text(
                     "View Saved Internships",
