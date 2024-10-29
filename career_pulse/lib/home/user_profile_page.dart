@@ -1,5 +1,5 @@
-// ignore_for_file: library_private_types_in_public_api
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:career_pulse/widgets/user_profile_button.dart';
 import 'package:career_pulse/widgets/AppBarWithBackButton.dart';
@@ -18,10 +18,34 @@ class UserProfilePage extends StatefulWidget {
 }
 
 class _UserProfilePageState extends State<UserProfilePage> {
-  String userName = 'Mamitha Bhaju';
+  String userName = 'User';
   String userImagePath = 'assets/user_image.jpg';
   File? _image;
 
+  @override
+  void initState() {
+    super.initState();
+    _fetchUserName();
+  }
+
+  /// Fetch user's name from Firestore
+  Future<void> _fetchUserName() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      try {
+        final doc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+        if (doc.exists) {
+          setState(() {
+            userName = doc.data()?['fullName'] ?? 'User';
+          });
+        }
+      } catch (e) {
+        print("Error fetching user name: $e");
+      }
+    }
+  }
+
+  /// Change and update profile picture
   Future<void> _changeProfilePicture() async {
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
@@ -33,6 +57,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
     }
   }
 
+  /// Change and update user's name
   void _changeUserName() {
     showDialog(
       context: context,
@@ -55,10 +80,13 @@ class _UserProfilePageState extends State<UserProfilePage> {
             ),
             TextButton(
               child: const Text('Save'),
-              onPressed: () {
-                setState(() {
-                  userName = newName;
-                });
+              onPressed: () async {
+                if (newName.isNotEmpty) {
+                  setState(() {
+                    userName = newName;
+                  });
+                  await _updateUserNameInFirestore(newName);
+                }
                 Navigator.of(context).pop();
               },
             ),
@@ -68,6 +96,21 @@ class _UserProfilePageState extends State<UserProfilePage> {
     );
   }
 
+  /// Update the user's name in Firestore
+  Future<void> _updateUserNameInFirestore(String newName) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      try {
+        await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
+          'fullName': newName,
+        });
+        print("User name updated in Firestore");
+      } catch (e) {
+        print("Error updating user name: $e");
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,8 +118,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
         title: 'User Account',
         onBack: () {
           Navigator.of(context).pushNamedAndRemoveUntil(
-          '/homePage', 
-          (route) => false, 
+            '/homePage',
+            (route) => false,
           );
         },
       ),
