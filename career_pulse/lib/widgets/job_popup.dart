@@ -23,7 +23,7 @@ class JobPopup extends StatelessWidget {
 
   // Function to launch the job URL or show a message if the link is not available
   Future<void> _launchURL(BuildContext context) async {
-    if (jobUrl.isEmpty) {
+    if (jobUrl == '' || jobUrl.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Link cannot be found')),
       );
