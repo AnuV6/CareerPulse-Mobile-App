@@ -30,7 +30,7 @@ dependencies:
   http: ^1.2.2
   shared_preferences: ^2.3.2
   flutter_gcaptcha_v3: ^2.1.1
-  
+  path_provider: ^2.0.11
 
  
 
