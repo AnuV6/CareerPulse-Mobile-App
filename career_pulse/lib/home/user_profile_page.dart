@@ -1,14 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
+
 import 'package:career_pulse/widgets/user_profile_button.dart';
 import 'package:career_pulse/widgets/AppBarWithBackButton.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/home/saved_internships_page.dart';
 import 'package:career_pulse/pages/interested_area_screen.dart';
 import 'package:career_pulse/home/upload_resume_only.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 
 class UserProfilePage extends StatefulWidget {
   const UserProfilePage({super.key});
@@ -19,17 +21,18 @@ class UserProfilePage extends StatefulWidget {
 
 class _UserProfilePageState extends State<UserProfilePage> {
   String userName = 'User';
-  String userImagePath = 'assets/user_image.jpg';
+  String userImagePath = 'assets/user_image.jpg'; // Default local asset
   File? _image;
 
   @override
   void initState() {
     super.initState();
-    _fetchUserName();
+    _fetchUserProfile();
+    _loadLocalProfileImage();
   }
 
   /// Fetch user's name from Firestore
-  Future<void> _fetchUserName() async {
+  Future<void> _fetchUserProfile() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       try {
@@ -38,14 +41,37 @@ class _UserProfilePageState extends State<UserProfilePage> {
           setState(() {
             userName = doc.data()?['fullName'] ?? 'User';
           });
+          print("Fetched user name from Firestore: $userName");
+        } else {
+          print("User document does not exist in Firestore.");
         }
       } catch (e) {
-        print("Error fetching user name: $e");
+        print("Error fetching user profile: $e");
       }
+    } else {
+      print("No authenticated user found.");
     }
   }
 
-  /// Change and update profile picture
+  /// Load the profile image from local storage, if it exists
+  Future<void> _loadLocalProfileImage() async {
+    try {
+      final directory = await getApplicationDocumentsDirectory();
+      final path = '${directory.path}/profile_image.jpg';
+      final file = File(path);
+
+      if (await file.exists()) {
+        setState(() {
+          _image = file;
+        });
+        print("Loaded profile image from local storage");
+      }
+    } catch (e) {
+      print("Error loading profile image: $e");
+    }
+  }
+
+  /// Change and save profile picture locally
   Future<void> _changeProfilePicture() async {
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
@@ -54,6 +80,26 @@ class _UserProfilePageState extends State<UserProfilePage> {
       setState(() {
         _image = File(image.path);
       });
+      await _saveImageLocally(File(image.path));
+    } else {
+      print("No image selected.");
+    }
+  }
+
+  /// Save the profile image to local storage
+  Future<void> _saveImageLocally(File imageFile) async {
+    try {
+      final directory = await getApplicationDocumentsDirectory();
+      final path = '${directory.path}/profile_image.jpg';
+      final savedImage = await imageFile.copy(path);
+      
+      setState(() {
+        _image = savedImage;
+      });
+
+      print("Profile image saved locally at $path");
+    } catch (e) {
+      print("Error saving profile image locally: $e");
     }
   }
 
