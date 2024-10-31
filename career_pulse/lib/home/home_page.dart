@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:io';
+
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/widgets/internship_card.dart';
 import 'package:career_pulse/home/saved_internships_page.dart';
@@ -37,6 +40,19 @@ class HomePageState extends State<HomePage> {
       }
     }
     return 'User';
+  }
+
+  /// Load the profile image path from SharedPreferences
+  Future<File?> _getProfileImage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final imagePath = prefs.getString('profile_image_path');
+    if (imagePath != null) {
+      final file = File(imagePath);
+      if (await file.exists()) {
+        return file;
+      }
+    }
+    return null;
   }
 
   void _onItemTapped(int index) {
@@ -108,19 +124,26 @@ class HomePageState extends State<HomePage> {
                   }
                 },
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const UserProfilePage(),
-                    ),
-                  );
+              FutureBuilder<File?>(
+                future: _getProfileImage(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircleAvatar(
+                      backgroundImage: AssetImage('assets/user_image.png'),
+                      radius: 30,
+                    );
+                  } else if (snapshot.hasData && snapshot.data != null) {
+                    return CircleAvatar(
+                      backgroundImage: FileImage(snapshot.data!),
+                      radius: 30,
+                    );
+                  } else {
+                    return const CircleAvatar(
+                      backgroundImage: AssetImage('assets/user_image.png'),
+                      radius: 30,
+                    );
+                  }
                 },
-                child: const CircleAvatar(
-                  backgroundImage: AssetImage('assets/user_image.png'),
-                  radius: 30,
-                ),
               ),
             ],
           ),

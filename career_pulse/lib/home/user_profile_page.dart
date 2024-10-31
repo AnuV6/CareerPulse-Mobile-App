@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
 
 import 'package:career_pulse/widgets/user_profile_button.dart';
@@ -56,15 +57,16 @@ class _UserProfilePageState extends State<UserProfilePage> {
   /// Load the profile image from local storage, if it exists
   Future<void> _loadLocalProfileImage() async {
     try {
-      final directory = await getApplicationDocumentsDirectory();
-      final path = '${directory.path}/profile_image.jpg';
-      final file = File(path);
-
-      if (await file.exists()) {
-        setState(() {
-          _image = file;
-        });
-        print("Loaded profile image from local storage");
+      final prefs = await SharedPreferences.getInstance();
+      final imagePath = prefs.getString('profile_image_path');
+      if (imagePath != null) {
+        final file = File(imagePath);
+        if (await file.exists()) {
+          setState(() {
+            _image = file;
+          });
+          print("Loaded profile image from local storage");
+        }
       }
     } catch (e) {
       print("Error loading profile image: $e");
@@ -86,7 +88,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
     }
   }
 
-  /// Save the profile image to local storage
+  /// Save the profile image to local storage and store its path in SharedPreferences
   Future<void> _saveImageLocally(File imageFile) async {
     try {
       final directory = await getApplicationDocumentsDirectory();
@@ -97,7 +99,11 @@ class _UserProfilePageState extends State<UserProfilePage> {
         _image = savedImage;
       });
 
-      print("Profile image saved locally at $path");
+      // Save image path in SharedPreferences
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('profile_image_path', path);
+
+      print("Profile image saved locally at $path and path stored in SharedPreferences");
     } catch (e) {
       print("Error saving profile image locally: $e");
     }
