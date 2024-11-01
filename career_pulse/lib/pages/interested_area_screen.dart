@@ -107,7 +107,7 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
                   controller: fieldTextEditingController,
                   focusNode: fieldFocusNode,
                   decoration: InputDecoration(
-                    hintText: 'UI/UX designer',
+                    hintText: 'enter your interest',
                     prefixIcon: const Icon(Icons.search, color: Colors.blue),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
