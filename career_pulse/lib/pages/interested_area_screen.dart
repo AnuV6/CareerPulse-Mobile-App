@@ -1,17 +1,18 @@
 import 'package:career_pulse/widgets/AppBarWithBackButton.dart';
-import 'package:flutter/material.dart';
 import 'package:career_pulse/widgets/common_blue_button.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class InterestedAreaScreen extends StatefulWidget {
   const InterestedAreaScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _InterestedAreaScreenState createState() => _InterestedAreaScreenState();
 }
 
 class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
-  final List<String> _selectedInterests = ['Web Developer', 'Mobile App Developer'];
+  final List<String> _selectedInterests = [];
   final TextEditingController _controller = TextEditingController();
 
   // List of suggestions for Autocomplete
@@ -61,7 +62,7 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Select your Interested',
+        title: 'Select your Interested Areas',
         onBack: () => Navigator.of(context).pop(),
       ),
       body: Padding(
@@ -70,11 +71,13 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Select the fields in which you want internship.',
+              'Select the fields in which you want an internship.',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            const Text('You can choose one or more.',
-                style: TextStyle(fontSize: 16, color: Colors.grey)),
+            const Text(
+              'You can choose one or more.',
+              style: TextStyle(fontSize: 16, color: Colors.grey),
+            ),
             const SizedBox(height: 16),
             Autocomplete<String>(
               optionsBuilder: (TextEditingValue textEditingValue) {
@@ -82,20 +85,24 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
                   return const Iterable<String>.empty();
                 }
                 return _allSuggestions.where((String option) {
-                  return option.toLowerCase().contains(textEditingValue.text.toLowerCase()) &&
-                         !_selectedInterests.contains(option);
-                }
-                );
+                  return option
+                          .toLowerCase()
+                          .contains(textEditingValue.text.toLowerCase()) &&
+                      !_selectedInterests.contains(option);
+                });
               },
-                onSelected: (String selection) {
+              onSelected: (String selection) {
                 setState(() {
                   if (!_selectedInterests.contains(selection)) {
-                  _selectedInterests.add(selection);
+                    _selectedInterests.add(selection);
                   }
                 });
                 _controller.clear();
-                },
-              fieldViewBuilder: (BuildContext context, TextEditingController fieldTextEditingController, FocusNode fieldFocusNode, VoidCallback onFieldSubmitted) {
+              },
+              fieldViewBuilder: (BuildContext context,
+                  TextEditingController fieldTextEditingController,
+                  FocusNode fieldFocusNode,
+                  VoidCallback onFieldSubmitted) {
                 return TextField(
                   controller: fieldTextEditingController,
                   focusNode: fieldFocusNode,
@@ -109,7 +116,8 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
                   onSubmitted: (value) {
                     onFieldSubmitted();
                     setState(() {
-                      if (value.isNotEmpty && !_selectedInterests.contains(value)) {
+                      if (value.isNotEmpty &&
+                          !_selectedInterests.contains(value)) {
                         _selectedInterests.add(value);
                       }
                       fieldTextEditingController.clear();
@@ -139,9 +147,9 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
             SizedBox(
               width: double.infinity,
               child: CommonButton(
-                text: 'Next', //put your text
-                onPressed: () {
-                  // action here
+                text: 'Next',
+                onPressed: () async {
+                  await _saveInterestsAndNavigate();
                 },
               ),
             ),
@@ -150,5 +158,32 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
       ),
     );
   }
-}
 
+  Future<void> _saveInterestsAndNavigate() async {
+    try {
+      // Get the current user
+      final User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        // Save selected interests to Firestore under the current user's document
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .update({'interestedAreas': _selectedInterests});
+
+        // Navigate to the UploadResume screen
+        if (mounted) {
+          Navigator.pushReplacementNamed(context, '/uploadResume');
+        }
+      } else {
+        // Handle the case where there is no authenticated user
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Error: No authenticated user.")),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Failed to save interests: $e")),
+      );
+    }
+  }
+}
