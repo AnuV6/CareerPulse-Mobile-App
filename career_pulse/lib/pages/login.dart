@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:career_pulse/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
@@ -10,6 +12,7 @@ class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginScreenState createState() => _LoginScreenState();
 }
 

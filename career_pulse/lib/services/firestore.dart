@@ -1,9 +1,12 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  Future<void> saveUserData(String userId, String name, String email, String photoUrl) async {
+  Future<void> saveUserData(
+      String userId, String name, String email, String photoUrl) async {
     try {
       await _db.collection('users').doc(userId).set({
         'name': name,

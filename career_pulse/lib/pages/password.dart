@@ -1,7 +1,9 @@
+// ignore_for_file: avoid_print, library_private_types_in_public_api
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:career_pulse/widgets/AppBarWithBackButton.dart'; 
-import 'package:career_pulse/widgets/BottomNavigationBar.dart'; 
+import 'package:career_pulse/widgets/AppBarWithBackButton.dart';
+import 'package:career_pulse/widgets/BottomNavigationBar.dart';
 
 class PasswordScreen extends StatefulWidget {
   const PasswordScreen({super.key});
@@ -13,16 +15,21 @@ class PasswordScreen extends StatefulWidget {
 class _PasswordScreenState extends State<PasswordScreen> {
   final TextEditingController _oldPasswordController = TextEditingController();
   final TextEditingController _newPasswordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
   bool _obscureOldPassword = true;
   bool _obscureNewPassword = true;
   bool _obscureConfirmPassword = true;
 
-  int _selectedIndex = 0; // Assuming password screen has index 0 for bottom navigation
+  int _selectedIndex =
+      0; // Assuming password screen has index 0 for bottom navigation
 
-  void _toggleOldPasswordVisibility() => setState(() => _obscureOldPassword = !_obscureOldPassword);
-  void _toggleNewPasswordVisibility() => setState(() => _obscureNewPassword = !_obscureNewPassword);
-  void _toggleConfirmPasswordVisibility() => setState(() => _obscureConfirmPassword = !_obscureConfirmPassword);
+  void _toggleOldPasswordVisibility() =>
+      setState(() => _obscureOldPassword = !_obscureOldPassword);
+  void _toggleNewPasswordVisibility() =>
+      setState(() => _obscureNewPassword = !_obscureNewPassword);
+  void _toggleConfirmPasswordVisibility() =>
+      setState(() => _obscureConfirmPassword = !_obscureConfirmPassword);
 
   Future<void> _updatePassword() async {
     if (_newPasswordController.text != _confirmPasswordController.text) {
@@ -88,12 +95,14 @@ class _PasswordScreenState extends State<PasswordScreen> {
                 onPressed: _updatePassword,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
-                  padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
                 ),
                 child: const Text(
                   'UPDATE',
                   style: TextStyle(
-                    fontSize: 16, color: Color.fromARGB(255, 255, 255, 255),
+                    fontSize: 16,
+                    color: Color.fromARGB(255, 255, 255, 255),
                   ),
                 ),
               ),

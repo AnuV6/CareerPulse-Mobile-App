@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +29,10 @@ class HomePageState extends State<HomePage> {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       try {
-        final doc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+        final doc = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .get();
         if (doc.exists) {
           return doc.data()?['fullName'] ?? 'User';
         } else {
@@ -98,7 +103,8 @@ class HomePageState extends State<HomePage> {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Text(
                       "Loading...",
-                      style: TextStyle(fontSize: 22, color: AppColors.primaryColor),
+                      style: TextStyle(
+                          fontSize: 22, color: AppColors.primaryColor),
                     );
                   } else if (snapshot.hasError) {
                     return const Text("Error loading name");
@@ -109,7 +115,8 @@ class HomePageState extends State<HomePage> {
                       children: [
                         const Text(
                           "Hello",
-                          style: TextStyle(fontSize: 22, color: AppColors.primaryColor),
+                          style: TextStyle(
+                              fontSize: 22, color: AppColors.primaryColor),
                         ),
                         Text(
                           fullName,
@@ -162,7 +169,8 @@ class HomePageState extends State<HomePage> {
                 Navigator.pushNamed(context, '/resumeReport');
               },
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 child: Row(
                   children: [
                     Image.asset(
@@ -176,11 +184,13 @@ class HomePageState extends State<HomePage> {
                       children: [
                         Text(
                           "Your Score is 85%.",
-                          style: TextStyle(fontSize: 22, color: AppColors.textColorinBlue),
+                          style: TextStyle(
+                              fontSize: 22, color: AppColors.textColorinBlue),
                         ),
                         Text(
                           "Very Good!",
-                          style: TextStyle(fontSize: 18, color: AppColors.textColorinBlue),
+                          style: TextStyle(
+                              fontSize: 18, color: AppColors.textColorinBlue),
                         ),
                       ],
                     ),
@@ -265,7 +275,8 @@ class HomePageState extends State<HomePage> {
                 Navigator.pushNamed(context, '/resumeSuggestions');
               },
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 child: Row(
                   children: [
                     Image.asset(
@@ -330,7 +341,8 @@ class HomePageState extends State<HomePage> {
                 );
               },
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 child: const Center(
                   child: Text(
                     "View Saved Internships",

@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, avoid_print, use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +39,10 @@ class _UserProfilePageState extends State<UserProfilePage> {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       try {
-        final doc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+        final doc = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .get();
         if (doc.exists) {
           setState(() {
             userName = doc.data()?['fullName'] ?? 'User';
@@ -94,7 +99,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
       final directory = await getApplicationDocumentsDirectory();
       final path = '${directory.path}/profile_image.jpg';
       final savedImage = await imageFile.copy(path);
-      
+
       setState(() {
         _image = savedImage;
       });
@@ -103,7 +108,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('profile_image_path', path);
 
-      print("Profile image saved locally at $path and path stored in SharedPreferences");
+      print(
+          "Profile image saved locally at $path and path stored in SharedPreferences");
     } catch (e) {
       print("Error saving profile image locally: $e");
     }
@@ -153,7 +159,10 @@ class _UserProfilePageState extends State<UserProfilePage> {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       try {
-        await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .update({
           'fullName': newName,
         });
         print("User name updated in Firestore");

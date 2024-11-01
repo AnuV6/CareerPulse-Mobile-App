@@ -11,7 +11,10 @@ class InterestedAreaScreen extends StatefulWidget {
 }
 
 class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
-  final List<String> _selectedInterests = ['Web Developer', 'Mobile App Developer'];
+  final List<String> _selectedInterests = [
+    'Web Developer',
+    'Mobile App Developer'
+  ];
   final TextEditingController _controller = TextEditingController();
 
   // List of suggestions for Autocomplete
@@ -82,20 +85,24 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
                   return const Iterable<String>.empty();
                 }
                 return _allSuggestions.where((String option) {
-                  return option.toLowerCase().contains(textEditingValue.text.toLowerCase()) &&
-                         !_selectedInterests.contains(option);
-                }
-                );
+                  return option
+                          .toLowerCase()
+                          .contains(textEditingValue.text.toLowerCase()) &&
+                      !_selectedInterests.contains(option);
+                });
               },
-                onSelected: (String selection) {
+              onSelected: (String selection) {
                 setState(() {
                   if (!_selectedInterests.contains(selection)) {
-                  _selectedInterests.add(selection);
+                    _selectedInterests.add(selection);
                   }
                 });
                 _controller.clear();
-                },
-              fieldViewBuilder: (BuildContext context, TextEditingController fieldTextEditingController, FocusNode fieldFocusNode, VoidCallback onFieldSubmitted) {
+              },
+              fieldViewBuilder: (BuildContext context,
+                  TextEditingController fieldTextEditingController,
+                  FocusNode fieldFocusNode,
+                  VoidCallback onFieldSubmitted) {
                 return TextField(
                   controller: fieldTextEditingController,
                   focusNode: fieldFocusNode,
@@ -109,7 +116,8 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
                   onSubmitted: (value) {
                     onFieldSubmitted();
                     setState(() {
-                      if (value.isNotEmpty && !_selectedInterests.contains(value)) {
+                      if (value.isNotEmpty &&
+                          !_selectedInterests.contains(value)) {
                         _selectedInterests.add(value);
                       }
                       fieldTextEditingController.clear();
@@ -151,4 +159,3 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
     );
   }
 }
-
