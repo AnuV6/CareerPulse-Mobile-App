@@ -3,6 +3,7 @@ import 'package:career_pulse/services/authentication.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/widgets/common_blue_button.dart';
 import 'package:career_pulse/widgets/google_signin_button.dart';
+import 'package:career_pulse/pages/interested_area_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -84,20 +85,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   obscureText: _obscureText),
               const SizedBox(height: 32),
               CommonButton(
-                  text: 'Sign Up',
-                  onPressed: () {
-                    AuthService().signup(
-                        fullname: _fullNameController.text,
-                        email: _emailController.text,
-                        password: _passwordController.text,
-                        context: context);
-                  }),
+                text: 'Sign Up',
+                onPressed: () async {
+                  // Call the AuthService signup method and navigate to InterestedAreaScreen on success
+                  await AuthService().signup(
+                    fullname: _fullNameController.text,
+                    email: _emailController.text,
+                    password: _passwordController.text,
+                    context: context,
+                  );
+                },
+              ),
               const SizedBox(height: 16),
               GoogleSignInButton(
-                  text: 'Sign Up with Google',
-                  onPressed: () {
-                    AuthService().signUpWithGoogle(context: context);
-                  }),
+                text: 'Sign Up with Google',
+                onPressed: () async {
+                  // Use Google sign-up and navigate to InterestedAreaScreen on success
+                  await AuthService().signUpWithGoogle(context: context);
+                },
+              ),
               const SizedBox(height: 32),
               Center(
                   child: TextButton(

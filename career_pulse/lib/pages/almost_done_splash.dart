@@ -1,9 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:career_pulse/stuffs/colors.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart'; //loading animation widget
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:career_pulse/home/home_page.dart'; 
 
-class AlmostDoneScreen extends StatelessWidget {
+class AlmostDoneScreen extends StatefulWidget {
   const AlmostDoneScreen({super.key});
+
+  @override
+  _AlmostDoneScreenState createState() => _AlmostDoneScreenState();
+}
+
+class _AlmostDoneScreenState extends State<AlmostDoneScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // 5s delay
+    Future.delayed(const Duration(seconds: 5), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomePage(), 
+        ),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +50,7 @@ class AlmostDoneScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40.0),
                     child: Image.asset(
-                      'assets/almostdone.png', // Make sure this asset exists
+                      'assets/almostdone.png',
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -43,8 +63,8 @@ class AlmostDoneScreen extends StatelessWidget {
                       color: Color(0xFF196EEE),
                     ),
                   ),
-                  const SizedBox(height: 40), // Increased space to 40 pixels
-                  LoadingAnimationWidget.threeRotatingDots(            // add loading animation
+                  const SizedBox(height: 40),
+                  LoadingAnimationWidget.threeRotatingDots(
                     color: AppColors.primaryColor,
                     size: 40,
                   ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:career_pulse/pages/interested_area_screen.dart';
 
 class AuthService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -29,9 +30,12 @@ class AuthService {
         'createdAt': FieldValue.serverTimestamp(),
       });
 
-      // Navigate to the home page after successful signup
+      // Navigate to InterestedAreaScreen after successful signup
       if (context.mounted) {
-        Navigator.pushReplacementNamed(context, '/homePage');
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const InterestedAreaScreen()),
+        );
       }
     } on FirebaseAuthException catch (e) {
       String message = '';
@@ -71,6 +75,14 @@ class AuthService {
           'email': googleUser.email,
           'createdAt': FieldValue.serverTimestamp(),
         });
+      }
+
+      // Navigate to InterestedAreaScreen after successful Google signup
+      if (context.mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const InterestedAreaScreen()),
+        );
       }
     }
   }
@@ -133,6 +145,14 @@ class AuthService {
           'email': googleUser.email,
           'createdAt': FieldValue.serverTimestamp(),
         });
+      }
+
+      // Navigate to InterestedAreaScreen after successful Google sign-in if the user is new
+      if (context.mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const InterestedAreaScreen()),
+        );
       }
     }
   }
