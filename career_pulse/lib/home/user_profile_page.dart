@@ -10,7 +10,7 @@ import 'package:career_pulse/widgets/user_profile_button.dart';
 import 'package:career_pulse/widgets/AppBarWithBackButton.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/home/saved_internships_page.dart';
-import 'package:career_pulse/pages/interested_area_screen.dart';
+import 'package:career_pulse/pages/interested_area_screen_1.dart';
 import 'package:career_pulse/home/upload_resume_only.dart';
 
 class UserProfilePage extends StatefulWidget {
@@ -238,7 +238,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const InterestedAreaScreen()),
+                      builder: (context) => const InterestedAreaScreen1()),
                 );
               },
             ),
