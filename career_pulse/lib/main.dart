@@ -56,6 +56,7 @@ class MainApp extends StatelessWidget {
             ),
           ),
         ),
+        
         home: const SplashWrapper(), // Set the SplashWrapper as the initial home
         routes: {
           '/login': (context) => const LoginScreen(), // Home route for the Login screen
