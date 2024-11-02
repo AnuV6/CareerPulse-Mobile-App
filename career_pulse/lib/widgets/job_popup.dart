@@ -23,14 +23,19 @@ class JobPopup extends StatelessWidget {
 
   // Function to launch the job URL or show a message if the link is not available
   Future<void> _launchURL(BuildContext context) async {
-    if (jobUrl == '' || jobUrl.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Link cannot be found')),
-      );
-      return;
+    const String fallbackUrl = 'https://www.linkedin.com/jobs/';
+    String urlToLaunch = jobUrl;
+
+    if (jobUrl.isEmpty) {
+      urlToLaunch = fallbackUrl;
+    } else {
+      final Uri? checkUrl = Uri.tryParse(jobUrl);
+      if (checkUrl == null || !(await canLaunchUrl(checkUrl))) {
+        urlToLaunch = fallbackUrl;
+      }
     }
 
-    final Uri url = Uri.parse(jobUrl);
+    final Uri url = Uri.parse(urlToLaunch);
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
     } else {
@@ -42,93 +47,110 @@ class JobPopup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double dialogWidth = screenWidth * 0.8; // Set dialog width to 80% of screen width
+
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Align(
-              alignment: Alignment.topRight,
-              child: IconButton(
-                icon: const Icon(Icons.close),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ),
-            CircleAvatar(
-              radius: 40,
-              backgroundColor: Colors.blueAccent,
-              child: Image.asset(
-                'assets/logo.png', // Update with your image path or pass a logo path dynamically
-                fit: BoxFit.cover,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              companyName,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-            ),
-            const SizedBox(height: 5),
-            Text(
-              roleTitle,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.black54,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 5),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Icon(
-                  Icons.location_on,
-                  color: Colors.blueAccent,
-                  size: 16,
+      child: Container(
+        width: dialogWidth, // Limit the dialog width
+        padding: EdgeInsets.all(screenWidth * 0.04),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
                 ),
-                const SizedBox(width: 5),
-                Text(
-                  location,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: Colors.black54,
+              ),
+              CircleAvatar(
+                radius: screenWidth * 0.12,
+                backgroundColor: Colors.blueAccent,
+                child: Image.asset(
+                  'assets/logo.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              SizedBox(height: screenWidth * 0.02),
+              Text(
+                companyName,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: screenWidth * 0.05,
+                ),
+                textAlign: TextAlign.center,
+                softWrap: true,
+                overflow: TextOverflow.ellipsis, // Handle text overflow
+              ),
+              SizedBox(height: screenWidth * 0.01),
+              Text(
+                roleTitle,
+                style: TextStyle(
+                  fontSize: screenWidth * 0.045,
+                  color: Colors.black54,
+                ),
+                textAlign: TextAlign.center,
+                softWrap: true,
+                overflow: TextOverflow.ellipsis, // Handle text overflow
+              ),
+              SizedBox(height: screenWidth * 0.01),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Icon(
+                    Icons.location_on,
+                    color: Colors.blueAccent,
+                    size: 16,
                   ),
+                  SizedBox(width: screenWidth * 0.02),
+                  Flexible(
+                    child: Text(
+                      location,
+                      style: TextStyle(
+                        fontSize: screenWidth * 0.04,
+                        color: Colors.black54,
+                      ),
+                      textAlign: TextAlign.center,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis, // Handle text overflow
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: screenWidth * 0.01),
+              Text(
+                'Date: $datePosted',
+                style: TextStyle(
+                  fontSize: screenWidth * 0.04,
+                  color: Colors.black54,
                 ),
-              ],
-            ),
-            const SizedBox(height: 5),
-            Text(
-              'Date: $datePosted',
-              style: const TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
               ),
-            ),
-            const SizedBox(height: 5),
-            Text(
-              daysAgo,
-              style: const TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
+              SizedBox(height: screenWidth * 0.01),
+              Text(
+                daysAgo,
+                style: TextStyle(
+                  fontSize: screenWidth * 0.04,
+                  color: Colors.black54,
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => _launchURL(context), // Open the job URL
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size.fromHeight(50), // Button height
+              SizedBox(height: screenWidth * 0.04),
+              ElevatedButton(
+                onPressed: () => _launchURL(context),
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size.fromHeight(screenWidth * 0.12),
+                  foregroundColor: Colors.white,
+                ),
+                child: const Text('Visit Now'),
               ),
-              child: const Text('Visit Now'),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

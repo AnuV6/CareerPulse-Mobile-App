@@ -58,6 +58,7 @@ class MainApp extends StatelessWidget {
             ),
           ),
         ),
+
         home: const SplashWrapper(), 
         routes: {
           '/login': (context) => const LoginScreen(),
