@@ -1,5 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api, avoid_print
-
 import 'package:flutter/material.dart';
 import 'package:career_pulse/widgets/AppBarWithBackButton.dart'; // Import CustomAppBar
 import 'package:career_pulse/widgets/internship_card.dart'; // Import InternshipCard
@@ -52,8 +50,8 @@ class _InternshipsPageState extends State<InternshipsPage> {
         title: 'Internships',
         onBack: () {
           Navigator.of(context).pushNamedAndRemoveUntil(
-          '/homePage', 
-          (route) => false, 
+            '/homePage',
+            (route) => false,
           );
         },
       ),
@@ -80,6 +78,8 @@ class _InternshipsPageState extends State<InternshipsPage> {
                           internship['date'] ?? 'Unknown Date', // Posting date
                       daysAgo:
                           internship['daysAgo'] ?? 'N/A', // Days ago posted
+                      jobUrl: internship['jobUrl'] ??
+                          '', // Pass the job URL or an empty string if null
                       onTap: () {
                         showDialog(
                           context: context,

@@ -7,9 +7,10 @@ class InternshipCard extends StatefulWidget {
   final String title;
   final String company;
   final String role;
-  final String location; // Add location
-  final String datePosted; // Add datePosted
-  final String daysAgo; // Add daysAgo
+  final String location;
+  final String datePosted;
+  final String daysAgo;
+  final String jobUrl; // Add jobUrl as a parameter
   final VoidCallback onTap;
 
   const InternshipCard({
@@ -17,13 +18,12 @@ class InternshipCard extends StatefulWidget {
     required this.title,
     required this.company,
     required this.role,
-    required this.location, // Initialize location
-    required this.datePosted, // Initialize datePosted
-    required this.daysAgo, // Initialize daysAgo
+    required this.location,
+    required this.datePosted,
+    required this.daysAgo,
+    required this.jobUrl, // Initialize jobUrl
     required this.onTap,
   });
-
-  get jobUrl => null;
 
   @override
   InternshipCardState createState() => InternshipCardState();
@@ -52,7 +52,7 @@ class InternshipCardState extends State<InternshipCard> {
                 location: widget.location,
                 datePosted: widget.datePosted,
                 daysAgo: widget.daysAgo,
-                jobUrl: 'test',
+                jobUrl: widget.jobUrl, // Pass the correct jobUrl here
               );
             },
           );
