@@ -23,14 +23,20 @@ class JobPopup extends StatelessWidget {
 
   // Function to launch the job URL or show a message if the link is not available
   Future<void> _launchURL(BuildContext context) async {
-    if (jobUrl == '' || jobUrl.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Link cannot be found')),
-      );
-      return;
+    const String fallbackUrl = 'https://www.linkedin.com/jobs/';
+    String urlToLaunch = jobUrl;
+
+    if (jobUrl.isEmpty) {
+      urlToLaunch =
+          fallbackUrl; // Fallback to LinkedIn jobs if no URL is provided
+    } else {
+      final Uri? checkUrl = Uri.tryParse(jobUrl);
+      if (checkUrl == null || !(await canLaunchUrl(checkUrl))) {
+        urlToLaunch = fallbackUrl; // Fallback if the provided URL is not valid
+      }
     }
 
-    final Uri url = Uri.parse(jobUrl);
+    final Uri url = Uri.parse(urlToLaunch);
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
     } else {
@@ -122,9 +128,11 @@ class JobPopup extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () => _launchURL(context), // Open the job URL
+              onPressed: () => _launchURL(
+                  context), // Open the job URL or the LinkedIn jobs page
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(50), // Button height
+                foregroundColor: Colors.white, // Set the text color to white
               ),
               child: const Text('Visit Now'),
             ),
