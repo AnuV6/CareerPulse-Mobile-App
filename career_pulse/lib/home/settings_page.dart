@@ -44,6 +44,26 @@ class SettingsPageState extends State<SettingsPage> {
     );
   }
 
+  void _showComingSoonDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Coming Soon"),
+          content: const Text("Dark mode is coming soon!"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,143 +81,154 @@ class SettingsPageState extends State<SettingsPage> {
         children: [
           SettingsButtonWidget(
             onTap: () {},
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Row(
-                  children: [
-                    Icon(Icons.notifications,
-                        color: AppColors.primaryColor), // Change color here
-                    SizedBox(width: 8.0),
-                    Text(
-                      'Notifications',
-                      style: TextStyle(
-                        color: AppColors.primaryColor, // Change color here
-                        fontSize: 16.0,
+            child: Container(
+              height: 50.0, // Fixed height for consistency
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Row(
+                    children: [
+                      Icon(Icons.notifications,
+                          color: AppColors.primaryColor), // Change color here
+                      SizedBox(width: 8.0),
+                      Text(
+                        'Notifications',
+                        style: TextStyle(
+                          color: AppColors.primaryColor, // Change color here
+                          fontSize: 16.0,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Transform.scale(
-                  scale: 0.8, // Adjust the scale as needed
-                  child: Switch(
-                    value: notificationsEnabled,
-                    onChanged: (bool value) {
-                      setState(() {
-                        notificationsEnabled = value;
-                      });
-                    },
+                    ],
                   ),
-                ),
-              ],
+                  Transform.scale(
+                    scale: 0.8, // Adjust the scale as needed
+                    child: Switch(
+                      value: notificationsEnabled,
+                      onChanged: (bool value) {
+                        setState(() {
+                          notificationsEnabled = value;
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           SettingsButtonWidget(
             onTap: () {},
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Row(
-                  children: [
-                    Icon(Icons.nights_stay,
-                        color: AppColors.primaryColor), // Change color here
-                    SizedBox(width: 8.0),
-                    Text(
-                      'Dark mode',
-                      style: TextStyle(
-                        color: AppColors.primaryColor, // Change color here
-                        fontSize: 16.0,
+            child: Container(
+              height: 50.0, // Fixed height for consistency
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Row(
+                    children: [
+                      Icon(Icons.nights_stay,
+                          color: AppColors.primaryColor), // Change color here
+                      SizedBox(width: 8.0),
+                      Text(
+                        'Dark mode',
+                        style: TextStyle(
+                          color: AppColors.primaryColor, // Change color here
+                          fontSize: 16.0,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Transform.scale(
-                  scale: 0.8, // Adjust the scale as needed
-                  child: Switch(
-                    value: darkModeEnabled,
-                    onChanged: (bool value) {
-                      setState(() {
-                        darkModeEnabled = value;
-                      });
-                    },
+                    ],
                   ),
-                ),
-              ],
+                  Transform.scale(
+                    scale: 0.8, // Adjust the scale as needed
+                    child: Switch(
+                      value: darkModeEnabled,
+                      onChanged: (bool value) {
+                        _showComingSoonDialog(context); // Show "Coming soon" message
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           SettingsButtonWidget(
             onTap: () {
-              _navigateToPasswordSettings(
-                  context); // Navigate to Password settings
+              _navigateToPasswordSettings(context); // Navigate to Password settings
             },
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Icon(Icons.lock, color: AppColors.primaryColor), // Change color here
-                    SizedBox(width: 8.0),
-                    Text(
-                      'Password',
-                      style: TextStyle(
-                        color: AppColors.primaryColor, // Change color here
-                        fontSize: 16.0,
+            child: Container(
+              height: 50.0, // Fixed height for consistency
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.lock, color: AppColors.primaryColor), // Change color here
+                      SizedBox(width: 8.0),
+                      Text(
+                        'Password',
+                        style: TextStyle(
+                          color: AppColors.primaryColor, // Change color here
+                          fontSize: 16.0,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Icon(Icons.arrow_forward_ios,
-                    color: AppColors.primaryColor), // Change color here
-              ],
+                    ],
+                  ),
+                  Icon(Icons.arrow_forward_ios,
+                      color: AppColors.primaryColor), // Change color here
+                ],
+              ),
             ),
           ),
           SettingsButtonWidget(
             onTap: () {
-              _navigateToAboutUs(
-                  context); // Navigate to About Us page
+              _navigateToAboutUs(context); // Navigate to About Us page
             },
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Icon(Icons.info, color: AppColors.primaryColor), // Change color here
-                    SizedBox(width: 8.0),
-                    Text(
-                      'About Us',
-                      style: TextStyle(
-                        color: AppColors.primaryColor, // Change color here
-                        fontSize: 16.0,
+            child: Container(
+              height: 50.0, // Fixed height for consistency
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.info, color: AppColors.primaryColor), // Change color here
+                      SizedBox(width: 8.0),
+                      Text(
+                        'About Us',
+                        style: TextStyle(
+                          color: AppColors.primaryColor, // Change color here
+                          fontSize: 16.0,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Icon(Icons.arrow_forward_ios,
-                    color: AppColors.primaryColor), // Change color here
-              ],
+                    ],
+                  ),
+                  Icon(Icons.arrow_forward_ios,
+                      color: AppColors.primaryColor), // Change color here
+                ],
+              ),
             ),
           ),
           SettingsButtonWidget(
             onTap: () => _showLogoutDialog(context),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Icon(Icons.logout, color: AppColors.primaryColor), // Change color here
-                    SizedBox(width: 8.0),
-                    Text(
-                      'Logout',
-                      style: TextStyle(
-                        color: AppColors.primaryColor, // Change color here
-                        fontSize: 16.0,
+            child: Container(
+              height: 50.0, // Fixed height for consistency
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.logout, color: AppColors.primaryColor), // Change color here
+                      SizedBox(width: 8.0),
+                      Text(
+                        'Logout',
+                        style: TextStyle(
+                          color: AppColors.primaryColor, // Change color here
+                          fontSize: 16.0,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Icon(Icons.arrow_forward_ios,
-                    color: AppColors.primaryColor), // Change color here
-              ],
+                    ],
+                  ),
+                  Icon(Icons.arrow_forward_ios,
+                      color: AppColors.primaryColor), // Change color here
+                ],
+              ),
             ),
           ),
         ],
