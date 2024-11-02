@@ -1,4 +1,3 @@
-import 'package:career_pulse/widgets/AppBarWithBackButton.dart';
 import 'package:career_pulse/widgets/common_blue_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -61,9 +60,20 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        title: 'Select your Interested Areas',
-        onBack: () => Navigator.of(context).pop(),
+      appBar: AppBar(
+        title: const Text(
+          'Select your Interested Areas',
+          style: TextStyle(color: Colors.blue),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        automaticallyImplyLeading: false, // Removes the back button
+        titleTextStyle: const TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.blue,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -107,7 +117,7 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
                   controller: fieldTextEditingController,
                   focusNode: fieldFocusNode,
                   decoration: InputDecoration(
-                    hintText: 'enter your interest',
+                    hintText: 'Enter your interest',
                     prefixIcon: const Icon(Icons.search, color: Colors.blue),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
