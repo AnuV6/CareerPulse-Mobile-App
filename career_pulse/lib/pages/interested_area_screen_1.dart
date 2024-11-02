@@ -3,15 +3,16 @@ import 'package:career_pulse/widgets/common_blue_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:career_pulse/home/user_profile_page.dart'; 
 
-class InterestedAreaScreen extends StatefulWidget {
-  const InterestedAreaScreen({super.key});
+class InterestedAreaScreen1 extends StatefulWidget {
+  const InterestedAreaScreen1({super.key});
 
   @override
-  _InterestedAreaScreenState createState() => _InterestedAreaScreenState();
+  _InterestedAreaScreen1State createState() => _InterestedAreaScreen1State();
 }
 
-class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
+class _InterestedAreaScreen1State extends State<InterestedAreaScreen1> {
   final List<String> _selectedInterests = [];
   final TextEditingController _controller = TextEditingController();
 
@@ -59,10 +60,30 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _loadUserInterests();
+  }
+
+  Future<void> _loadUserInterests() async {
+    final User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      final DocumentSnapshot userDoc =
+          await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+      final List<String>? interests =
+          (userDoc['interestedAreas'] as List<dynamic>?)?.cast<String>();
+      
+      setState(() {
+        _selectedInterests.addAll(interests ?? []);
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Select your Interested Areas',
+        title: 'Update your Interested Areas',
         onBack: () => Navigator.of(context).pop(),
       ),
       body: Padding(
@@ -71,7 +92,7 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Select the fields in which you want an internship.',
+              'Update the fields in which you are interested.',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const Text(
@@ -147,7 +168,7 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
             SizedBox(
               width: double.infinity,
               child: CommonButton(
-                text: 'Next',
+                text: 'Save',  // Updated button text to "Save"
                 onPressed: () async {
                   await _saveInterestsAndNavigate();
                 },
@@ -164,15 +185,20 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
       // Get the current user
       final User? user = FirebaseAuth.instance.currentUser;
       if (user != null) {
-        // Save selected interests to Firestore under the current user's document
+        // Update selected interests in Firestore under the current user's document
         await FirebaseFirestore.instance
             .collection('users')
             .doc(user.uid)
             .update({'interestedAreas': _selectedInterests});
 
-        // Navigate to the UploadResume screen
+        // Navigate back to UserProfilePage
         if (mounted) {
-          Navigator.pushReplacementNamed(context, '/uploadResume');
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const UserProfilePage(),
+            ),
+          );
         }
       } else {
         // Handle the case where there is no authenticated user
@@ -182,7 +208,7 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Failed to save interests: $e")),
+        SnackBar(content: Text("Failed to update interests: $e")),
       );
     }
   }

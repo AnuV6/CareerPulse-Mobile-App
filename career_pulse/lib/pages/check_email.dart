@@ -1,4 +1,4 @@
-
+import 'package:career_pulse/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:career_pulse/widgets/common_blue_button.dart';
 
@@ -68,6 +68,7 @@ class CheckEmailScreen extends StatelessWidget {
 
                 TextButton(
                   onPressed: () {
+                    AuthService().resetPassword(email: email);
                   },
                   child: const Text(
                     'You have not received the email? Resend',

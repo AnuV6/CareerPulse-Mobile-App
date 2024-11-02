@@ -69,7 +69,12 @@ class SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: CustomAppBar(
         title: 'Settings',
-        onBack: () => Navigator.of(context).pop(),
+        onBack: () {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+          '/homePage', 
+          (route) => false, 
+          );
+        },
       ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),

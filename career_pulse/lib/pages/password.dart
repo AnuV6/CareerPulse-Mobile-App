@@ -1,8 +1,7 @@
-// ignore_for_file: library_private_types_in_public_api
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:career_pulse/widgets/AppBarWithBackButton.dart'; // Ensure this import is correct
-import 'package:career_pulse/widgets/BottomNavigationBar.dart'; // Ensure this import is correct
+import 'package:career_pulse/widgets/AppBarWithBackButton.dart'; 
+import 'package:career_pulse/widgets/BottomNavigationBar.dart'; 
 
 class PasswordScreen extends StatefulWidget {
   const PasswordScreen({super.key});
@@ -14,21 +13,40 @@ class PasswordScreen extends StatefulWidget {
 class _PasswordScreenState extends State<PasswordScreen> {
   final TextEditingController _oldPasswordController = TextEditingController();
   final TextEditingController _newPasswordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
   bool _obscureOldPassword = true;
   bool _obscureNewPassword = true;
   bool _obscureConfirmPassword = true;
 
-  int _selectedIndex =
-      0; // Assuming password screen has index 0 for bottom navigation
+  int _selectedIndex = 0; // Assuming password screen has index 0 for bottom navigation
 
-  void _toggleOldPasswordVisibility() =>
-      setState(() => _obscureOldPassword = !_obscureOldPassword);
-  void _toggleNewPasswordVisibility() =>
-      setState(() => _obscureNewPassword = !_obscureNewPassword);
-  void _toggleConfirmPasswordVisibility() =>
-      setState(() => _obscureConfirmPassword = !_obscureConfirmPassword);
+  void _toggleOldPasswordVisibility() => setState(() => _obscureOldPassword = !_obscureOldPassword);
+  void _toggleNewPasswordVisibility() => setState(() => _obscureNewPassword = !_obscureNewPassword);
+  void _toggleConfirmPasswordVisibility() => setState(() => _obscureConfirmPassword = !_obscureConfirmPassword);
+
+  Future<void> _updatePassword() async {
+    if (_newPasswordController.text != _confirmPasswordController.text) {
+      print('New password and confirmation do not match');
+      return;
+    }
+
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        // Get new password from user input
+        final newPassword = _newPasswordController.text;
+
+        await user.updatePassword(newPassword);
+        // Password update successful
+        print('Password updated successfully');
+      } else {
+        print('No user is signed in');
+      }
+    } catch (error) {
+      // Handle errors here, e.g., show error message
+      print('Error updating password: $error');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,17 +85,16 @@ class _PasswordScreenState extends State<PasswordScreen> {
             const SizedBox(height: 30),
             Center(
               child: ElevatedButton(
-                onPressed: () {
-                  // Handle password update logic here
-                },
+                onPressed: _updatePassword,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
                 ),
                 child: const Text(
                   'UPDATE',
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(
+                    fontSize: 16, color: Color.fromARGB(255, 255, 255, 255),
+                  ),
                 ),
               ),
             ),

@@ -1,4 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:io';
+
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/widgets/internship_card.dart';
 import 'package:career_pulse/home/saved_internships_page.dart';
@@ -6,7 +11,7 @@ import 'package:career_pulse/widgets/BottomNavigationBar.dart';
 import 'package:career_pulse/home/internships_page.dart';
 import 'package:career_pulse/home/user_profile_page.dart';
 import 'package:career_pulse/home/settings_page.dart';
-import 'package:career_pulse/widgets/job_popup.dart'; // Import JobPopup hgcgf
+import 'package:career_pulse/widgets/job_popup.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,6 +23,38 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
+  Future<String?> _fetchUserFullName() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      try {
+        final doc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+        if (doc.exists) {
+          return doc.data()?['fullName'] ?? 'User';
+        } else {
+          print("Document does not exist.");
+          return 'User';
+        }
+      } catch (e) {
+        print("Error fetching full name: $e");
+        return 'User';
+      }
+    }
+    return 'User';
+  }
+
+  /// Load the profile image path from SharedPreferences
+  Future<File?> _getProfileImage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final imagePath = prefs.getString('profile_image_path');
+    if (imagePath != null) {
+      final file = File(imagePath);
+      if (await file.exists()) {
+        return file;
+      }
+    }
+    return null;
+  }
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -28,9 +65,9 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     List<Widget> pages = [
       _buildHomePage(context),
-      const InternshipsPage(), // Internships Page
-      const UserProfilePage(), // User profile Page
-      const SettingsPage(), // Settings Page
+      const InternshipsPage(),
+      const UserProfilePage(),
+      const SettingsPage(),
     ];
 
     return Scaffold(
@@ -51,26 +88,62 @@ class HomePageState extends State<HomePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 40), // Provide some space from the top
-          const Row(
+          const SizedBox(height: 40),
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Hello",
-                    style: TextStyle(fontSize: 22, color: AppColors.primaryColor),
-                  ),
-                  Text(
-                    "ABC Perera!",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppColors.primaryColor),
-                  ),
-                ],
+              FutureBuilder<String?>(
+                future: _fetchUserFullName(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Text(
+                      "Loading...",
+                      style: TextStyle(fontSize: 22, color: AppColors.primaryColor),
+                    );
+                  } else if (snapshot.hasError) {
+                    return const Text("Error loading name");
+                  } else {
+                    String fullName = snapshot.data ?? 'User';
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Hello",
+                          style: TextStyle(fontSize: 22, color: AppColors.primaryColor),
+                        ),
+                        Text(
+                          fullName,
+                          style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                      ],
+                    );
+                  }
+                },
               ),
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/user_image.png'), // replace with your user image asset
-                radius: 30,
+              FutureBuilder<File?>(
+                future: _getProfileImage(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircleAvatar(
+                      backgroundImage: AssetImage('assets/user_image.png'),
+                      radius: 30,
+                    );
+                  } else if (snapshot.hasData && snapshot.data != null) {
+                    return CircleAvatar(
+                      backgroundImage: FileImage(snapshot.data!),
+                      radius: 30,
+                    );
+                  } else {
+                    return const CircleAvatar(
+                      backgroundImage: AssetImage('assets/user_image.png'),
+                      radius: 30,
+                    );
+                  }
+                },
               ),
             ],
           ),
@@ -102,7 +175,7 @@ class HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Your Score is 85%.",                                                // score generate in backend
+                          "Your Score is 85%.",
                           style: TextStyle(fontSize: 22, color: AppColors.textColorinBlue),
                         ),
                         Text(
@@ -132,10 +205,6 @@ class HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(20),
                       child: Column(
                         children: [
-                          const Text(
-                            "Suggestions",
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textColorinBlue),
-                          ),
                           Image.asset(
                             'assets/chart.png',
                             height: 50,
@@ -143,7 +212,7 @@ class HomePageState extends State<HomePage> {
                           ),
                           const SizedBox(height: 10),
                           const Text(
-                            "To improve Your Existing Skills",
+                            "Find more about Your Skill Gaps",
                             textAlign: TextAlign.center,
                             style: TextStyle(color: AppColors.textColorinBlue),
                           ),
@@ -167,10 +236,6 @@ class HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(20),
                       child: Column(
                         children: [
-                          const Text(
-                            "Suggestions",
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textColorinBlue),
-                          ),
                           Image.asset(
                             'assets/lightbulb.png',
                             height: 50,
@@ -211,7 +276,10 @@ class HomePageState extends State<HomePage> {
                     const SizedBox(width: 10),
                     const Text(
                       "Suggestions to improve resume",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textColorinBlue),
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.textColorinBlue),
                     ),
                   ],
                 ),
@@ -228,9 +296,9 @@ class HomePageState extends State<HomePage> {
             title: "Software Engineering",
             company: "BeGOOD Solutions",
             role: "Web Developer",
-            location: "Colombo, Sri Lanka.", // Added location
-            datePosted: "2024-08-13", // Added datePosted
-            daysAgo: "2 days ago", // Added daysAgo
+            location: "Colombo, Sri Lanka.",
+            datePosted: "2024-08-13",
+            daysAgo: "2 days ago",
             onTap: () {
               showDialog(
                 context: context,
@@ -241,50 +309,7 @@ class HomePageState extends State<HomePage> {
                     location: "Colombo, Sri Lanka.",
                     datePosted: "2024-08-13",
                     daysAgo: "2 days ago",
-                  );
-                },
-              );
-            },
-          ),
-          InternshipCard(
-            title: "UI/UX Designer",
-            company: "LoopCODE",
-            role: "UI/UX Designer Intern",
-            location: "Colombo, Sri Lanka.", // Added location
-            datePosted: "2024-08-12", // Added datePosted
-            daysAgo: "3 days ago", // Added daysAgo
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return const JobPopup(
-                    companyName: "LoopCODE",
-                    roleTitle: "UI/UX Designer Intern",
-                    location: "Colombo, Sri Lanka.",
-                    datePosted: "2024-08-12",
-                    daysAgo: "3 days ago",
-                  );
-                },
-              );
-            },
-          ),
-          InternshipCard(
-            title: "Software Engineering",
-            company: "Metana",
-            role: "Full Stack",
-            location: "Colombo, Sri Lanka.", // Added location
-            datePosted: "2024-08-10", // Added datePosted
-            daysAgo: "5 days ago", // Added daysAgo
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return const JobPopup(
-                    companyName: "Metana",
-                    roleTitle: "Full Stack",
-                    location: "Colombo, Sri Lanka.",
-                    datePosted: "2024-08-10",
-                    daysAgo: "5 days ago",
+                    jobUrl: '',
                   );
                 },
               );
@@ -309,7 +334,10 @@ class HomePageState extends State<HomePage> {
                 child: const Center(
                   child: Text(
                     "View Saved Internships",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textColorinBlue),
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.textColorinBlue),
                   ),
                 ),
               ),

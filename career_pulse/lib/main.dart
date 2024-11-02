@@ -1,3 +1,4 @@
+// ignore_for_file: prefer_const_constructors, depend_on_referenced_packages
 import 'package:career_pulse/pages/interested_area_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -25,10 +26,11 @@ import 'package:career_pulse/pages/start.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
+  // Ensuring that plugin services are initialized before Firebase initialization
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(); // Initialize Firebase
 
-  runApp(MainApp());
+  runApp(const MainApp()); // Running the main app
 }
 
 class MainApp extends StatelessWidget {
@@ -56,17 +58,17 @@ class MainApp extends StatelessWidget {
             ),
           ),
         ),
-        
-        home: const SplashWrapper(), // Set the SplashWrapper as the initial home
+
+        home: const SplashWrapper(), 
         routes: {
-          '/login': (context) => const LoginScreen(), // Home route for the Login screen
-          '/register': (context) => const RegisterScreen(), // Route for the Register screen
-          '/forgotPassword': (context) => const ForgotPasswordScreen(), // Route for the forgot password screen
-          '/home': (context) => const HomeScreen(), // Route for the home screen
-          '/uploadResume': (context) => const UploadResumeScreen(), // Route for the upload resume screen
-          '/almostDone': (context) => const AlmostDoneScreen(), // Route for the almost done screen
-          '/aboutUs': (context) => const AboutUsPage(), // Route for the about us screen
-          '/interestedArea': (context) => const InterestedAreaScreen(), // Route for the interested area screen
+          '/login': (context) => const LoginScreen(),
+          '/register': (context) => const RegisterScreen(),
+          '/forgotPassword': (context) => const ForgotPasswordScreen(),
+          '/home': (context) => const HomeScreen(),
+          '/uploadResume': (context) => const UploadResumeScreen(),
+          '/almostDone': (context) => const AlmostDoneScreen(),
+          '/aboutUs': (context) => const AboutUsPage(),
+          '/interestedArea': (context) => const InterestedAreaScreen(),
           '/homePage': (context) => const HomePage(),
           '/start': (context) => const StartScreen(),
           '/resumeSuggestions': (context) => const ResumeSuggestionsPage(),
@@ -75,9 +77,11 @@ class MainApp extends StatelessWidget {
           '/newSkills': (context) => const CoursesPage_1(),
           '/testPages': (context) => const TestPagesScreen(),
           '/password': (context) => const PasswordScreen(),
-          '/pleaseWaitAnalyzing': (context) => const PleaseWaitAnalyzingSplash(),
+          '/pleaseWaitAnalyzing': (context) =>
+              const PleaseWaitAnalyzingSplash(),
         },
         onGenerateRoute: (settings) {
+          // Generate route for internship details with arguments
           if (settings.name == '/internshipDetails') {
             final args = settings.arguments as Map<String, String>;
             return MaterialPageRoute(
@@ -103,11 +107,13 @@ class SplashWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<bool>(
+      // Check the login state on app start
       future: _checkLoginState(),
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const SplashScreen(); // Show splash screen while checking login state
         } else {
+          // Decide the next screen based on login status
           if (snapshot.data == true) {
             return const HomePage(); // If remembered, navigate to home page
           } else {
@@ -118,6 +124,7 @@ class SplashWrapper extends StatelessWidget {
     );
   }
 
+  // Async function to check the user's login state
   Future<bool> _checkLoginState() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getBool('rememberMe') ?? false;

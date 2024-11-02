@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:career_pulse/widgets/AppBarWithBackButton.dart';
+import 'package:career_pulse/pages/PleaseWaitAnalyzing_splash.dart';
 
 class UploadResumeScreen extends StatefulWidget {
   const UploadResumeScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _UploadResumeScreenState createState() => _UploadResumeScreenState();
 }
 
@@ -29,13 +29,15 @@ class _UploadResumeScreenState extends State<UploadResumeScreen> {
 
   void _submit() {
     final linkedinUrl = _linkedinController.text.trim();
+    
     if (_pickedFile == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please upload your resume')),
       );
       return;
     }
-    if (linkedinUrl.isEmpty || !Uri.parse(linkedinUrl).isAbsolute) {
+
+    if (linkedinUrl.isNotEmpty && !Uri.parse(linkedinUrl).isAbsolute) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please enter a valid LinkedIn profile link')),
       );
@@ -47,14 +49,21 @@ class _UploadResumeScreenState extends State<UploadResumeScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Resume and LinkedIn profile submitted successfully')),
     );
+
+    // Navigate to the PleaseWaitAnalyzingSplash screen
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const PleaseWaitAnalyzingSplash(),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF9F9F9),
-      appBar: const CustomAppBar(
-          title: 'Upload Your Resume'), // Custom app bar with a back button
+      appBar: const CustomAppBar(title: 'Upload Your Resume'),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -132,7 +141,7 @@ class _UploadResumeScreenState extends State<UploadResumeScreen> {
               ),
               const SizedBox(height: 16),
               const Text(
-                'Upload Your LinkedIn profile Link',
+                'Upload Your LinkedIn profile Link (Optional)',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -143,7 +152,7 @@ class _UploadResumeScreenState extends State<UploadResumeScreen> {
               TextField(
                 controller: _linkedinController,
                 decoration: const InputDecoration(
-                  labelText: 'Add file URL',
+                  labelText: 'Add LinkedIn URL',
                   border: OutlineInputBorder(),
                   filled: true,
                   fillColor: Colors.white,

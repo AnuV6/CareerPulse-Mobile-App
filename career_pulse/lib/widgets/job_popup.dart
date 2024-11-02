@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class JobPopup extends StatelessWidget {
   final String companyName;
@@ -6,6 +9,7 @@ class JobPopup extends StatelessWidget {
   final String location;
   final String datePosted;
   final String daysAgo;
+  final String jobUrl; // URL for the job post
 
   const JobPopup({
     super.key,
@@ -14,7 +18,27 @@ class JobPopup extends StatelessWidget {
     required this.location,
     required this.datePosted,
     required this.daysAgo,
+    required this.jobUrl,
   });
+
+  // Function to launch the job URL or show a message if the link is not available
+  Future<void> _launchURL(BuildContext context) async {
+    if (jobUrl == '' || jobUrl.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Link cannot be found')),
+      );
+      return;
+    }
+
+    final Uri url = Uri.parse(jobUrl);
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Could not launch job URL')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,9 +122,7 @@ class JobPopup extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                // Add your action here
-              },
+              onPressed: () => _launchURL(context), // Open the job URL
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(50), // Button height
               ),

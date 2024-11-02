@@ -1,10 +1,9 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 import 'package:career_pulse/services/authentication.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/widgets/common_blue_button.dart';
 import 'package:career_pulse/widgets/google_signin_button.dart';
+import 'package:career_pulse/pages/interested_area_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -17,6 +16,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool _obscureText = true;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _fullNameController = TextEditingController();
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -28,6 +28,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _fullNameController.dispose();
     super.dispose();
   }
 
@@ -49,11 +50,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       fontWeight: FontWeight.bold,
                       color: AppColors.primaryColor)),
               const Text('Sign up to get started!',
-                  style:
-                      TextStyle(fontSize: 16, color: AppColors.primaryColor)),
+                  style: TextStyle(fontSize: 16, color: AppColors.primaryColor)),
               const SizedBox(height: 32),
-              const TextField(
-                  decoration: InputDecoration(
+              TextField(
+                  controller: _fullNameController,
+                  decoration: const InputDecoration(
                       labelText: 'Full Name',
                       hintText: "John Doe",
                       labelStyle: TextStyle(color: AppColors.headingColor),
@@ -72,8 +73,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   decoration: InputDecoration(
                       labelText: 'Password',
                       hintText: '**********',
-                      labelStyle:
-                          const TextStyle(color: AppColors.headingColor),
+                      labelStyle: const TextStyle(color: AppColors.headingColor),
                       border: const OutlineInputBorder(),
                       suffixIcon: IconButton(
                           icon: Icon(
@@ -85,20 +85,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   obscureText: _obscureText),
               const SizedBox(height: 32),
               CommonButton(
-                  text: 'Sign Up',
-                  onPressed: () {
-                    AuthService().signup(
-                        email: _emailController.text,
-                        password: _passwordController.text,
-                        context: context
-                    );
-                  }),
+                text: 'Sign Up',
+                onPressed: () async {
+                  // Call the AuthService signup method and navigate to InterestedAreaScreen on success
+                  await AuthService().signup(
+                    fullname: _fullNameController.text,
+                    email: _emailController.text,
+                    password: _passwordController.text,
+                    context: context,
+                  );
+                },
+              ),
               const SizedBox(height: 16),
               GoogleSignInButton(
-                  text: 'Sign Up with Google',
-                  onPressed: () {
-                    AuthService().signUpWithGoogle(context: context);
-                  }),
+                text: 'Sign Up with Google',
+                onPressed: () async {
+                  // Use Google sign-up and navigate to InterestedAreaScreen on success
+                  await AuthService().signUpWithGoogle(context: context);
+                },
+              ),
               const SizedBox(height: 32),
               Center(
                   child: TextButton(
@@ -108,30 +113,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: RichText(
                     text: const TextSpan(
                         text: 'Already have an account? ',
-                        style:
-                            TextStyle(color: Color.fromARGB(255, 40, 20, 121)),
+                        style: TextStyle(color: Color.fromARGB(255, 40, 20, 121)),
                         children: <TextSpan>[
                       TextSpan(
                           text: 'Sign In',
                           style: TextStyle(color: AppColors.primaryColor))
                     ])),
-              )),
-              const SizedBox(height: 16),
-
-              //Testing part include here
-              Center(
-                  child: TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(
-                      context, '/testPages'); // Navigate to testPages
-                },
-                child: const Text(
-                  'Test Pages',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: 16,
-                  ),
-                ),
               )),
             ],
           ),
