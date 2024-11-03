@@ -13,14 +13,22 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  bool _obscureText = true;
+  bool _obscurePassword = true;
+  bool _obscureReenterPassword = true;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _reenterPasswordController = TextEditingController();
   final TextEditingController _fullNameController = TextEditingController();
 
   void _togglePasswordVisibility() {
     setState(() {
-      _obscureText = !_obscureText;
+      _obscurePassword = !_obscurePassword;
+    });
+  }
+
+  void _toggleReenterPasswordVisibility() {
+    setState(() {
+      _obscureReenterPassword = !_obscureReenterPassword;
     });
   }
 
@@ -28,6 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _reenterPasswordController.dispose();
     _fullNameController.dispose();
     super.dispose();
   }
@@ -77,16 +86,38 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       border: const OutlineInputBorder(),
                       suffixIcon: IconButton(
                           icon: Icon(
-                              _obscureText
+                              _obscurePassword
                                   ? Icons.visibility_off
                                   : Icons.visibility,
                               color: AppColors.headingColor),
                           onPressed: _togglePasswordVisibility)),
-                  obscureText: _obscureText),
+                  obscureText: _obscurePassword),
+              const SizedBox(height: 16),
+              TextField(
+                  controller: _reenterPasswordController,
+                  decoration: InputDecoration(
+                      labelText: 'Re-enter Password',
+                      hintText: '**********',
+                      labelStyle: const TextStyle(color: AppColors.headingColor),
+                      border: const OutlineInputBorder(),
+                      suffixIcon: IconButton(
+                          icon: Icon(
+                              _obscureReenterPassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: AppColors.headingColor),
+                          onPressed: _toggleReenterPasswordVisibility)),
+                  obscureText: _obscureReenterPassword),
               const SizedBox(height: 32),
               CommonButton(
                 text: 'Sign Up',
                 onPressed: () async {
+                  if (_passwordController.text != _reenterPasswordController.text) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Passwords do not match")),
+                    );
+                    return;
+                  }
                   // Call the AuthService signup method and navigate to InterestedAreaScreen on success
                   await AuthService().signup(
                     fullname: _fullNameController.text,

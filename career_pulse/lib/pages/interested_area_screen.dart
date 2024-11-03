@@ -68,9 +68,9 @@ class _InterestedAreaScreenState extends State<InterestedAreaScreen> {
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
-        automaticallyImplyLeading: false, // Removes the back button
+        automaticallyImplyLeading: false, 
         titleTextStyle: const TextStyle(
-          fontSize: 20,
+          fontSize: 18,
           fontWeight: FontWeight.bold,
           color: Colors.blue,
         ),
