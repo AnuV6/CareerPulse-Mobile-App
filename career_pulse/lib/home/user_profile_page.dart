@@ -22,7 +22,7 @@ class UserProfilePage extends StatefulWidget {
 
 class _UserProfilePageState extends State<UserProfilePage> {
   String userName = 'User';
-  String userImagePath = 'assets/user_image.jpg'; // Default local asset
+  String userImagePath = 'assets/user_image.png'; // Default local asset
   File? _image;
 
   @override
@@ -92,7 +92,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
   Future<void> _saveImageLocally(File imageFile) async {
     try {
       final directory = await getApplicationDocumentsDirectory();
-      final path = '${directory.path}/profile_image.jpg';
+      final path = '${directory.path}/profile_image.png';
       final savedImage = await imageFile.copy(path);
       
       setState(() {
