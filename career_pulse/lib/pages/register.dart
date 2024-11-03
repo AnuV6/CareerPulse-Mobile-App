@@ -65,7 +65,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: _fullNameController,
                   decoration: const InputDecoration(
                       labelText: 'Full Name',
-                      hintText: "John Doe",
+                      hintText: "Anura Kumara",
                       labelStyle: TextStyle(color: AppColors.headingColor),
                       border: OutlineInputBorder())),
               const SizedBox(height: 16),
