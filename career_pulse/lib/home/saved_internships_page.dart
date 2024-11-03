@@ -41,6 +41,8 @@ class SavedInternshipsPage extends StatelessWidget {
               final datePosted =
                   internship['datePosted'] ?? 'Date Not Available';
               final daysAgo = internship['daysAgo'] ?? 'Date Not Available';
+              final jobUrl = internship['jobUrl'] ??
+                  ''; // Get the job URL or empty string if null
 
               return InternshipCard(
                 title: title,
@@ -49,6 +51,7 @@ class SavedInternshipsPage extends StatelessWidget {
                 location: location,
                 datePosted: datePosted,
                 daysAgo: daysAgo,
+                jobUrl: jobUrl, // Pass the correct job URL here
                 onTap: () {
                   // Show the JobPopup when tapped
                   showDialog(
@@ -60,7 +63,7 @@ class SavedInternshipsPage extends StatelessWidget {
                         location: location,
                         datePosted: datePosted,
                         daysAgo: daysAgo,
-                        jobUrl: '',
+                        jobUrl: jobUrl, // Pass the job URL here
                       );
                     },
                   );

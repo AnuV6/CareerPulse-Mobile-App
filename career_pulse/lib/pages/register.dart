@@ -3,7 +3,6 @@ import 'package:career_pulse/services/authentication.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/widgets/common_blue_button.dart';
 import 'package:career_pulse/widgets/google_signin_button.dart';
-import 'package:career_pulse/pages/interested_area_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -59,7 +58,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       fontWeight: FontWeight.bold,
                       color: AppColors.primaryColor)),
               const Text('Sign up to get started!',
-                  style: TextStyle(fontSize: 16, color: AppColors.primaryColor)),
+                  style:
+                      TextStyle(fontSize: 16, color: AppColors.primaryColor)),
               const SizedBox(height: 32),
               TextField(
                   controller: _fullNameController,
@@ -82,7 +82,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   decoration: InputDecoration(
                       labelText: 'Password',
                       hintText: '**********',
-                      labelStyle: const TextStyle(color: AppColors.headingColor),
+                      labelStyle:
+                          const TextStyle(color: AppColors.headingColor),
                       border: const OutlineInputBorder(),
                       suffixIcon: IconButton(
                           icon: Icon(
@@ -144,7 +145,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: RichText(
                     text: const TextSpan(
                         text: 'Already have an account? ',
-                        style: TextStyle(color: Color.fromARGB(255, 40, 20, 121)),
+                        style:
+                            TextStyle(color: Color.fromARGB(255, 40, 20, 121)),
                         children: <TextSpan>[
                       TextSpan(
                           text: 'Sign In',

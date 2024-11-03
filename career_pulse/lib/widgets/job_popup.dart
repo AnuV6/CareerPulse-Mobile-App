@@ -9,7 +9,7 @@ class JobPopup extends StatelessWidget {
   final String location;
   final String datePosted;
   final String daysAgo;
-  final String jobUrl; // URL for the job post
+  final String? jobUrl; // URL for the job post, nullable
 
   const JobPopup({
     super.key,
@@ -18,29 +18,26 @@ class JobPopup extends StatelessWidget {
     required this.location,
     required this.datePosted,
     required this.daysAgo,
-    required this.jobUrl,
+    this.jobUrl,
   });
 
   // Function to launch the job URL or show a message if the link is not available
   Future<void> _launchURL(BuildContext context) async {
-    const String fallbackUrl = 'https://www.linkedin.com/jobs/';
-    String urlToLaunch = jobUrl;
+    if (jobUrl != null && jobUrl!.isNotEmpty) {
+      final Uri url =
+          Uri.parse(jobUrl!); // Directly parse the URL without encoding
 
-    if (jobUrl.isEmpty) {
-      urlToLaunch = fallbackUrl;
-    } else {
-      final Uri? checkUrl = Uri.tryParse(jobUrl);
-      if (checkUrl == null || !(await canLaunchUrl(checkUrl))) {
-        urlToLaunch = fallbackUrl;
+      // Attempt to launch the URL in an external browser
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url, mode: LaunchMode.externalApplication);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Could not launch job URL')),
+        );
       }
-    }
-
-    final Uri url = Uri.parse(urlToLaunch);
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Could not launch job URL')),
+        const SnackBar(content: Text('Job URL is not available')),
       );
     }
   }
@@ -48,7 +45,8 @@ class JobPopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double dialogWidth = screenWidth * 0.8; // Set dialog width to 80% of screen width
+    double dialogWidth =
+        screenWidth * 0.8; // Set dialog width to 80% of screen width
 
     return Dialog(
       shape: RoundedRectangleBorder(
