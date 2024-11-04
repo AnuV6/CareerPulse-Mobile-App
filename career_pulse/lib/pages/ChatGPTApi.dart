@@ -42,7 +42,6 @@ class ChatGPTApi {
       return {
         "error": "Exception occurred",
         "details": e.toString()
-        j
       };
     }
   }
