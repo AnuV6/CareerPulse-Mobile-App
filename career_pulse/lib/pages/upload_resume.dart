@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:career_pulse/widgets/AppBarWithBackButton.dart';
@@ -29,7 +31,7 @@ class _UploadResumeScreenState extends State<UploadResumeScreen> {
 
   void _submit() {
     final linkedinUrl = _linkedinController.text.trim();
-    
+
     if (_pickedFile == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please upload your resume')),
@@ -39,16 +41,24 @@ class _UploadResumeScreenState extends State<UploadResumeScreen> {
 
     if (linkedinUrl.isNotEmpty && !Uri.parse(linkedinUrl).isAbsolute) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a valid LinkedIn profile link')),
+        const SnackBar(
+            content: Text('Please enter a valid LinkedIn profile link')),
       );
       return;
     }
 
-    // Handle the file and LinkedIn URL submission logic here
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Resume and LinkedIn profile submitted successfully')),
-    );
+    // Show a success message based on the provided input
+    if (_pickedFile != null && linkedinUrl.isNotEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content:
+                Text('Resume and LinkedIn profile submitted successfully')),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Resume submitted successfully')),
+      );
+    }
 
     // Navigate to the PleaseWaitAnalyzingSplash screen
     Navigator.push(
