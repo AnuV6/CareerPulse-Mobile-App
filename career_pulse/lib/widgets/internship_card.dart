@@ -61,7 +61,7 @@ class InternshipCardState extends State<InternshipCard> {
           leading: CircleAvatar(
             backgroundColor: Colors.blue,
             child: Text(
-              widget.title.substring(0, 1),
+              widget.company.substring(0, 1),
               style: const TextStyle(color: Colors.white),
             ),
           ),

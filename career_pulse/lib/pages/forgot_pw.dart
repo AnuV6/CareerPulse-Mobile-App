@@ -50,7 +50,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 controller: emailController, // Added controller to TextField
                 decoration: const InputDecoration(
                   labelText: 'Email',
-                  hintText: 'xxx@gmail.com',
+                  hintText: 'careerpulse@gmail.com',
                   border: OutlineInputBorder(),
                   filled: true,
                   fillColor: Colors.white,
@@ -59,7 +59,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               const SizedBox(height: 16),
 
               CommonButton(
-                text: 'RESET PASSWORD',
+                text: 'Reset Password',
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -84,7 +84,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                     ),
                     foregroundColor: Colors.black, // Set the font color to black
                   ),
-                  child: const Text('BACK TO LOGIN', style: TextStyle(fontWeight: FontWeight.w900)),
+                  child: const Text('Back to Login', style: TextStyle(fontWeight: FontWeight.w500)),
                 ),
                 const SizedBox(height: 20),
             ],
