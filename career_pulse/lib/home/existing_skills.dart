@@ -10,19 +10,19 @@ class CoursesPage extends StatelessWidget {
   final List<Map<String, String>> courses = const [
     {
       'courseTitle': 'Front-End Developer Professional Certificate',
-      'company': 'Meta',
+      'company': 'Coursera',
     },
     {
       'courseTitle': 'Foundations of User Experience (UX) Design',
       'company': 'Google',
     },
     {
-      'courseTitle': 'Machine Learning Engineer',
+      'courseTitle': 'Project Management Professional Certificate',
       'company': 'Coursera',
     },
     {
-      'courseTitle': 'Data Science Professional Certificate',
-      'company': 'IBM',
+      'courseTitle': 'web development',
+      'company': 'Udemy',
     },
   ];
 

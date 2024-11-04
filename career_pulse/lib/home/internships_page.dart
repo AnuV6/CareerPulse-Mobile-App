@@ -33,9 +33,12 @@ class _InternshipsPageState extends State<InternshipsPage> {
 
     try {
       // Fetch keywords (user's interested areas) from Firestore
+      // ignore: unused_local_variable
       List<String> keywords = await _fetchUserInterestedAreas();
       // Fetch internships using the JobSearchService with the keywords
-      final fetchedInternships = await jobSearchService.fetchJobs(keywords);
+      final fetchedInternships = await jobSearchService.fetchJobs(['software', 'designer']);
+      //fetch jobs using the JobSearchService with the manual keywords
+      //final fetchedInternships = await jobSearchService.fetchJobs(['internship', 'intern', 'internships']);
       print('Internships fetched: $fetchedInternships');
       setState(() {
         internships = fetchedInternships;
@@ -43,6 +46,7 @@ class _InternshipsPageState extends State<InternshipsPage> {
     } catch (e) {
       // Handle any errors here
       print('Error fetching internships: $e');
+
     } finally {
       setState(() {
         isLoading = false; // Hide loading indicator
@@ -114,7 +118,7 @@ class _InternshipsPageState extends State<InternshipsPage> {
                               location: internship['location'] ?? 'Unknown Location',
                               datePosted: internship['date'] ?? 'Unknown Date',
                               daysAgo: internship['daysAgo'] ?? 'N/A',
-                              jobUrl: internship['jobUrl'] ?? '',
+                              jobUrl: internship['jobUrl'] ?? 'https://www.linkedin.com/jobs/',
                             );
                           },
                         );

@@ -17,12 +17,12 @@ class CoursesPage_1 extends StatelessWidget {
       'company': 'Google',
     },
     {
-      'courseTitle': 'Machine Learning Engineer',
+      'courseTitle': 'Project Management Professional Certificate',
       'company': 'Coursera',
     },
     {
-      'courseTitle': 'Data Science Professional Certificate',
-      'company': 'IBM',
+      'courseTitle': 'software Development Life Cycle',
+      'company': 'Udemy',
     },
   ];
 

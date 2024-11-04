@@ -52,7 +52,7 @@ class InternshipCardState extends State<InternshipCard> {
                 location: widget.location,
                 datePosted: widget.datePosted,
                 daysAgo: widget.daysAgo,
-                jobUrl: 'test',
+                jobUrl: 'https://www.linkedin.com/jobs/',
               );
             },
           );

@@ -60,7 +60,7 @@ class SavedInternshipsPage extends StatelessWidget {
                         location: location,
                         datePosted: datePosted,
                         daysAgo: daysAgo,
-                        jobUrl: '',
+                        jobUrl: 'https://www.linkedin.com/jobs/',
                       );
                     },
                   );

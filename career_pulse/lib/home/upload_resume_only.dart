@@ -39,6 +39,9 @@ class _UploadResumeOnlyScreenState extends State<UploadResumeOnlyScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Resume submitted successfully')),
     );
+
+    // Navigate to the home screen after submission
+    Navigator.pushReplacementNamed(context, '/home');
   }
 
   @override

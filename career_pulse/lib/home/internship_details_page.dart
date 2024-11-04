@@ -118,13 +118,13 @@ class InternshipDetailsPage extends StatelessWidget {
 
   // Function to simulate AI-generated details
   String generateAIDetails(String title, String company, String role) {
-    return 'As a $title at $company, you will be responsible for $role. This role requires strong skills in software development, problem-solving, and teamwork. You will work closely with other developers and stakeholders to create high-quality software solutions.';
+    return 'As a $title at $company, you will be responsible for $role. This role requires strong skills in frontend development, problem-solving, and teamwork. You will work closely with other developers and stakeholders to create high-quality software solutions.';
   }
 }
 
 void main() => runApp(MaterialApp(
         home: InternshipDetailsPage(
-      title: 'Software Developer Internship',
+      title: 'Frontend Developer Internship',
       company: 'Tech Solutions',
-      role: 'Developing and maintaining software applications',
+      role: 'Frontend Development',
     )));

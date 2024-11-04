@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -6,14 +8,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 // JobSearchService class to fetch jobs from the API
 class JobSearchService {
-  Future<List<Map<String, dynamic>>> fetchJobs(List<String> keywords) async {
+  Future<List<Map<String, dynamic>>> fetchJobs(List<String> list) async {
     final response = await http.post(
       Uri.parse('https://apiservercp.azurewebsites.net/api/search-jobs'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, dynamic>{
-        'keywords': keywords,
+        'keywords': ['designer', 'developer'],
         'location': 'Sri Lanka',
         'experienceLevel': 'internship',
         'dateSincePosted': 'past Week',
@@ -39,7 +41,7 @@ class JobSearchService {
               'location': job['location'] ?? 'Colombo, Sri Lanka.',
               'date': job['date'] ?? '2024-08-23',
               'daysAgo': job['agoTime'] ?? '5 days ago',
-              'jobUrl': job['jobUrl'] ?? 'lk.linkedin.com',
+              'jobUrl': job['jobUrl'] ?? 'https://www.linkedin.com/jobs/',
             });
           }
         }

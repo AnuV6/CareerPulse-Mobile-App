@@ -109,8 +109,8 @@ class ExistingSkillsPage extends StatelessWidget {
                 children: [
                   CourseCard(
                     courseTitle:
-                        'Meta Front-End Developer Professional Certificate',
-                    company: 'Meta',
+                        'Front-End Developer Professional Certificate',
+                    company: 'UdeMy',
                     onTap: () {
                       // Handle view button tap
                     },
@@ -118,6 +118,31 @@ class ExistingSkillsPage extends StatelessWidget {
                   const SizedBox(height: 10),
                   CourseCard(
                     courseTitle: 'Foundations of User Experience (UX) Design',
+                    company: 'Coursera',
+                    onTap: () {
+                      // Handle view button tap
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  CourseCard(
+                    courseTitle:
+                        'Learn Front-End Web Development with React',
+                    company: 'Codecademy',
+                    onTap: () {
+                      // Handle view button tap
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  CourseCard(
+                    courseTitle: 'Photoshop CC 2021 MasterClass',
+                    company: 'Adobe',
+                    onTap: () {
+                      // Handle view button tap
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  CourseCard(
+                    courseTitle: 'Google IT Support Professional Certificate',
                     company: 'Google',
                     onTap: () {
                       // Handle view button tap
@@ -126,33 +151,8 @@ class ExistingSkillsPage extends StatelessWidget {
                   const SizedBox(height: 10),
                   CourseCard(
                     courseTitle:
-                        'Meta Front-End Developer Professional Certificate',
-                    company: 'Meta',
-                    onTap: () {
-                      // Handle view button tap
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  CourseCard(
-                    courseTitle: 'Foundations of User Experience (UX) Design',
-                    company: 'Google',
-                    onTap: () {
-                      // Handle view button tap
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  CourseCard(
-                    courseTitle: 'Foundations of User Experience (UX) Design',
-                    company: 'Google',
-                    onTap: () {
-                      // Handle view button tap
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  CourseCard(
-                    courseTitle:
-                        'Meta Front-End Developer Professional Certificate',
-                    company: 'Meta',
+                        'The Complete Digital Marketing Course - 12 Courses in 1',
+                    company: 'Udemy',
                     onTap: () {
                       // Handle view button tap
                     },
