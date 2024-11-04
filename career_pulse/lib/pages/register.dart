@@ -1,9 +1,10 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:career_pulse/services/authentication.dart';
 import 'package:career_pulse/stuffs/colors.dart';
 import 'package:career_pulse/widgets/common_blue_button.dart';
 import 'package:career_pulse/widgets/google_signin_button.dart';
-import 'package:career_pulse/pages/interested_area_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -17,7 +18,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool _obscureReenterPassword = true;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _reenterPasswordController = TextEditingController();
+  final TextEditingController _reenterPasswordController =
+      TextEditingController();
   final TextEditingController _fullNameController = TextEditingController();
 
   void _togglePasswordVisibility() {
@@ -59,13 +61,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       fontWeight: FontWeight.bold,
                       color: AppColors.primaryColor)),
               const Text('Sign up to get started!',
-                  style: TextStyle(fontSize: 16, color: AppColors.primaryColor)),
+                  style:
+                      TextStyle(fontSize: 16, color: AppColors.primaryColor)),
               const SizedBox(height: 32),
               TextField(
                   controller: _fullNameController,
                   decoration: const InputDecoration(
                       labelText: 'Full Name',
-                      hintText: "Anura Kumara",
+                      hintText: "Career Pulse",
                       labelStyle: TextStyle(color: AppColors.headingColor),
                       border: OutlineInputBorder())),
               const SizedBox(height: 16),
@@ -82,7 +85,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   decoration: InputDecoration(
                       labelText: 'Password',
                       hintText: '**********',
-                      labelStyle: const TextStyle(color: AppColors.headingColor),
+                      labelStyle:
+                          const TextStyle(color: AppColors.headingColor),
                       border: const OutlineInputBorder(),
                       suffixIcon: IconButton(
                           icon: Icon(
@@ -98,7 +102,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   decoration: InputDecoration(
                       labelText: 'Re-enter Password',
                       hintText: '**********',
-                      labelStyle: const TextStyle(color: AppColors.headingColor),
+                      labelStyle:
+                          const TextStyle(color: AppColors.headingColor),
                       border: const OutlineInputBorder(),
                       suffixIcon: IconButton(
                           icon: Icon(
@@ -112,7 +117,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               CommonButton(
                 text: 'Sign Up',
                 onPressed: () async {
-                  if (_passwordController.text != _reenterPasswordController.text) {
+                  if (_passwordController.text !=
+                      _reenterPasswordController.text) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text("Passwords do not match")),
                     );
@@ -144,7 +150,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: RichText(
                     text: const TextSpan(
                         text: 'Already have an account? ',
-                        style: TextStyle(color: Color.fromARGB(255, 40, 20, 121)),
+                        style:
+                            TextStyle(color: Color.fromARGB(255, 40, 20, 121)),
                         children: <TextSpan>[
                       TextSpan(
                           text: 'Sign In',

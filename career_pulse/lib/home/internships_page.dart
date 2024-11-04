@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:career_pulse/widgets/AppBarWithBackButton.dart'; // Import CustomAppBar
 import 'package:career_pulse/widgets/internship_card.dart'; // Import InternshipCard
 import 'package:career_pulse/widgets/job_popup.dart'; // Import JobPopup
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../pages/job_search.dart'; // Import the job_search
 
 class InternshipsPage extends StatefulWidget {
@@ -30,7 +32,10 @@ class _InternshipsPageState extends State<InternshipsPage> {
     });
 
     try {
-      final fetchedInternships = await jobSearchService.fetchJobs();
+      // Fetch keywords (user's interested areas) from Firestore
+      List<String> keywords = await _fetchUserInterestedAreas();
+      // Fetch internships using the JobSearchService with the keywords
+      final fetchedInternships = await jobSearchService.fetchJobs(keywords);
       print('Internships fetched: $fetchedInternships');
       setState(() {
         internships = fetchedInternships;
@@ -45,6 +50,31 @@ class _InternshipsPageState extends State<InternshipsPage> {
     }
   }
 
+  Future<List<String>> _fetchUserInterestedAreas() async {
+    try {
+      final User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        DocumentSnapshot snapshot = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .get();
+
+        if (snapshot.exists && snapshot.data() != null) {
+          Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+          return List<String>.from(data['interestedAreas'] ?? []);
+        } else {
+          print('No interested areas found for the user.');
+          return [];
+        }
+      } else {
+        throw Exception('No authenticated user.');
+      }
+    } catch (e) {
+      print('Failed to fetch user interests: $e');
+      return [];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,8 +82,8 @@ class _InternshipsPageState extends State<InternshipsPage> {
         title: 'Internships',
         onBack: () {
           Navigator.of(context).pushNamedAndRemoveUntil(
-          '/homePage', 
-          (route) => false, 
+            '/homePage',
+            (route) => false,
           );
         },
       ),
@@ -68,32 +98,23 @@ class _InternshipsPageState extends State<InternshipsPage> {
                   itemBuilder: (context, index) {
                     final internship = internships[index];
                     return InternshipCard(
-                      title: internship['title'] ??
-                          'Unknown Title', // Job position title
-                      company: internship['company'] ??
-                          'Unknown Company', // Company name
-                      role: internship['role'] ??
-                          'Unknown Role', // Role, if applicable
-                      location: internship['location'] ??
-                          'Unknown Location', // Location
-                      datePosted:
-                          internship['date'] ?? 'Unknown Date', // Posting date
-                      daysAgo:
-                          internship['daysAgo'] ?? 'N/A', // Days ago posted
+                      title: internship['title'] ?? 'Unknown Title',
+                      company: internship['company'] ?? 'Unknown Company',
+                      role: internship['role'] ?? 'Unknown Role',
+                      location: internship['location'] ?? 'Unknown Location',
+                      datePosted: internship['date'] ?? 'Unknown Date',
+                      daysAgo: internship['daysAgo'] ?? 'N/A',
                       onTap: () {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
                             return JobPopup(
-                              companyName:
-                                  internship['company'] ?? 'Unknown Company',
+                              companyName: internship['company'] ?? 'Unknown Company',
                               roleTitle: internship['role'] ?? 'Unknown Role',
-                              location:
-                                  internship['location'] ?? 'Unknown Location',
+                              location: internship['location'] ?? 'Unknown Location',
                               datePosted: internship['date'] ?? 'Unknown Date',
                               daysAgo: internship['daysAgo'] ?? 'N/A',
-                              jobUrl: internship['jobUrl'] ??
-                                  '', // Pass the job URL or an empty string if null
+                              jobUrl: internship['jobUrl'] ?? '',
                             );
                           },
                         );
