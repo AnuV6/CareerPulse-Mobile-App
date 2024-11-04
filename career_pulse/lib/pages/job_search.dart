@@ -9,7 +9,7 @@ class JobSearchService {
   Future<List<Map<String, dynamic>>> fetchJobs() async {
     final response = await http.post(
       Uri.parse(
-          'https://careerpulse-aqfdecdkbpg7cyeq.eastus-01.azurewebsites.net/api/search-jobs'), // Update with your server's IP and port
+          'https://apiservercp.azurewebsites.net/api/search-jobs'), // Update with your server's IP and port
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
