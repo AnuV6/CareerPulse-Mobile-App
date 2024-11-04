@@ -1,24 +1,19 @@
-// ignore_for_file: avoid_print, library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 // JobSearchService class to fetch jobs from the API
 class JobSearchService {
-  Future<List<Map<String, dynamic>>> fetchJobs() async {
+  Future<List<Map<String, dynamic>>> fetchJobs(List<String> keywords) async {
     final response = await http.post(
-      Uri.parse(
-          'https://apiservercp.azurewebsites.net/api/search-jobs'), // Update with your server's IP and port
+      Uri.parse('https://apiservercp.azurewebsites.net/api/search-jobs'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, dynamic>{
-        'keywords': [
-          'business',
-          'designer',
-          'developer'
-        ], // Example keyword for testing
+        'keywords': keywords,
         'location': 'Sri Lanka',
         'experienceLevel': 'internship',
         'dateSincePosted': 'past Week',
@@ -33,39 +28,21 @@ class JobSearchService {
     if (response.statusCode == 200) {
       try {
         List<dynamic> fetchedJobs = jsonDecode(response.body);
-
-        // Print the raw response body for debugging
-        print('Response body: ${response.body}');
-
-        if (fetchedJobs.isEmpty) {
-          print('No jobs found or invalid job data.');
-          return [];
-        }
-
-        // Filter out any null entries and add detailed logging
         List<Map<String, dynamic>> validJobs = [];
         for (var job in fetchedJobs) {
           if (job != null && job is Map<String, dynamic>) {
-            try {
-              validJobs.add({
-                'companyLogo': job['companyLogo'] ?? 'assets/ilogo4.png',
-                'title': job['position'] ?? 'Software Engineering',
-                'company': job['company'] ?? 'Vertusa Software Solution',
-                'role': job['position'] ?? 'Software Engineer',
-                'location': job['location'] ?? 'Colombo, Sri Lanka.',
-                'date': job['date'] ?? '2024-08-23',
-                'daysAgo': job['agoTime'] ?? '5 days ago',
-                'jobUrl': job['jobUrl'] ?? 'lk.linkedin.com',
-              });
-            } catch (e) {
-              print('Error processing job: $job');
-              print('Error: $e');
-            }
-          } else {
-            print('Invalid or null job entry found and skipped.');
+            validJobs.add({
+              'companyLogo': job['companyLogo'] ?? 'assets/ilogo4.png',
+              'title': job['position'] ?? 'Software Engineering',
+              'company': job['company'] ?? 'Vertusa Software Solution',
+              'role': job['position'] ?? 'Software Engineer',
+              'location': job['location'] ?? 'Colombo, Sri Lanka.',
+              'date': job['date'] ?? '2024-08-23',
+              'daysAgo': job['agoTime'] ?? '5 days ago',
+              'jobUrl': job['jobUrl'] ?? 'lk.linkedin.com',
+            });
           }
         }
-
         return validJobs;
       } catch (e) {
         print('Error decoding JSON: $e');
@@ -87,9 +64,8 @@ class JobSearchPage extends StatefulWidget {
 }
 
 class _JobSearchPageState extends State<JobSearchPage> {
-  List<Map<String, dynamic>> _jobs = []; // List to store job data
-  final JobSearchService _jobSearchService =
-      JobSearchService(); // Instance of JobSearchService
+  List<Map<String, dynamic>> _jobs = [];
+  final JobSearchService _jobSearchService = JobSearchService();
 
   @override
   void initState() {
@@ -99,18 +75,45 @@ class _JobSearchPageState extends State<JobSearchPage> {
 
   Future<void> _fetchJobs() async {
     try {
-      // Fetch jobs using the JobSearchService
-      List<Map<String, dynamic>> jobs = await _jobSearchService.fetchJobs();
+      // Fetch the current user's interested areas from Firestore
+      List<String> keywords = await _fetchUserInterestedAreas();
+      // Fetch jobs using the JobSearchService with the keywords
+      List<Map<String, dynamic>> jobs = await _jobSearchService.fetchJobs(keywords);
       setState(() {
-        _jobs = jobs; // Update the state with the fetched jobs
+        _jobs = jobs;
       });
     } catch (e) {
       print('Failed to fetch jobs: $e');
     }
   }
 
+  Future<List<String>> _fetchUserInterestedAreas() async {
+    try {
+      final User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        DocumentSnapshot snapshot = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .get();
+
+        if (snapshot.exists && snapshot.data() != null) {
+          Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+          List<String> interests = List<String>.from(data['interestedAreas'] ?? []);
+          return interests;
+        } else {
+          print('No interested areas found for the user.');
+          return [];
+        }
+      } else {
+        throw Exception('No authenticated user.');
+      }
+    } catch (e) {
+      print('Failed to fetch user interests: $e');
+      return [];
+    }
+  }
+
   Future<void> _onRefresh() async {
-    // Call _fetchJobs to update the job listings when the user swipes down
     await _fetchJobs();
   }
 
@@ -129,11 +132,9 @@ class _JobSearchPageState extends State<JobSearchPage> {
             return ListTile(
               leading: Image.network(job['companyLogo']),
               title: Text(job['title']),
-              subtitle: Text(
-                  '${job['company']} • ${job['role']}\n${job['location']}'),
+              subtitle: Text('${job['company']} • ${job['role']}\n${job['location']}'),
               trailing: Text('${job['daysAgo']} days ago'),
               onTap: () {
-                // Optionally, handle job tap to open a detailed view or job URL
                 print('Job URL: ${job['jobUrl']}');
               },
             );
