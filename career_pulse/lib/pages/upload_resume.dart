@@ -44,7 +44,7 @@ class _UploadResumeScreenState extends State<UploadResumeScreen> {
       return;
     }
 
-    // Handle the file and LinkedIn URL logic
+    // Handle the file and LinkedIn URL submission logic here
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Resume and LinkedIn profile submitted successfully')),
@@ -62,11 +62,10 @@ class _UploadResumeScreenState extends State<UploadResumeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true, // Ensures the content resizes when the keyboard is visible
       backgroundColor: const Color(0xFFF9F9F9),
       appBar: const CustomAppBar(title: 'Upload Your Resume'),
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,

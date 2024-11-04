@@ -16,47 +16,69 @@ class _InterestedAreaScreen1State extends State<InterestedAreaScreen1> {
   final List<String> _selectedInterests = [];
   final TextEditingController _controller = TextEditingController();
 
-  // List of suggestions for Autocomplete
+  // List of suggestions for Autocomplete (sorted alphabetically)
   final List<String> _allSuggestions = [
-    'Web Developer',
-    'Mobile App Developer',
-    'UI/UX Designer',
-    'Data Scientist',
+    '3D Artist',
+    'AI Ethics Researcher',
+    'Aerospace Engineer',
+    'Animator',
+    'Architect',
+    'Automobile Engineer',
     'Backend Developer',
+    'Bioinformatics Scientist',
+    'Blockchain Developer',
+    'Business Analyst',
+    'Chemical Engineer',
+    'Civil Engineer',
+    'Cloud Engineer',
+    'Cloud Solutions Architect',
+    'Content Writer',
+    'Customer Success Manager',
+    'Cyber Security Analyst',
+    'Data Scientist',
+    'Database Administrator',
+    'DevOps Engineer',
+    'Digital Marketing Specialist',
+    'E-commerce Specialist',
+    'Educational Technology Specialist',
+    'Electrical Engineer',
+    'Embedded Systems Engineer',
+    'Environmental Engineer',
+    'Fashion Designer',
+    'Financial Analyst',
     'Frontend Developer',
     'Full Stack Developer',
-    'Software Engineer',
-    'DevOps Engineer',
-    'Cloud Engineer',
-    'Cyber Security Analyst',
-    'Network Engineer',
-    'Machine Learning Engineer',
-    'Artificial Intelligence Engineer',
     'Game Developer',
-    'Embedded Systems Engineer',
-    'Robotics Engineer',
-    'Blockchain Developer',
-    'Digital Marketing Specialist',
-    'Content Writer',
     'Graphic Designer',
-    'Video Editor',
-    'Photographer',
-    '3D Artist',
-    'Animator',
-    'Music Producer',
-    'Sound Engineer',
-    'VFX Artist',
-    'Fashion Designer',
+    'Hardware Engineer',
+    'IT Security Consultant',
+    'IT Support Specialist',
     'Interior Designer',
-    'Architect',
-    'Civil Engineer',
+    'Logistics Coordinator',
+    'Machine Learning Engineer',
+    'Marketing Analyst',
     'Mechanical Engineer',
-    'Electrical Engineer',
-    'Chemical Engineer',
-    'Aerospace Engineer',
-    'Automobile Engineer',
-    'Biomedical Engineer',
-    'Environmental Engineer',
+    'Mobile App Developer',
+    'Music Producer',
+    'Network Engineer',
+    'Operations Manager',
+    'Photographer',
+    'Product Manager',
+    'Project Manager',
+    'Quantum Computing Researcher',
+    'SEO Specialist',
+    'Salesforce Developer',
+    'Software Engineer',
+    'Sound Engineer',
+    'Supply Chain Analyst',
+    'Systems Analyst',
+    'Technical Writer',
+    'UI/UX Designer',
+    'VFX Artist',
+    'VR/AR Developer',
+    'Video Editor',
+    'Web Developer',
+    'Quality Assurance Engineer'
   ];
 
   @override
@@ -102,13 +124,11 @@ class _InterestedAreaScreen1State extends State<InterestedAreaScreen1> {
             const SizedBox(height: 16),
             Autocomplete<String>(
               optionsBuilder: (TextEditingValue textEditingValue) {
-                if (textEditingValue.text.isEmpty) {
-                  return const Iterable<String>.empty();
-                }
+                final inputText = textEditingValue.text.trim();
+
+                // Filter and return suggestions that match the input
                 return _allSuggestions.where((String option) {
-                  return option
-                          .toLowerCase()
-                          .contains(textEditingValue.text.toLowerCase()) &&
+                  return option.toLowerCase().contains(inputText.toLowerCase()) &&
                       !_selectedInterests.contains(option);
                 });
               },
@@ -128,7 +148,7 @@ class _InterestedAreaScreen1State extends State<InterestedAreaScreen1> {
                   controller: fieldTextEditingController,
                   focusNode: fieldFocusNode,
                   decoration: InputDecoration(
-                    hintText: 'enter your interest',
+                    hintText: 'Enter your interest',
                     prefixIcon: const Icon(Icons.search, color: Colors.blue),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -137,8 +157,7 @@ class _InterestedAreaScreen1State extends State<InterestedAreaScreen1> {
                   onSubmitted: (value) {
                     onFieldSubmitted();
                     setState(() {
-                      if (value.isNotEmpty &&
-                          !_selectedInterests.contains(value)) {
+                      if (value.isNotEmpty && !_selectedInterests.contains(value)) {
                         _selectedInterests.add(value);
                       }
                       fieldTextEditingController.clear();
